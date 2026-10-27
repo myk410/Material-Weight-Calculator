@@ -90,18 +90,8 @@
     "non_manifold_edges": 0
   },
   {
-    "file": "display_clamp_left.stl",
-    "triangles": 1180,
-    "non_manifold_edges": 0
-  },
-  {
-    "file": "display_clamp_right.stl",
-    "triangles": 1180,
-    "non_manifold_edges": 0
-  },
-  {
     "file": "display_cradle.stl",
-    "triangles": 4132,
+    "triangles": 3100,
     "non_manifold_edges": 0
   },
   {
@@ -141,12 +131,12 @@
   },
   {
     "file": "mars_front_lower.stl",
-    "triangles": 12580,
+    "triangles": 12476,
     "non_manifold_edges": 0
   },
   {
     "file": "mars_front_upper.stl",
-    "triangles": 9282,
+    "triangles": 7722,
     "non_manifold_edges": 0
   },
   {
@@ -161,12 +151,12 @@
   },
   {
     "file": "mars_front_lower.stl",
-    "triangles": 12580,
+    "triangles": 12476,
     "non_manifold_edges": 0
   },
   {
     "file": "mars_front_upper.stl",
-    "triangles": 9282,
+    "triangles": 7722,
     "non_manifold_edges": 0
   },
   {

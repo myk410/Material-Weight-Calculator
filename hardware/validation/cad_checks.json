@@ -3,7 +3,7 @@
     "part": "front_shell",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 61067.622842710094,
+    "volume_mm3": 57274.67978153837,
     "assembly_bbox": [
       -1.0000000088817842e-07,
       -1.0000000088817842e-07,
@@ -73,42 +73,14 @@
     "part": "display_cradle",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 3657.2659447754236,
+    "volume_mm3": 3586.091884757286,
     "assembly_bbox": [
-      19.0,
+      3.0,
       124.0,
-      21.5,
-      77.0,
-      176.0,
-      25.1
-    ]
-  },
-  {
-    "part": "display_clamp_left",
-    "valid": true,
-    "solid_count": 1,
-    "volume_mm3": 247.94736124558617,
-    "assembly_bbox": [
-      26.4,
-      128.0,
-      25.4,
-      30.6,
-      172.0,
-      26.9
-    ]
-  },
-  {
-    "part": "display_clamp_right",
-    "valid": true,
-    "solid_count": 1,
-    "volume_mm3": 247.94736124558693,
-    "assembly_bbox": [
-      65.4,
-      128.0,
-      25.4,
-      69.6,
-      172.0,
-      26.9
+      19.6,
+      93.0,
+      180.0,
+      24.0
     ]
   },
   {
@@ -367,7 +339,7 @@
     "part": "mars_front_upper",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 23592.552082420236,
+    "volume_mm3": 19668.511150111266,
     "assembly_bbox": [
       -1.0000000088817842e-07,
       117.75,
@@ -381,7 +353,7 @@
     "part": "mars_front_lower",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 37851.34276121288,
+    "volume_mm3": 37982.44063244734,
     "assembly_bbox": [
       -8.881784197001252e-16,
       -8.881784197001252e-16,

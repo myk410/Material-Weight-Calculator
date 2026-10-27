@@ -33,7 +33,7 @@ def comp(ref,value,library,fp,x,y,pinmap,pinnames=None,angle=0):
   rec['pins'][num]=n
  components.append(rec);return f
 # Common connector footprint orientation: pad numbers increase downward in PCB plan.
-U1={'1':'','2':'ROW0','3':'ROW1','4':'ROW2','5':'ROW3','6':'COL0','7':'COL1','8':'COL2','9':'COL3','10':'','11':'','12':'','13':'LCD_PWR_CTRL','14':'+3V3','15':'GND','16':'','17':'','18':'','19':'UPDI','20':'+3V3','21':'GND','22':'','23':'LCD_CLK','24':'LCD_DATA','25':'LCD_CS','26':'LCD_DISP','27':'','28':''}
+U1={'1':'','2':'ROW0','3':'ROW1','4':'ROW2','5':'ROW3','6':'COL0','7':'COL1','8':'COL2','9':'COL3','10':'','11':'','12':'','13':'LCD_PWR_CTRL','14':'+3V3','15':'GND','16':'','17':'','18':'','19':'UPDI','20':'+3V3','21':'GND','22':'','23':'LCD_CLK','24':'LCD_DATA','25':'LCD_CS','26':'LCD_CD','27':'LCD_RST','28':''}
 labels=['PA7','PC0','PC1','PC2','PC3','PD0','PD1','PD2','PD3','PD4','PD5','PD6','PD7','AVDD','GND','PF0','PF1','PF6_RESET','UPDI','VDD','GND','PA0','PA1','PA2','PA3','PA4','PA5','PA6']
 comp('U1','AVR128DA28-I/SP','Package_DIP','DIP-28_W7.62mm',35,20,U1,{str(i+1):s for i,s in enumerate(labels)})
 comp('J1','KEYPAD_8PIN','Connector_PinHeader_2.54mm','PinHeader_1x08_P2.54mm_Vertical',12,22.54,{str(i+1):n for i,n in enumerate(['ROW0','ROW1','ROW2','ROW3','COL0','COL1','COL2','COL3'])})
@@ -43,10 +43,10 @@ comp('D1','1N5817','Diode_THT','D_DO-41_SOD81_P7.62mm_Horizontal',24,9,{'1':'VIN
 comp('U2','MCP1700-3302E/TO','Package_TO_SOT_THT','TO-92_Inline_Wide',23,15,{'1':'GND','2':'VIN','3':'+3V3'},{'1':'GND','2':'VIN','3':'VOUT'})
 for ref,value,x,y,n in [('C1','1uF 10V X7R',23,20,'VIN'),('C2','1uF 10V X7R',29,20,'+3V3'),('C3','100nF 10V',47,39,'+3V3'),('C4','100nF 10V',34,58,'+3V3'),('C5','1uF 10V X7R',64,12,'LCD_VCC')]:
  comp(ref,value,'Capacitor_THT','C_Disc_D3.0mm_W1.6mm_P2.50mm',x,y,{'1':n,'2':'GND'})
-comp('Q1','2N3906','Package_TO_SOT_THT','TO-92_Inline_Wide',56,15,{'1':'+3V3','2':'LCD_BASE','3':'LCD_VCC'},{'1':'E','2':'B','3':'C'})
+comp('Q1','onsemi 2N3906 EBC','Package_TO_SOT_THT','TO-92_Inline_Wide',56,15,{'1':'+3V3','2':'LCD_BASE','3':'LCD_VCC'},{'1':'E','2':'B','3':'C'})
 comp('R1','10k','Resistor_THT','R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal',50,22,{'1':'LCD_PWR_CTRL','2':'LCD_BASE'})
 comp('R2','100k','Resistor_THT','R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal',56,7,{'1':'+3V3','2':'LCD_BASE'})
-comp('J3','SHARP_3502_CABLE','Connector_PinHeader_2.54mm','PinHeader_1x09_P2.54mm_Vertical',70,16,{'1':'LCD_VCC','2':'','3':'GND','4':'LCD_CLK','5':'LCD_DATA','6':'LCD_CS','7':'GND','8':'LCD_DISP','9':'GND'},{'1':'VIN','2':'MODULE_3V_OUT_NC','3':'GND','4':'CLK','5':'DI','6':'CS','7':'EXTMODE','8':'DISP','9':'EXTCOMIN'})
+comp('J3','UC1701_ADAPTER_CABLE','Connector_PinHeader_2.54mm','PinHeader_1x08_P2.54mm_Vertical',70,16,{str(i+1):n for i,n in enumerate(['LCD_VCC','GND','LCD_CLK','LCD_DATA','LCD_CS','LCD_CD','LCD_RST',''])},{str(i+1):n for i,n in enumerate(['VCC','GND','SCK','SDA','CS_N','CD','RST_N','NC'])})
 comp('J4','UPDI_3V3','Connector_PinHeader_2.54mm','PinHeader_1x03_P2.54mm_Vertical',55,46,{'1':'+3V3','2':'GND','3':'UPDI'},{'1':'VTREF','2':'GND','3':'UPDI'})
 for i,(x,y) in enumerate([(5,5),(77,5),(5,63),(77,63)]):
  f=comp(f'H{i+1}','M2.5','MountingHole','MountingHole_2.7mm_M2.5',x,y,{})
@@ -56,7 +56,7 @@ for a,c in [((0,0),(82,0)),((82,0),(82,68)),((82,68),(0,68)),((0,68),(0,0))]:
 # Text labels clear of component bodies; pin 1s remain marked by standard footprints.
 def text(t,x,y,size=1,layer=k.F_SilkS):
  o=k.PCB_TEXT(b);o.SetText(t);o.SetPosition(V(x,y));o.SetTextSize(k.VECTOR2I(MM(size),MM(size)));o.SetTextThickness(MM(.15));o.SetLayer(layer);b.Add(o)
-text('MATERIAL WEIGHT R1',40,3,1.3);text('3xAAA ONLY  /  3V3',41,65,1);text('J3 PIN 2: NO WIRE',68,43,.85)
+text('MATERIAL WEIGHT R2',40,3,1.3);text('3xAAA ONLY  /  3V3',41,65,1);text('J3: UC1701 8-WIRE',68,43,.85)
 # Router grid in mm. Trace width .4 mm; design clearance .25 mm.
 GRID=.254;NX=int(82/GRID)+1;NY=int(68/GRID)+1;N=NX*NY
 owners=[[0]*N for _ in range(2)]; codes={n:i+1 for i,n in enumerate(nets)};trackwidth=.4;clearance=.25
@@ -179,7 +179,7 @@ for c in components:
   else:wires.append(f'(no_connect (at {xx} {yy}) (uuid {uid()}))')
  c['schematic_uuid']=iid
 paths=' '.join(f'(path "/{c["schematic_uuid"]}" (reference "{c["ref"]}") (unit 1) (value "{esc(c["value"])}") (footprint "{c["footprint"]}"))' for c in components if not c['ref'].startswith('H'))
-sch=f'(kicad_sch (version 20230121) (generator eeschema) (uuid {rootid}) (paper "A3") (title_block (title "Material Weight Calculator") (date "2026-10-27") (rev "R1") (comment 1 "Prototype - see hardware/README.md")) (lib_symbols {" ".join(lib)}) {" ".join(wires)} {" ".join(instances)} (sheet_instances (path "/" (page "1"))) (symbol_instances {paths}))'
+sch=f'(kicad_sch (version 20230121) (generator eeschema) (uuid {rootid}) (paper "A3") (title_block (title "Material Weight Calculator") (date "2026-10-27") (rev "R2") (comment 1 "Prototype - see hardware/README.md")) (lib_symbols {" ".join(lib)}) {" ".join(wires)} {" ".join(instances)} (sheet_instances (path "/" (page "1"))) (symbol_instances {paths}))'
 (OUT/'material_weight_calculator.kicad_sch').write_text(sch)
 with (OUT/'bom.csv').open('w',newline='') as f:
  w=csv.writer(f);w.writerow(['Reference','Value','Footprint']);w.writerows((c['ref'],c['value'],c['footprint']) for c in components)

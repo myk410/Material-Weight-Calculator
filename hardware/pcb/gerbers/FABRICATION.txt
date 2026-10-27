@@ -1,5 +1,4 @@
-Material Weight Calculator R1 PROTOTYPE
+Material Weight Calculator R2 PROTOTYPE
 82 x 68 mm; 2 copper layers; 1.6 mm FR-4; plated through holes.
-Separate PTH and NPTH Excellon drills included.
-0.4 mm tracks; 0.25 mm design clearance; 1.0/0.5 mm vias.
+Separate PTH/NPTH Excellon drills. 0.4 mm tracks; 0.25 mm clearance; 1.0/0.5 mm vias.
 No electrical prototype has been bench tested.

@@ -1,0 +1,13 @@
+{
+  "display": "ERC12864FS-655",
+  "result": "PASS",
+  "matched_adapter_connected_pins": 41,
+  "signal_pins": 22,
+  "pitch_mm": 1.27,
+  "cable_connected_wires": 7,
+  "backlight": "not connected",
+  "sources": [
+    "EastRising ERC12864-655 Series Rev1.0, pp7-9",
+    "EastRising SPI reference schematic dated 2020-04-21"
+  ]
+}

@@ -33,7 +33,7 @@ for x,y in caseholes:
  f=boss(f,x,y,12,17)
  f=hole(f,x,y,11.8,h=18)
  f=nut(f,x,y,12,h=2.5)
-f=f.cut(block(33.5,20.5,27.8,29,27,4))
+f=f.cut(block(14.5,11,27.8,67,37,4))
 for y in KEY_Y:
  for x in KEY_X:f=f.cut(block(x-7.35,y-7.35,28,14.7,14.7,4,2))
 for x in [30,48,66]:f=f.union(block(x-.4,66,26.9,.8,76,1.5))
@@ -41,16 +41,14 @@ for y in [86,104,122]:f=f.union(block(13,y-.4,26.9,70,.8,1.5))
 # Guide/backing mount positions outside all membrane variants in this envelope.
 keymounts=[(9,64),(87,64),(9,146),(87,146)]
 for x,y in keymounts:
- f=boss(f,x,y,26.6,1.8,3.3)
+ f=boss(f,x,y,26.6,1.8,4.1)
  f=hole(f,x,y,26.5,h=3.8)
  f=nut(f,x,y,26.6,h=2.4)
-dispmounts=[(22.5,11.5),(73.5,11.5),(22.5,56.5),(73.5,56.5)]
+dispmounts=[(7,15),(89,15),(7,53),(89,53)]
 for x,y in dispmounts:
- f=boss(f,x,y,23.5,4.9,3.3)
+ f=boss(f,x,y,23.5,4.9,4.1)
  f=hole(f,x,y,23.4,h=5.8)
  f=nut(f,x,y,23.5,h=2.4)
-for x in [28.8,67.2]:
- for y in [16,52]:f=f.cut(cyl(x,y,27.9,2.8,1.7))
 f=engrave(f,'MATERIAL WEIGHT',48,7,31,2.5)
 parts['front_shell']=f
 # Rear tray, PCB mounts and a recessed removable battery door.
@@ -96,21 +94,19 @@ for x,y in keymounts:
 parts['keypad_guide']=guide
 # The guide must be independently removable; secure above backing with separate screws.
 # Four rear-facing nut seats in the shell are common to the stack; use 6 mm screws.
-# Display cradle supports board edges; wide central opening clears rear components.
-cradle=block(19,8,23.5,58,52,2,2).cut(block(31,17,23.4,34,34,2.3))
-for x,y in dispmounts:cradle=slot(cradle,x,y,23.3,h=3)
-# Two rails capture a 40 x 39 mm module while allowing vertical alignment.
-for x in [26.4,68.4]:cradle=cradle.union(block(x,14,25.4,1.2,40,1.7))
-for x in [28.8,67.2]:
- for y in [16,52]:
-  cradle=boss(cradle,x,y,22,3.5,2.5)
-  cradle=hole(cradle,x,y,21.9,h=5)
-  cradle=nut(cradle,x,y,22,h=2.4)
-parts['display_cradle']=cradle.translate((0,0,-2))
-for x,name in [(26.4,'display_clamp_left'),(65.4,'display_clamp_right')]:
- clamp=block(x,12,27.4,4.2,44,1.5,.6)
- for y in [16,52]:clamp=slot(clamp,x+2.4 if x<40 else x+1.8,y,27.3,l=4,h=2)
- parts[name]=clamp.translate((0,0,-2))
+# R2: 70 x 50 x 5.8 mm ERC12864FS-655. Body plan origin (13,7.5).
+# The glass front is at Z27.9. 0.5 mm closed-cell foam isolates both faces.
+# Support only the opaque perimeter/backlight frame; no rigid preload on glass.
+cradle=block(3,4,19.6,90,56,2,2).cut(block(15,10,19.5,66,43,2.3))
+# Top opening clears the 22-pin solder tail and 70 x 18 mm adapter behind it.
+cradle=cradle.cut(block(17,3.9,19.5,62,20.1,2.3))
+for x,y in dispmounts:cradle=slot(cradle,x,y,19.5,h=3)
+for x in [11.8,83.2]:cradle=cradle.union(block(x,8,21.5,1,49,2.5))
+for x,y in caseholes[:2]:cradle=cradle.cut(cyl(x,y,19.5,4.4,8))
+for x in [2.4,91.5]:cradle=cradle.cut(block(x,56.05,19.5,2.1,4.1,2.3))
+for x in [17.275,78.725]:cradle=cradle.cut(cyl(x,56.3,19.5,1.5,3))
+parts['display_cradle']=cradle
+# No separate edge clamps: cradle screws retain the foam-supported display.
 # Button geometry and legends. All texts are Boolean recesses.
 button_parts=[]
 for row,y in enumerate(KEY_Y):
@@ -162,7 +158,7 @@ for x,af in [(8,5.2),(24,5.35),(40,5.5)]:
 parts['fit_coupon_nuts']=nutcoupon
 # Export.
 (ROOT/'stl').mkdir(exist_ok=True);(ROOT/'cad').mkdir(exist_ok=True);(ROOT/'validation').mkdir(exist_ok=True)
-assembly=cq.Assembly(name='material_weight_calculator_r1')
+assembly=cq.Assembly(name='material_weight_calculator_r2')
 for name,part in parts.items():
  shape=part.val(); bb=shape.BoundingBox()
  valid=shape.isValid();n=len(shape.Solids())
@@ -179,6 +175,12 @@ for name,part in parts.items():
   cq.exporters.export(oriented,str(od/f'{name}.stl'),tolerance=.035,angularTolerance=.12)
  if name not in ['front_shell','rear_shell'] and not name.startswith('fit_coupon'):assembly.add(part,name=name,color=cq.Color(.28,.3,.32) if name.startswith('button') else cq.Color(.65,.67,.69))
  print(name,round(shape.Volume(),1),flush=True)
+# Reference electronic envelopes are included in STEP, never in the printable STLs.
+lcd_reference=block(13,7.5,22.1,70,50,5.8)
+adapter_reference=block(13,5.7,13,70,18,1.6)
+assembly.add(lcd_reference,name='LCD_reference_not_for_printing',color=cq.Color(.72,.75,.66))
+assembly.add(adapter_reference,name='adapter_PCB_reference_not_for_printing',color=cq.Color(.1,.4,.2))
+cq.exporters.export(adapter_reference,str(ROOT/'cad'/'display_adapter_outline.step'))
 assembly.save(str(ROOT/'cad'/'calculator_assembly.step'))
 # Flat button set: retain 18 mm pitch; top legends face +Z.
 flat=[]
@@ -190,5 +192,5 @@ pcb=block(7,62,7,82,68,1.6)
 for x,y in pcbholes:pcb=hole(pcb,x,y,6.9,d=2.9,h=2)
 cq.exporters.export(pcb,str(ROOT/'cad'/'pcb_outline.step'))
 (ROOT/'validation'/'cad_checks.json').write_text(json.dumps(checks,indent=2))
-(ROOT/'source'/'mechanical_parameters.json').write_text(json.dumps({'case_mm':[W,H,31],'pcb_mm':[82,68,1.6],'pcb_origin_plan_mm':[7,62],'pcb_bottom_z':7,'key_x_mm':KEY_X,'key_y_mm':KEY_Y,'nominal_key_pitch_mm':18,'keypad_membrane_max_envelope_mm':[72,79,.8],'button_travel_stop_mm':.5,'button_rest_gap_mm':.15,'legend_depth_mm':.4,'screw_clearance_mm':2.9,'nut_AF_mm':5.35,'nut_pocket_depth_mm':2.45,'keypad_pitch_status':'nominal; check full-size template against actual DIYmalls keypad','battery_holder':'Pololu 1144, 52 x 37 x 13 mm'},indent=2))
+(ROOT/'source'/'mechanical_parameters.json').write_text(json.dumps({'case_mm':[W,H,31],'pcb_mm':[82,68,1.6],'pcb_origin_plan_mm':[7,62],'pcb_bottom_z':7,'key_x_mm':KEY_X,'key_y_mm':KEY_Y,'nominal_key_pitch_mm':18,'keypad_membrane_max_envelope_mm':[72,79,.8],'button_travel_stop_mm':.5,'button_rest_gap_mm':.15,'legend_depth_mm':.4,'screw_clearance_mm':2.9,'nut_AF_mm':5.35,'nut_pocket_depth_mm':2.45,'keypad_pitch_status':'nominal; check full-size template against actual DIYmalls keypad','display':{'part':'ERC12864FS-655','body_mm':[70,50,5.8],'origin_plan_mm':[13,7.5],'window_mm':[14.5,11,67,37],'adapter_mm':[70,18,1.6],'adapter_origin_mm':[13,5.7,13],'foam_each_face_mm':.5},'battery_holder':'Pololu 1144, 52 x 37 x 13 mm'},indent=2))
 print('CAD EXPORT COMPLETE',flush=True)

@@ -2,13 +2,13 @@
 <export version="E">
   <design>
     <source>/workspace/scratch/f1b283492210/Material-Weight-Calculator/hardware/pcb/material_weight_calculator.kicad_sch</source>
-    <date>Tue Oct 27 12:56:20 2026</date>
+    <date>Tue Oct 27 14:56:49 2026</date>
     <tool>Eeschema 7.0.11+dfsg-1build4</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Material Weight Calculator</title>
         <company/>
-        <rev>R1</rev>
+        <rev>R2</rev>
         <date>2026-10-27</date>
         <source>material_weight_calculator.kicad_sch</source>
         <comment number="1" value="Prototype - see hardware/README.md"/>
@@ -31,7 +31,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>14deedd5-a71f-4165-a619-b2cb9e5e22d0</tstamps>
+      <tstamps>5c596a4a-a3bd-4ab0-9778-4ca0aabf9f04</tstamps>
     </comp>
     <comp ref="C2">
       <value>1uF 10V X7R</value>
@@ -40,7 +40,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>1c56fadc-12dd-46b2-aace-6b68e862cc1b</tstamps>
+      <tstamps>c013005c-c398-48cb-a822-2ef88cd9f845</tstamps>
     </comp>
     <comp ref="C3">
       <value>100nF 10V</value>
@@ -49,7 +49,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>3742d734-cb19-4f5c-aad9-221d7d40615b</tstamps>
+      <tstamps>e9e6c723-f64d-4122-9694-509c4028612c</tstamps>
     </comp>
     <comp ref="C4">
       <value>100nF 10V</value>
@@ -58,7 +58,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>f811dddd-5ca2-4712-8bbc-3621b12bdd52</tstamps>
+      <tstamps>a7ae6915-3d72-4d83-a937-044680d3c3ec</tstamps>
     </comp>
     <comp ref="C5">
       <value>1uF 10V X7R</value>
@@ -67,7 +67,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>b44e8000-b2b5-4b86-bc21-0d2011759e8f</tstamps>
+      <tstamps>deefeda6-33a2-4a71-b60e-87d5c2426448</tstamps>
     </comp>
     <comp ref="D1">
       <value>1N5817</value>
@@ -76,7 +76,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>562e1fa6-bb58-4f10-a57f-6935a9a70632</tstamps>
+      <tstamps>9582f181-c40f-464d-97e2-dd6801c74bc6</tstamps>
     </comp>
     <comp ref="J1">
       <value>KEYPAD_8PIN</value>
@@ -85,7 +85,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>80cd57d7-64c7-41d4-8aa8-c2d4b73ddb0d</tstamps>
+      <tstamps>8ceacf4c-d78c-4994-ad29-232caab8192c</tstamps>
     </comp>
     <comp ref="J2">
       <value>BATTERY_3AAA</value>
@@ -94,16 +94,16 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>786ccd5b-0a0b-4fba-b97b-8f33fc003b65</tstamps>
+      <tstamps>95d22fd9-bf75-420a-9d10-e5135ec92da0</tstamps>
     </comp>
     <comp ref="J3">
-      <value>SHARP_3502_CABLE</value>
-      <footprint>MW_footprints:PinHeader_1x09_P2.54mm_Vertical</footprint>
+      <value>UC1701_ADAPTER_CABLE</value>
+      <footprint>MW_footprints:PinHeader_1x08_P2.54mm_Vertical</footprint>
       <libsource lib="MW" part="MW_J3" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>31a8e118-02bf-4be2-a3e0-604be7e41e26</tstamps>
+      <tstamps>ed12012a-d2db-46d4-b876-fb67f9ba2039</tstamps>
     </comp>
     <comp ref="J4">
       <value>UPDI_3V3</value>
@@ -112,7 +112,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>df9600c3-d024-4b27-8fb2-c0ab1b8cba58</tstamps>
+      <tstamps>54d0946f-b208-434e-b64c-5e95fda7c318</tstamps>
     </comp>
     <comp ref="JP1">
       <value>MASTER_LINK</value>
@@ -121,16 +121,16 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>78a19467-d124-4d25-8714-323746fff268</tstamps>
+      <tstamps>85b7626f-f75d-4e8c-a5eb-7ea8552f8f58</tstamps>
     </comp>
     <comp ref="Q1">
-      <value>2N3906</value>
+      <value>onsemi 2N3906 EBC</value>
       <footprint>MW_footprints:TO-92_Inline_Wide</footprint>
       <libsource lib="MW" part="MW_Q1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>35914946-70ce-4d74-8eb6-19ba65316464</tstamps>
+      <tstamps>f0bc3e0e-37ab-43c5-9997-31db23e812da</tstamps>
     </comp>
     <comp ref="R1">
       <value>10k</value>
@@ -139,7 +139,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>201e47ff-4d81-41c4-b939-46941e572343</tstamps>
+      <tstamps>dfdf4d2c-56b2-4c03-93af-37a73fbb3a85</tstamps>
     </comp>
     <comp ref="R2">
       <value>100k</value>
@@ -148,7 +148,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>9ee08348-bd3c-47b0-b8f6-630ebad91ba6</tstamps>
+      <tstamps>9d5224c8-c846-4299-a76e-ceb99bf71382</tstamps>
     </comp>
     <comp ref="U1">
       <value>AVR128DA28-I/SP</value>
@@ -157,7 +157,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>a410076f-751d-45d9-bcb5-1120ba614360</tstamps>
+      <tstamps>60a9c374-e577-49bb-831f-f6e52de08aca</tstamps>
     </comp>
     <comp ref="U2">
       <value>MCP1700-3302E/TO</value>
@@ -166,7 +166,7 @@
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>6bcad319-5073-4ef8-85ed-26e30b8dedb8</tstamps>
+      <tstamps>a6785e56-0f5e-451f-9155-85b01b33ba14</tstamps>
     </comp>
   </components>
   <libparts>
@@ -259,18 +259,17 @@
     <libpart lib="MW" part="MW_J3">
       <fields>
         <field name="Reference">J3</field>
-        <field name="Value">SHARP_3502_CABLE</field>
+        <field name="Value">UC1701_ADAPTER_CABLE</field>
       </fields>
       <pins>
-        <pin num="1" name="VIN" type="passive"/>
-        <pin num="2" name="MODULE_3V_OUT_NC" type="passive"/>
-        <pin num="3" name="GND" type="passive"/>
-        <pin num="4" name="CLK" type="passive"/>
-        <pin num="5" name="DI" type="passive"/>
-        <pin num="6" name="CS" type="passive"/>
-        <pin num="7" name="EXTMODE" type="passive"/>
-        <pin num="8" name="DISP" type="passive"/>
-        <pin num="9" name="EXTCOMIN" type="passive"/>
+        <pin num="1" name="VCC" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="SCK" type="passive"/>
+        <pin num="4" name="SDA" type="passive"/>
+        <pin num="5" name="CS_N" type="passive"/>
+        <pin num="6" name="CD" type="passive"/>
+        <pin num="7" name="RST_N" type="passive"/>
+        <pin num="8" name="NC" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="MW" part="MW_J4">
@@ -297,7 +296,7 @@
     <libpart lib="MW" part="MW_Q1">
       <fields>
         <field name="Reference">Q1</field>
-        <field name="Value">2N3906</field>
+        <field name="Value">onsemi 2N3906 EBC</field>
       </fields>
       <pins>
         <pin num="1" name="E" type="passive"/>
@@ -417,9 +416,7 @@
       <node ref="C4" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C5" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="J2" pin="2" pinfunction="BAT-" pintype="passive"/>
-      <node ref="J3" pin="3" pinfunction="GND" pintype="passive"/>
-      <node ref="J3" pin="7" pinfunction="EXTMODE" pintype="passive"/>
-      <node ref="J3" pin="9" pinfunction="EXTCOMIN" pintype="passive"/>
+      <node ref="J3" pin="2" pinfunction="GND" pintype="passive"/>
       <node ref="J4" pin="2" pinfunction="GND" pintype="passive"/>
       <node ref="U1" pin="15" pinfunction="GND" pintype="passive"/>
       <node ref="U1" pin="21" pinfunction="GND" pintype="passive"/>
@@ -430,64 +427,65 @@
       <node ref="R1" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="R2" pin="2" pinfunction="2" pintype="passive"/>
     </net>
-    <net code="10" name="/LCD_CLK">
-      <node ref="J3" pin="4" pinfunction="CLK" pintype="passive"/>
+    <net code="10" name="/LCD_CD">
+      <node ref="J3" pin="6" pinfunction="CD" pintype="passive"/>
+      <node ref="U1" pin="26" pinfunction="PA4" pintype="passive"/>
+    </net>
+    <net code="11" name="/LCD_CLK">
+      <node ref="J3" pin="3" pinfunction="SCK" pintype="passive"/>
       <node ref="U1" pin="23" pinfunction="PA1" pintype="passive"/>
     </net>
-    <net code="11" name="/LCD_CS">
-      <node ref="J3" pin="6" pinfunction="CS" pintype="passive"/>
+    <net code="12" name="/LCD_CS">
+      <node ref="J3" pin="5" pinfunction="CS_N" pintype="passive"/>
       <node ref="U1" pin="25" pinfunction="PA3" pintype="passive"/>
     </net>
-    <net code="12" name="/LCD_DATA">
-      <node ref="J3" pin="5" pinfunction="DI" pintype="passive"/>
+    <net code="13" name="/LCD_DATA">
+      <node ref="J3" pin="4" pinfunction="SDA" pintype="passive"/>
       <node ref="U1" pin="24" pinfunction="PA2" pintype="passive"/>
-    </net>
-    <net code="13" name="/LCD_DISP">
-      <node ref="J3" pin="8" pinfunction="DISP" pintype="passive"/>
-      <node ref="U1" pin="26" pinfunction="PA4" pintype="passive"/>
     </net>
     <net code="14" name="/LCD_PWR_CTRL">
       <node ref="R1" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="13" pinfunction="PD7" pintype="passive"/>
     </net>
-    <net code="15" name="/LCD_VCC">
+    <net code="15" name="/LCD_RST">
+      <node ref="J3" pin="7" pinfunction="RST_N" pintype="passive"/>
+      <node ref="U1" pin="27" pinfunction="PA5" pintype="passive"/>
+    </net>
+    <net code="16" name="/LCD_VCC">
       <node ref="C5" pin="1" pinfunction="1" pintype="passive"/>
-      <node ref="J3" pin="1" pinfunction="VIN" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="VCC" pintype="passive"/>
       <node ref="Q1" pin="3" pinfunction="C" pintype="passive"/>
     </net>
-    <net code="16" name="/ROW0">
+    <net code="17" name="/ROW0">
       <node ref="J1" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="2" pinfunction="PC0" pintype="passive"/>
     </net>
-    <net code="17" name="/ROW1">
+    <net code="18" name="/ROW1">
       <node ref="J1" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="U1" pin="3" pinfunction="PC1" pintype="passive"/>
     </net>
-    <net code="18" name="/ROW2">
+    <net code="19" name="/ROW2">
       <node ref="J1" pin="3" pinfunction="3" pintype="passive"/>
       <node ref="U1" pin="4" pinfunction="PC2" pintype="passive"/>
     </net>
-    <net code="19" name="/ROW3">
+    <net code="20" name="/ROW3">
       <node ref="J1" pin="4" pinfunction="4" pintype="passive"/>
       <node ref="U1" pin="5" pinfunction="PC3" pintype="passive"/>
     </net>
-    <net code="20" name="/UPDI">
+    <net code="21" name="/UPDI">
       <node ref="J4" pin="3" pinfunction="UPDI" pintype="passive"/>
       <node ref="U1" pin="19" pinfunction="UPDI" pintype="passive"/>
     </net>
-    <net code="21" name="/VIN">
+    <net code="22" name="/VIN">
       <node ref="C1" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
       <node ref="U2" pin="2" pinfunction="VIN" pintype="passive"/>
     </net>
-    <net code="22" name="unconnected-(J3-MODULE_3V_OUT_NC-Pad2)">
-      <node ref="J3" pin="2" pinfunction="MODULE_3V_OUT_NC" pintype="passive+no_connect"/>
+    <net code="23" name="unconnected-(J3-NC-Pad8)">
+      <node ref="J3" pin="8" pinfunction="NC" pintype="passive+no_connect"/>
     </net>
-    <net code="23" name="unconnected-(U1-PA0-Pad22)">
+    <net code="24" name="unconnected-(U1-PA0-Pad22)">
       <node ref="U1" pin="22" pinfunction="PA0" pintype="passive+no_connect"/>
-    </net>
-    <net code="24" name="unconnected-(U1-PA5-Pad27)">
-      <node ref="U1" pin="27" pinfunction="PA5" pintype="passive+no_connect"/>
     </net>
     <net code="25" name="unconnected-(U1-PA6-Pad28)">
       <node ref="U1" pin="28" pinfunction="PA6" pintype="passive+no_connect"/>

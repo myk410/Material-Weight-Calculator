@@ -1,6 +1,6 @@
 # Resin enclosure and keypad requirements
 
-Updated October 27, 2026. These requirements capture the user's printing choices and the sixteen-key UI walkthrough. Hardware R1 CAD and STLs now implement these requirements in [hardware/](hardware/README.md). Physical print/actuation tolerances remain untested.
+Updated October 27, 2026. These requirements capture the user's printing choices and the sixteen-key UI walkthrough. Hardware R2 CAD and STLs now implement these requirements in [hardware/](hardware/README.md). Physical print/actuation tolerances remain untested.
 
 ## Printed parts
 
@@ -55,3 +55,7 @@ The housing should provide an accessible AAA compartment and removable rear cove
 Editable CadQuery source, an assembled STEP model, individual STLs, sixteen engraved button caps, and printer-oriented shell sections are now in hardware/. Main joints use M2.5 screws and hex nuts glued into 5.35 mm across-flats pockets. Two bonded shell sections per face fit the Mars 5 Ultra; see hardware/README.md for the complete assembly order and screw lengths.
 
 See [PARTS_LIST.md](PARTS_LIST.md) for the reuse-first prototype and candidate final AAA components.
+
+## R2 display geometry
+
+Selected module: EastRising ERC12864FS-655, no touch panel; 70 × 50 × 5.8 mm maximum body. Body plan origin is (13,7.5) mm. Viewing window is 67 × 37 mm at (14.5,11) mm, following the manufacturer drawing. The unchanged case is 96 × 184 × 31 mm. Four M2.5 screws retain one rear cradle with 0.5 mm foam on opaque support surfaces; R1 edge clamps are removed. Adapter board: 70 × 18 × 1.6 mm, nominal plan origin (13,5.7), lower face Z=13 mm. Keep soldered wire/capacitor heights within the documented envelope. Display glass front Z=27.9 mm, body rear Z=22.1 mm. Check actual pin reach and module alignment on the supplied full-size display template before soldering/printing.

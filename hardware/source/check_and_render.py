@@ -51,14 +51,14 @@ for p in sorted((ROOT/'stl'/'mars5_ultra_oriented').glob('*.stl')):
 # Actual BREP mesh previews, not generated imagery.
 def draw(filename,exploded=False):
  fig=plt.figure(figsize=(7,10),facecolor='#f5f4f0');ax=fig.add_subplot(111,projection='3d');ax.set_facecolor('#f5f4f0')
- names=list(parts) if exploded else ['mars_front_upper','mars_front_lower']+[n for n in parts if n.startswith('button')]
+ names=list(parts) if exploded else ['mars_front_upper','mars_front_lower','LCD_reference']+[n for n in parts if n.startswith('button')]
  for name in names:
   obj=parts[name].val();verts,faces=obj.tessellate(.08,.15);verts=np.array([[v.x,v.y,v.z] for v in verts]);faces=np.array(faces)
   if exploded:
    shift=60 if name.startswith('button') else 45 if name.startswith('mars_front') else 35 if name=='keypad_guide' else 25 if name=='keypad_backing' else 18 if name.startswith('display') else 0
    verts[:,2]+=shift
   triangles=verts[faces];norm=np.cross(triangles[:,1]-triangles[:,0],triangles[:,2]-triangles[:,0]);lens=np.linalg.norm(norm,axis=1);norm/=np.maximum(lens[:,None],1e-12)
-  light=np.where(np.abs(norm[:,2])>.9,.9,.5);base=np.array([.75,.78,.72]) if name.startswith('button') else np.array([.36,.41,.43])
+  light=np.where(np.abs(norm[:,2])>.9,.9,.5);base=np.array([.75,.78,.72]) if name.startswith('button') else np.array([.72,.75,.66]) if name=='LCD_reference' else np.array([.36,.41,.43])
   colors=np.clip(base[None,:]*(.65+.35*light[:,None]),0,1)
   if name.startswith('button'):
    top=verts[:,2].max();engraved=(triangles[:,:,2].mean(axis=1)<top-.12)&(triangles[:,:,2].mean(axis=1)>top-.6);colors[engraved]=[.12,.15,.12]
@@ -66,6 +66,16 @@ def draw(filename,exploded=False):
  ax.set_xlim(-3,99);ax.set_ylim(-3,187);ax.set_zlim(0,100 if exploded else 36);ax.set_box_aspect((102,190,100 if exploded else 36));ax.set_proj_type('ortho');ax.view_init(elev=40 if exploded else 90,azim=-90);ax.set_axis_off()
  fig.subplots_adjust(left=0,right=1,bottom=0,top=.95);fig.suptitle('Exploded CAD assembly' if exploded else 'Actual CAD: recessed button legends',fontsize=15,color='#20332f',y=.98)
  fig.savefig(ROOT/'docs'/filename,dpi=200,bbox_inches='tight');plt.close(fig)
+# Check actual component envelopes against the printed supports and shells.
+envelopes={'LCD_reference':design.lcd_reference,'adapter_PCB_reference':design.adapter_reference}
+envelope_checks=[]
+for name,part in envelopes.items():
+ for printed,solid in parts.items():
+  overlap=part.val().intersect(solid.val()).Volume()
+  if overlap>.02:envelope_checks.append({'component':name,'printed_part':printed,'overlap_mm3':overlap})
+(ROOT/'validation'/'display_envelope_checks.json').write_text(json.dumps({'intersections_above_0.02_mm3':envelope_checks},indent=2))
+assert not envelope_checks,envelope_checks
+parts.update(envelopes)
 draw('case_front_preview.png');draw('assembly_exploded_preview.png',True)
 print('MESHES AND NETLIST PASS',len(mesh),len(actual),flush=True)
 if collisions:raise RuntimeError('Assembly collisions remain')

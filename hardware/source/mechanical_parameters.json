@@ -39,5 +39,34 @@
   "nut_AF_mm": 5.35,
   "nut_pocket_depth_mm": 2.45,
   "keypad_pitch_status": "nominal; check full-size template against actual DIYmalls keypad",
+  "display": {
+    "part": "ERC12864FS-655",
+    "body_mm": [
+      70,
+      50,
+      5.8
+    ],
+    "origin_plan_mm": [
+      13,
+      7.5
+    ],
+    "window_mm": [
+      14.5,
+      11,
+      67,
+      37
+    ],
+    "adapter_mm": [
+      70,
+      18,
+      1.6
+    ],
+    "adapter_origin_mm": [
+      13,
+      5.7,
+      13
+    ],
+    "foam_each_face_mm": 0.5
+  },
   "battery_holder": "Pololu 1144, 52 x 37 x 13 mm"
 }

@@ -2,23 +2,23 @@
 
 A standalone pocket calculator for estimating material weight. Select a material, enter length, width, and thickness in inches, and read the result in pounds. Runs entirely on one microcontroller with physical buttons and replaceable AAA batteries.
 
-Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware R1 CAD, STLs, schematic, routed PCB and print/fabrication files are now in [hardware/](hardware/README.md). Digital checks pass; physical fit, electronics, firmware and battery runtime are not yet tested.
+Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware R2 CAD, STLs, schematics, routed main and display-adapter PCBs and print/fabrication files are now in [hardware/](hardware/README.md). Digital checks pass; physical fit, electronics, firmware and battery runtime are not yet tested.
 
 ## Proposed final low-power hardware
 
 | Part | Proposed choice | Reason |
 | --- | --- | --- |
 | Controller | Microchip AVR128DA28, preferably the through-hole package for a hand-built prototype | One low-power microcontroller; enough RAM for a graphical display; internal oscillator; no wireless hardware needed |
-| Display | Reflective Sharp memory LCD; Adafruit 3502, 1.3-inch 168 × 144 breakout is the reference candidate | Paper-like, daylight-readable screen with fast updates and no backlight |
+| Display | EastRising ERC12864FS-655, 2.8-inch 128 × 64 positive monochrome LCD, no touch panel | Larger black-on-light screen; operate with backlight disconnected; separate UC1701 adapter PCB included |
 | Buttons | Sixteen flexible-resin button caps over the user-owned DIYmalls 4 × 4 membrane keypad | Sixteen physical keys using eight controller pins; no separate keypad processor |
 | Batteries | Three AAA alkaline cells in a replaceable holder | Simple power supply using a low-quiescent-current linear regulator |
 | Regulator | MCP1700, 3.3 V output variant | Typical quiescent current of 1.6 µA; 3.3 V rail for the MCU and reference display breakout input |
 | Supporting parts | Regulator input/output capacitors, local MCU decoupling, battery protection diode, display power transistor, service link, programming header | Reliable supply and a way to program the controller without leaving a USB interface powered |
 | Housing | Rigid-resin printed calculator enclosure with accessible battery compartment | Large readable labels and easy battery replacement |
 
-See [PARTS_LIST.md](PARTS_LIST.md) for previously purchased parts and the prototype route. The exact hardware R1 component and M2.5 fastener lists are in [hardware/README.md](hardware/README.md). The table below is the final low-power direction; these are design candidates, not a purchase-ready schematic. Adafruit's reference display was listed as out of stock when checked. Its viewable area is only about 24.5 × 21 mm: check text readability before committing to this size. A larger reflective display may be better for shop use.
+See [PARTS_LIST.md](PARTS_LIST.md) for previously purchased parts and the prototype route. The exact hardware R2 component and M2.5 fastener lists are in [hardware/README.md](hardware/README.md). The current R2 design uses the 70 × 50 mm EastRising display and a 70 × 18 mm adapter. The manufacturer lists up to 500 µA LCD current at 3.3 V; complete-device current and indoor readability still require a physical test.
 
-The AVR128DA28 has 16 KB SRAM. The reference display's monochrome framebuffer needs 3,024 bytes, leaving room for the application. An ATmega328P's 2 KB SRAM is too small for this display's standard full-buffer driver. Verify the chosen graphics library and AVR core together during prototyping.
+The AVR128DA28 has 16 KB SRAM. A 128 × 64 monochrome framebuffer needs 1,024 bytes. PA1/PA2/PA3 drive clock/data/chip select, PA4 selects command/data, and PA5 resets the UC1701. The device needs firmware; the HTML calculator is a separate working example.
 
 ## Why memory LCD instead of e-paper?
 
@@ -70,7 +70,7 @@ Two AAA cells are possible, but the regulated display supply would require a boo
 - If display power is switched off, put connected signal pins in a safe state to prevent back-powering. Reinitialize and redraw on wake.
 - Wake from a keypad interrupt. In sleep, drive matrix columns low and use pulled-up interrupt-capable row inputs. Confirm exact AVR pin wake behavior before assigning pins. Consume the wake press so it does not enter a stray digit. Wait for key release before accepting another entry.
 - Avoid continuous keypad polling during sleep, always-on LEDs, powered USB adapters, and continuously connected battery-sense resistor dividers.
-- The R1 board uses an internal shunt/service link instead of an external master switch; removing a battery through the door fully disconnects power. Normal ON/OFF is sleep; RAM state is lost after battery removal or master power-off.
+- The R2 board uses an internal shunt/service link instead of an external master switch; removing a battery through the door fully disconnects power. Normal ON/OFF is sleep; RAM state is lost after battery removal or master power-off.
 
 Battery-life goals must use measured current for the entire assembly, including display breakout and regulator. Initial targets are below 10 µA in automatic sleep and a few mA while actively used; these are goals, not verified specifications.
 
@@ -89,11 +89,11 @@ Illustrative budget only: at 5 mA for 20 minutes per day plus 10 µA for the res
 
 - [Microchip AVR128DA28](https://www.microchip.com/en-us/product/AVR128DA28) and its linked datasheet: voltage limits, memory, sleep behavior, pin functions, and programming.
 - [Microchip MCP1700](https://www.microchip.com/en-us/product/MCP1700) and its linked datasheet: quiescent current, voltage options, dropout, and capacitors.
-- [Adafruit 3502 Sharp memory LCD](https://www.adafruit.com/product/3502): module dimensions, interface, framebuffer requirements, and display characteristics.
-- [Adafruit Sharp display example](https://github.com/adafruit/Adafruit_SHARP_Memory_Display/blob/master/examples/sharpmemtest/sharpmemtest.ino): periodic display servicing.
 - [Waveshare e-paper manual](https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual): refresh and standby considerations for an alternative display.
 - [ATI corrosion-resistant titanium datasheet](https://www.atimaterials.com/Products/Documents/datasheets/titanium/alloyed/ati_corrosion_resistant_titanium%20_alloys_tds_en5_v1.pdf): grade-specific titanium density.
 
 ## Validation
 
 Run `node tests/calculator.test.cjs` to check rectangular and pipe formulas, equivalent wall/ID inputs, published grade densities and replacement of the titanium misprint, input validation, override labeling, and mocked UI transitions. These checks pass. A real-browser check could not run in the current environment because the Chromium executable is unavailable; browser rendering and physical hardware remain unverified.
+
+The display pin map, electrical source references, adapter BOM and 128 × 64 screen-layout requirements are in [hardware/DISPLAY_INTEGRATION.md](hardware/DISPLAY_INTEGRATION.md).
