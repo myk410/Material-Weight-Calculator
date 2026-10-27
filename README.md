@@ -2,7 +2,7 @@
 
 A standalone pocket calculator for estimating material weight. Select a material, enter length, width, and thickness in inches, and read the result in pounds. Runs entirely on one microcontroller with physical buttons and replaceable AAA batteries.
 
-Status: proposed hardware design, October 27, 2026. The existing HTML example has been reviewed and preserved. Hardware, firmware, wiring, and battery life have not yet been tested.
+Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using the supplied company density presets with optional overrides. Hardware, firmware, wiring, and battery life have not yet been tested.
 
 ## Recommended first build
 
@@ -34,9 +34,9 @@ E-paper is compatible with a microcontroller and does not require a Raspberry Pi
 
 1. Press ON to wake the calculator.
 2. Press MAT to cycle through named materials; press ENTER to select. Default to the last material during the current powered session.
-3. Enter length in inches; press ENTER.
-4. Enter width in inches; press ENTER.
-5. Enter thickness in inches; press ENTER.
+3. Choose solid rectangular stock or pipe using a short menu on the existing keypad.
+4. For rectangular stock, enter length, width, and thickness in inches.
+5. For pipe, enter length, actual outside diameter, and wall thickness (or inside diameter). Press ENTER after each input.
 6. Show the material, dimensions, and estimated pounds, with the weight in the largest text.
 
 Key functions: digits 0–9, decimal point, ENTER, MAT, BACK, CLEAR, and ON/OFF. This fits a 16-key matrix. A generic keypad can be relabeled for the prototype; tactile calculator-style keys are preferable for the finished housing.
@@ -53,18 +53,11 @@ For a solid rectangular piece:
 
 Example using the HTML's steel density: `12 × 12 × 1 × 490 / 1728 = 40.8333… lb`, displayed as `40.83 lb`.
 
-The original HTML accepts volume directly. Firmware will calculate volume from the three entered dimensions. Its pounds-to-total-ounces conversion is valid, but pounds should be the primary handheld result.
+The HTML now supports rectangular stock, pipe/round tube, and known volume. Pipe volume is `π × wall × (OD − wall) × length`, or equivalently `π/4 × (OD − ID) × (OD + ID) × length`. All dimensions are in decimal inches. Use actual diameters, not nominal pipe sizes. Pipe results exclude contents and fittings. Other hollow profiles and irregular parts need their own formulas.
 
-Three outside dimensions describe a solid rectangular piece. They do not determine the volume of a pipe, hollow section, cylinder, or irregular part. Those need separate shape formulas and additional inputs. Version one should explicitly identify its shape as solid rectangular stock.
+The user confirmed that the original densities came from their company. All eleven supplied presets remain unchanged and are labeled as company values. Each material now has a comparison note; the density can be overridden for a specific grade or custom material. See [DENSITY_REVIEW.md](DENSITY_REVIEW.md) for the complete sourced comparison, original plate factors, formulas, and limitations. Titanium is the largest discrepancy against published examples; CuNi and NiCu also need alloy identification. Published comparisons do not establish which factors the company intends employees to use.
 
-The original material list contains Poly, Water, Aluminum, Titanium, Steel, Stainless, Inconel, Brass, CuNi, NiCu, and Lead. It is a useful starting point, but the entries need a density review before firmware release:
-
-- Titanium is currently assigned 168 lb/ft³, identical to aluminum. ATI lists commercially pure Grade 2 titanium at 0.163 lb/in³, equivalent to 281.664 lb/ft³. This correction must identify the grade; it is not a universal value for every titanium alloy.
-- Names such as Poly, Stainless, Inconel, CuNi, and NiCu describe families. Specify the actual polymer/alloy or clearly mark a default as approximate.
-- Store one canonical density value per material. Derive any other density units from it instead of copying inconsistent rounded reference columns.
-- Include a Custom Density option in lb/ft³ for materials outside the preset list. The user must supply a known density; dimensions and a material name alone cannot identify every material's density.
-
-Do not silently carry the original density table into production firmware. The original HTML remains unchanged as the supplied reference.
+The handheld firmware should provide the same shape choices and density policy. These controls are planned; device firmware has not yet been implemented.
 
 ## Battery and sleep design
 
@@ -100,3 +93,7 @@ Illustrative budget only: at 5 mA for 20 minutes per day plus 10 µA for the res
 - [Adafruit Sharp display example](https://github.com/adafruit/Adafruit_SHARP_Memory_Display/blob/master/examples/sharpmemtest/sharpmemtest.ino): periodic display servicing.
 - [Waveshare e-paper manual](https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_Manual): refresh and standby considerations for an alternative display.
 - [ATI corrosion-resistant titanium datasheet](https://www.atimaterials.com/Products/Documents/datasheets/titanium/alloyed/ati_corrosion_resistant_titanium%20_alloys_tds_en5_v1.pdf): grade-specific titanium density.
+
+## Validation
+
+Run `node tests/calculator.test.cjs` to check rectangular and pipe formulas, equivalent wall/ID inputs, preservation of all company presets, input validation, override labeling, and mocked UI transitions. These checks pass. A real-browser check could not run in the current environment because the Chromium executable is unavailable; browser rendering and physical hardware remain unverified.

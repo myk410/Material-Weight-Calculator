@@ -1,149 +1,137 @@
-<html>
-<div class="future-item">
-
-
-              <table style="font-size: 14px;">
-                <thead>
-                  <tr>
-                    <th style="text-align: center">Material</th>
-                    <th style="text-align: center">LBS/1"/ft²</th>
-                    <th style="text-align: center">LBS/ft³</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style="text-align: right">Poly</td>
-                    <td style="text-align: center">5</td>
-                    <td>57</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Water</td>
-                    <td style="text-align: center">-</td>
-                    <td>62</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Aluminum</td>
-                    <td style="text-align: center">14</td>
-                    <td>168</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Titanium</td>
-                    <td style="text-align: center">14</td>
-                    <td>168</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Steel</td>
-                    <td style="text-align: center">41</td>
-                    <td>490</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Stainless</td>
-                    <td style="text-align: center">42</td>
-                    <td>504</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Inconel</td>
-                    <td style="text-align: center">43</td>
-                    <td>516</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Brass</td>
-                    <td style="text-align: center">44</td>
-                    <td>528</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">CuNI</td>
-                    <td style="text-align: center">48</td>
-                    <td>576</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">NiCu</td>
-                    <td style="text-align: center">48</td>
-                    <td>576</td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">Lead</td>
-                    <td style="text-align: center">59</td>
-                    <td>710</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center">1 Gal. Water = 8.3 lbs.</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center">1 Gal. Gasoline = 6 lbs.</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center">1 Gal. Oil = 7.5 lbs.</td>
-                  </tr>
-
-                </tbody>
-              </table>
-<br><hr><br>
-
-<label>Material:</label>
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Material Weight Calculator</title>
+<style>
+body{font:18px system-ui,sans-serif;max-width:640px;margin:32px auto;padding:0 20px;color:#18252b;background:#f7f8f8}h1{font-size:1.6rem}label{display:block;margin-top:18px;font-weight:600}input,select,button{font:inherit;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #7b878b;border-radius:6px;background:white;color:inherit}button{background:#174c42;color:white;cursor:pointer;font-weight:600;margin-top:24px}small,.note{font-size:.9rem;color:#46565c;line-height:1.5}output{display:block;margin:24px 0;padding:20px;background:#e7efec;border-radius:8px;white-space:pre-line}#error{color:#a11d1d} [hidden]{display:none!important}summary{cursor:pointer}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{text-align:left;padding:8px;border-bottom:1px solid #ccd4d3}
+</style>
+</head>
+<body>
+<h1>Material Weight Calculator</h1>
+<p>Enter dimensions in decimal inches. Results are estimated pounds.</p>
+<form id="calculator" novalidate>
+<label for="material">Material — company presets</label>
 <select id="material">
-  <option value="poly">Poly</option>
-  <option value="water">Water</option>
-  <option value="aluminum">Aluminum</option>
-  <option value="titanium">Titanium</option>
-  <option value="steel">Steel</option>
-  <option value="stainless">Stainless</option>
-  <option value="inconel">Inconel</option>
-  <option value="brass">Brass</option>
-  <option value="cuni">CuNi</option>
-  <option value="nicu">NiCu</option>
-  <option value="lead">Lead</option>
+<option value="poly">Poly</option><option value="water">Water</option><option value="aluminum">Aluminum</option><option value="titanium">Titanium</option><option value="steel" selected>Steel</option><option value="stainless">Stainless</option><option value="inconel">Inconel</option><option value="brass">Brass</option><option value="cuni">CuNi</option><option value="nicu">NiCu</option><option value="lead">Lead</option><option value="custom">Custom material</option>
 </select>
-
-<br><br>
-
-<div style="display: flex;">
-<label style="padding-right: 5px;">Volume (in³): </label>
-<input type="number" id="volume" step="0.01" style="width: 60px;">
+<p id="densityNote" class="note"></p>
+<details id="densitySettings"><summary>Density / override</summary>
+<label for="density">Density (lb/ft³)</label><input id="density" type="number" min="0" step="any" inputmode="decimal" aria-describedby="densityHelp">
+<small id="densityHelp">Company presets are preserved. You can enter a grade-specific density here; selecting a material restores its company preset.</small>
+</details>
+<label for="shape">Shape</label>
+<select id="shape"><option value="rectangle">Solid rectangular piece</option><option value="pipe">Pipe / round tube</option><option value="volume">Known volume</option></select>
+<div id="rectangleFields">
+<label for="length">Length (in)</label><input id="length" type="number" min="0" step="any" inputmode="decimal">
+<label for="width">Width (in)</label><input id="width" type="number" min="0" step="any" inputmode="decimal">
+<label for="thickness">Thickness (in)</label><input id="thickness" type="number" min="0" step="any" inputmode="decimal">
 </div>
-
-<center>
-<br><p id="result">
-    340.28 lbs<br>
-    5444.4 oz
-  </p><br>
-
-
-<button onclick="calculateWeight()">Calculate Weight</button>
-
-</center>
-
-            </div>
-
+<div id="pipeFields" hidden>
+<p class="note">Use the actual outside diameter, not the nominal pipe size. This calculates the pipe wall only, excluding contents, fittings, and coatings.</p>
+<label for="pipeLength">Pipe length (in)</label><input id="pipeLength" type="number" min="0" step="any" inputmode="decimal">
+<label for="outsideDiameter">Outside diameter (in)</label><input id="outsideDiameter" type="number" min="0" step="any" inputmode="decimal">
+<label for="pipeMethod">Third measurement</label><select id="pipeMethod"><option value="wall">Wall thickness</option><option value="inside">Inside diameter</option></select>
+<label id="pipeSizeLabel" for="pipeSize">Wall thickness (in)</label><input id="pipeSize" type="number" min="0" step="any" inputmode="decimal">
+</div>
+<div id="volumeFields" hidden><label for="volume">Volume (in³)</label><input id="volume" type="number" min="0" step="any" inputmode="decimal"></div>
+<button type="submit">Calculate weight</button>
+<p id="error" role="alert"></p>
+<output id="result" aria-live="polite">Enter measurements to calculate.</output>
+</form>
+<details><summary>Company density reference</summary><p class="note">Original supplied values, unchanged. See <a href="DENSITY_REVIEW.md">density verification and sources</a> for grade-specific comparisons.</p>
+<table><thead><tr><th>Material</th><th>Company lb/ft³</th></tr></thead><tbody id="densityTable"></tbody></table>
+</details>
 <script>
-const materials = {
-  poly: 57,
-  water: 62,
-  aluminum: 168,
-  titanium: 168,
-  steel: 490,
-  stainless: 504,
-  inconel: 516,
-  brass: 528,
-  cuni: 576,
-  nicu: 576,
-  lead: 710
+'use strict';
+const materials = {poly:57,water:62,aluminum:168,titanium:168,steel:490,stainless:504,inconel:516,brass:528,cuni:576,nicu:576,lead:710};
+const materialNotes = {
+ poly:'57 lb/ft³ is consistent with some low-density polyethylene grades. Confirm what “Poly” identifies.',
+ water:'62 lb/ft³ is a rounded freshwater estimate; density varies with temperature.',
+ aluminum:'168 lb/ft³ is a reasonable rounded value for common aluminum alloys.',
+ titanium:'Company value: 168 lb/ft³. Published Grade 2 titanium: about 282 lb/ft³. Confirm the company entry or override density for your actual grade.',
+ steel:'490 lb/ft³ is consistent with typical carbon steel.',
+ stainless:'504 lb/ft³ is an estimating value; published 304 and 316 examples are about 492–499 lb/ft³. Confirm the grade.',
+ inconel:'516 lb/ft³ is near alloy 718 (~511); alloy 625 is ~527. Confirm the alloy.',
+ brass:'528 lb/ft³ is close to C26000 brass (~532). Confirm the alloy.',
+ cuni:'Company value: 576 lb/ft³. Copper Development Association lists C70600 and C71500 at ~558 lb/ft³. Confirm your alloy.',
+ nicu:'Company value: 576 lb/ft³. Published Monel 400 example: ~550 lb/ft³. Confirm which NiCu alloy is intended.',
+ lead:'710 lb/ft³ is a close rounded value; a published lead example is ~707 lb/ft³.',
+ custom:'Enter the known density of your material in lb/ft³ under Density / override.'
 };
-
-function calculateWeight() {
-  const material = document.getElementById("material").value;
-  const volume = Number(document.getElementById("volume").value);
-
-  const density = materials[material];
-
-  const pounds = volume * density / 1728;
-  const ounces = pounds * 16;
-
-  document.getElementById("result").innerHTML = `
-    ${pounds.toFixed(2)} lbs<br>
-    ${ounces.toFixed(1)} oz
-  `;
+const el = id => document.getElementById(id);
+function clearResult(){el('error').textContent='';el('result').textContent='Enter measurements to calculate.';}
+function updateMaterial(){
+ const key=el('material').value;
+ el('density').value=materials[key] ?? '';
+ el('densityNote').textContent=materialNotes[key];
+ if(key==='custom') el('densitySettings').open=true;
+ clearResult();
 }
+function updateShape(){
+ const shape=el('shape').value;
+ for(const name of ['rectangle','pipe','volume']) el(name+'Fields').hidden=name!==shape;
+ clearResult();
+}
+function updatePipeMethod(){
+ el('pipeSizeLabel').textContent=el('pipeMethod').value==='wall'?'Wall thickness (in)':'Inside diameter (in)';
+ el('pipeSize').value='';
+ clearResult();
+}
+function positive(value,label){
+ if(String(value).trim()==='') throw new Error('Enter '+label+'.');
+ const number=Number(value);
+ if(!Number.isFinite(number)||number<=0) throw new Error(label+' must be a finite number greater than zero.');
+ return number;
+}
+function calculateVolume(shape,values){
+ if(shape==='rectangle') return positive(values.length,'length')*positive(values.width,'width')*positive(values.thickness,'thickness');
+ if(shape==='volume') return positive(values.volume,'volume');
+ if(shape!=='pipe') throw new Error('Select a supported shape.');
+ const length=positive(values.pipeLength,'pipe length');
+ const od=positive(values.outsideDiameter,'outside diameter');
+ const size=positive(values.pipeSize,values.pipeMethod==='wall'?'wall thickness':'inside diameter');
+ if(!['wall','inside'].includes(values.pipeMethod)) throw new Error('Select a pipe measurement method.');
+ let area;
+ if(values.pipeMethod==='wall'){
+  if(size>=od/2) throw new Error('Wall thickness must be less than half the outside diameter.');
+  area=Math.PI*size*(od-size);
+ }else{
+  if(size>=od) throw new Error('Inside diameter must be less than outside diameter.');
+  area=Math.PI/4*(od-size)*(od+size);
+ }
+ return area*length;
+}
+function weightFromVolume(volume,density){
+ const pounds=positive(volume,'volume')*positive(density,'density')/1728;
+ if(!Number.isFinite(pounds)||pounds<=0||!Number.isFinite(pounds*16)) throw new Error('Measurements are outside the supported calculation range.');
+ return pounds;
+}
+function calculateWeight(){
+ try{
+  const values={};
+  for(const id of ['length','width','thickness','volume','pipeLength','outsideDiameter','pipeSize','pipeMethod']) values[id]=el(id).value;
+  const volume=calculateVolume(el('shape').value,values);
+  const pounds=weightFromVolume(volume,el('density').value);
+  const format=(value,digits)=>value>0&&value<10**(-digits)?value.toExponential(3):value.toFixed(digits);
+  const preset=materials[el('material').value];
+  const source=preset!==undefined&&Number(el('density').value)===preset?'Company preset':'Density override';
+  el('error').textContent='';
+  el('result').textContent='Estimated weight: '+format(pounds,2)+' lb\n'+format(pounds*16,1)+' oz total\nVolume: '+format(volume,3)+' in³\n'+source+': '+Number(el('density').value)+' lb/ft³';
+ }catch(error){el('result').textContent='';el('error').textContent=error.message;}
+}
+el('calculator').addEventListener('submit',event=>{event.preventDefault();calculateWeight();});
+el('calculator').addEventListener('input',clearResult);
+el('material').addEventListener('change',updateMaterial);
+el('shape').addEventListener('change',updateShape);
+el('pipeMethod').addEventListener('change',updatePipeMethod);
+for(const [name,density] of Object.entries(materials)){
+ const row=document.createElement('tr');
+ for(const value of [name==='cuni'?'CuNi':name==='nicu'?'NiCu':name[0].toUpperCase()+name.slice(1),density]){const cell=document.createElement('td');cell.textContent=value;row.appendChild(cell);}
+ el('densityTable').appendChild(row);
+}
+updateMaterial();updateShape();
 </script>
+</body>
 </html>
