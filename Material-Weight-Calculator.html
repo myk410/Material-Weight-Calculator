@@ -1,0 +1,149 @@
+<html>
+<div class="future-item">
+
+
+              <table style="font-size: 14px;">
+                <thead>
+                  <tr>
+                    <th style="text-align: center">Material</th>
+                    <th style="text-align: center">LBS/1"/ft²</th>
+                    <th style="text-align: center">LBS/ft³</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-align: right">Poly</td>
+                    <td style="text-align: center">5</td>
+                    <td>57</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Water</td>
+                    <td style="text-align: center">-</td>
+                    <td>62</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Aluminum</td>
+                    <td style="text-align: center">14</td>
+                    <td>168</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Titanium</td>
+                    <td style="text-align: center">14</td>
+                    <td>168</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Steel</td>
+                    <td style="text-align: center">41</td>
+                    <td>490</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Stainless</td>
+                    <td style="text-align: center">42</td>
+                    <td>504</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Inconel</td>
+                    <td style="text-align: center">43</td>
+                    <td>516</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Brass</td>
+                    <td style="text-align: center">44</td>
+                    <td>528</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">CuNI</td>
+                    <td style="text-align: center">48</td>
+                    <td>576</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">NiCu</td>
+                    <td style="text-align: center">48</td>
+                    <td>576</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: right">Lead</td>
+                    <td style="text-align: center">59</td>
+                    <td>710</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="text-align: center">1 Gal. Water = 8.3 lbs.</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="text-align: center">1 Gal. Gasoline = 6 lbs.</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="text-align: center">1 Gal. Oil = 7.5 lbs.</td>
+                  </tr>
+
+                </tbody>
+              </table>
+<br><hr><br>
+
+<label>Material:</label>
+
+<select id="material">
+  <option value="poly">Poly</option>
+  <option value="water">Water</option>
+  <option value="aluminum">Aluminum</option>
+  <option value="titanium">Titanium</option>
+  <option value="steel">Steel</option>
+  <option value="stainless">Stainless</option>
+  <option value="inconel">Inconel</option>
+  <option value="brass">Brass</option>
+  <option value="cuni">CuNi</option>
+  <option value="nicu">NiCu</option>
+  <option value="lead">Lead</option>
+</select>
+
+<br><br>
+
+<div style="display: flex;">
+<label style="padding-right: 5px;">Volume (in³): </label>
+<input type="number" id="volume" step="0.01" style="width: 60px;">
+</div>
+
+<center>
+<br><p id="result">
+    340.28 lbs<br>
+    5444.4 oz
+  </p><br>
+
+
+<button onclick="calculateWeight()">Calculate Weight</button>
+
+</center>
+
+            </div>
+
+<script>
+const materials = {
+  poly: 57,
+  water: 62,
+  aluminum: 168,
+  titanium: 168,
+  steel: 490,
+  stainless: 504,
+  inconel: 516,
+  brass: 528,
+  cuni: 576,
+  nicu: 576,
+  lead: 710
+};
+
+function calculateWeight() {
+  const material = document.getElementById("material").value;
+  const volume = Number(document.getElementById("volume").value);
+
+  const density = materials[material];
+
+  const pounds = volume * density / 1728;
+  const ounces = pounds * 16;
+
+  document.getElementById("result").innerHTML = `
+    ${pounds.toFixed(2)} lbs<br>
+    ${ounces.toFixed(1)} oz
+  `;
+}
+</script>
+</html>
