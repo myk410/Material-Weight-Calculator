@@ -1,0 +1,1 @@
+(fp_lib_table (lib (name MW_footprints)(type KiCad)(uri ${KIPRJMOD}/mw-footprints.pretty)(options "")(descr "Bundled standard KiCad footprints")))

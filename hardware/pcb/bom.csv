@@ -1,0 +1,21 @@
+Reference,Value,Footprint
+U1,AVR128DA28-I/SP,MW_footprints:DIP-28_W7.62mm
+J1,KEYPAD_8PIN,MW_footprints:PinHeader_1x08_P2.54mm_Vertical
+J2,BATTERY_3AAA,MW_footprints:PinHeader_1x02_P2.54mm_Vertical
+JP1,MASTER_LINK,MW_footprints:PinHeader_1x02_P2.54mm_Vertical
+D1,1N5817,MW_footprints:D_DO-41_SOD81_P7.62mm_Horizontal
+U2,MCP1700-3302E/TO,MW_footprints:TO-92_Inline_Wide
+C1,1uF 10V X7R,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm
+C2,1uF 10V X7R,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm
+C3,100nF 10V,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm
+C4,100nF 10V,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm
+C5,1uF 10V X7R,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm
+Q1,2N3906,MW_footprints:TO-92_Inline_Wide
+R1,10k,MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal
+R2,100k,MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal
+J3,SHARP_3502_CABLE,MW_footprints:PinHeader_1x09_P2.54mm_Vertical
+J4,UPDI_3V3,MW_footprints:PinHeader_1x03_P2.54mm_Vertical
+H1,M2.5,MW_footprints:MountingHole_2.7mm_M2.5
+H2,M2.5,MW_footprints:MountingHole_2.7mm_M2.5
+H3,M2.5,MW_footprints:MountingHole_2.7mm_M2.5
+H4,M2.5,MW_footprints:MountingHole_2.7mm_M2.5

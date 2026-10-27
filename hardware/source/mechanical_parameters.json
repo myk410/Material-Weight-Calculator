@@ -1,0 +1,43 @@
+{
+  "case_mm": [
+    96.0,
+    184.0,
+    31
+  ],
+  "pcb_mm": [
+    82,
+    68,
+    1.6
+  ],
+  "pcb_origin_plan_mm": [
+    7,
+    62
+  ],
+  "pcb_bottom_z": 7,
+  "key_x_mm": [
+    21,
+    39,
+    57,
+    75
+  ],
+  "key_y_mm": [
+    77,
+    95,
+    113,
+    131
+  ],
+  "nominal_key_pitch_mm": 18,
+  "keypad_membrane_max_envelope_mm": [
+    72,
+    79,
+    0.8
+  ],
+  "button_travel_stop_mm": 0.5,
+  "button_rest_gap_mm": 0.15,
+  "legend_depth_mm": 0.4,
+  "screw_clearance_mm": 2.9,
+  "nut_AF_mm": 5.35,
+  "nut_pocket_depth_mm": 2.45,
+  "keypad_pitch_status": "nominal; check full-size template against actual DIYmalls keypad",
+  "battery_holder": "Pololu 1144, 52 x 37 x 13 mm"
+}
