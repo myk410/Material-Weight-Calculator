@@ -28,17 +28,20 @@ assert.throws(()=>context.calculateVolume('rectangle',{length:'',width:1,thickne
 assert.throws(()=>context.weightFromVolume(Infinity,490));
 assert.throws(()=>context.weightFromVolume(1,0));
 assert.throws(()=>context.weightFromVolume(1e308,490));
-const supplied={poly:57,water:62,aluminum:168,titanium:168,steel:490,stainless:504,inconel:516,brass:528,cuni:576,nicu:576,lead:710};
-for (const [name,density] of Object.entries(supplied)) {
- element('material').value=name;context.updateMaterial();assert.equal(element('density').value,density);
+const published={poly:57.43372485,hdpe:59.30656240,water:62.424,aluminum:169.344,titanium:281.664,steel:490.05949064,stainless:492.48,stainless316:499.392,inconel:511.488,inconel625:527.04,brass:532.224,cuni:558.144,cuni7030:558.144,nicu:549.504,lead:706.752};
+for (const [name,density] of Object.entries(published)) {
+ element('material').value=name;context.updateMaterial();assert.ok(Math.abs(Number(element('density').value)-density)<0.00001, name);
 }
-assert.equal(element('densityTable').children.length,11);
+assert.equal(element('densityTable').children.length,15);
+element('material').value='titanium';context.updateMaterial();
+near(context.weightFromVolume(1728,element('density').value),281.664);
+assert.notEqual(Number(element('density').value),168);
 element('shape').value='pipe';context.updateShape();assert.equal(element('rectangleFields').hidden,true);assert.equal(element('pipeFields').hidden,false);
 element('material').value='steel';context.updateMaterial();
 for (const [id,value] of Object.entries(pipe)) element(id).value=String(value);
-context.calculateWeight();assert.match(element('result').textContent,/2\.51 lb/);assert.match(element('result').textContent,/Company preset: 490/);
+context.calculateWeight();assert.match(element('result').textContent,/2\.51 lb/);assert.match(element('result').textContent,/Published preset: 490.059/);
 element('density').value='281.664';context.calculateWeight();assert.match(element('result').textContent,/Density override/);
 element('pipeSize').value='1';context.calculateWeight();assert.equal(element('result').textContent,'');assert.match(element('error').textContent,/less than half/);
 element('pipeMethod').value='inside';context.updatePipeMethod();assert.equal(element('pipeSize').value,'');assert.match(element('pipeSizeLabel').textContent,/Inside diameter/);
 element('material').value='custom';context.updateMaterial();assert.equal(element('densitySettings').open,true);assert.equal(element('density').value,'');
-console.log('Passed: company densities, rectangular/pipe/volume formulas, OD/wall and OD/ID equivalence, validation, override labeling, and UI state transitions.');
+console.log('Passed: published grade densities and titanium correction, rectangular/pipe/volume formulas, OD/wall and OD/ID equivalence, validation, override labeling, and UI state transitions.');

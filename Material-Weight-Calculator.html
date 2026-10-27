@@ -12,14 +12,14 @@ body{font:18px system-ui,sans-serif;max-width:640px;margin:32px auto;padding:0 2
 <h1>Material Weight Calculator</h1>
 <p>Enter dimensions in decimal inches. Results are estimated pounds.</p>
 <form id="calculator" novalidate>
-<label for="material">Material — company presets</label>
+<label for="material">Material / grade</label>
 <select id="material">
-<option value="poly">Poly</option><option value="water">Water</option><option value="aluminum">Aluminum</option><option value="titanium">Titanium</option><option value="steel" selected>Steel</option><option value="stainless">Stainless</option><option value="inconel">Inconel</option><option value="brass">Brass</option><option value="cuni">CuNi</option><option value="nicu">NiCu</option><option value="lead">Lead</option><option value="custom">Custom material</option>
+<option value="poly">Polyethylene — LDPE (0.920 g/cm³)</option><option value="hdpe">Polyethylene — HDPE (0.950 g/cm³)</option><option value="water">Fresh water (4°C / 39.2°F)</option><option value="aluminum">Aluminum 6061</option><option value="titanium">Titanium — commercially pure Grade 2</option><option value="steel" selected>Carbon steel (7,850 kg/m³)</option><option value="stainless">Stainless steel 304</option><option value="stainless316">Stainless steel 316</option><option value="inconel">Nickel alloy 718 (Inconel 718)</option><option value="inconel625">Nickel alloy 625 (Inconel 625)</option><option value="brass">Brass — C26000</option><option value="cuni">CuNi 90/10 — C70600</option><option value="cuni7030">CuNi 70/30 — C71500</option><option value="nicu">NiCu — Monel 400</option><option value="lead">Lead</option><option value="custom">Custom material</option>
 </select>
 <p id="densityNote" class="note"></p>
 <details id="densitySettings"><summary>Density / override</summary>
 <label for="density">Density (lb/ft³)</label><input id="density" type="number" min="0" step="any" inputmode="decimal" aria-describedby="densityHelp">
-<small id="densityHelp">Company presets are preserved. You can enter a grade-specific density here; selecting a material restores its company preset.</small>
+<small id="densityHelp">Published grade-specific densities are used by default. Override for your exact material if needed; selecting a material restores its published preset.</small>
 </details>
 <label for="shape">Shape</label>
 <select id="shape"><option value="rectangle">Solid rectangular piece</option><option value="pipe">Pipe / round tube</option><option value="volume">Known volume</option></select>
@@ -40,26 +40,30 @@ body{font:18px system-ui,sans-serif;max-width:640px;margin:32px auto;padding:0 2
 <p id="error" role="alert"></p>
 <output id="result" aria-live="polite">Enter measurements to calculate.</output>
 </form>
-<details><summary>Company density reference</summary><p class="note">Original supplied values, unchanged. See <a href="DENSITY_REVIEW.md">density verification and sources</a> for grade-specific comparisons.</p>
-<table><thead><tr><th>Material</th><th>Company lb/ft³</th></tr></thead><tbody id="densityTable"></tbody></table>
+<details><summary>Published density reference</summary><p class="note">Values for the listed grades; the original card is no longer used for calculations. See <a href="DENSITY_REVIEW.md">density verification and sources</a> for grade-specific comparisons.</p>
+<table><thead><tr><th>Material</th><th>Density (lb/ft³)</th></tr></thead><tbody id="densityTable"></tbody></table>
 </details>
 <script>
 'use strict';
-const materials = {poly:57,water:62,aluminum:168,titanium:168,steel:490,stainless:504,inconel:516,brass:528,cuni:576,nicu:576,lead:710};
-const materialNotes = {
- poly:'57 lb/ft³ is consistent with some low-density polyethylene grades. Confirm what “Poly” identifies.',
- water:'62 lb/ft³ is a rounded freshwater estimate; density varies with temperature.',
- aluminum:'168 lb/ft³ is a reasonable rounded value for common aluminum alloys.',
- titanium:'Company value: 168 lb/ft³. Published Grade 2 titanium: about 282 lb/ft³. Confirm the company entry or override density for your actual grade.',
- steel:'490 lb/ft³ is consistent with typical carbon steel.',
- stainless:'504 lb/ft³ is an estimating value; published 304 and 316 examples are about 492–499 lb/ft³. Confirm the grade.',
- inconel:'516 lb/ft³ is near alloy 718 (~511); alloy 625 is ~527. Confirm the alloy.',
- brass:'528 lb/ft³ is close to C26000 brass (~532). Confirm the alloy.',
- cuni:'Company value: 576 lb/ft³. Copper Development Association lists C70600 and C71500 at ~558 lb/ft³. Confirm your alloy.',
- nicu:'Company value: 576 lb/ft³. Published Monel 400 example: ~550 lb/ft³. Confirm which NiCu alloy is intended.',
- lead:'710 lb/ft³ is a close rounded value; a published lead example is ~707 lb/ft³.',
- custom:'Enter the known density of your material in lb/ft³ under Density / override.'
+const materials = {
+ poly: 920 / 16.01846337,
+ hdpe: 950 / 16.01846337,
+ water: 62.424,
+ aluminum: 0.098 * 1728,
+ titanium: 0.163 * 1728,
+ steel: 7850 / 16.01846337,
+ stainless: 0.285 * 1728,
+ stainless316: 0.289 * 1728,
+ inconel: 0.296 * 1728,
+ inconel625: 0.305 * 1728,
+ brass: 0.308 * 1728,
+ cuni: 0.323 * 1728,
+ cuni7030: 0.323 * 1728,
+ nicu: 0.318 * 1728,
+ lead: 0.409 * 1728
 };
+const materialLabels = {"poly": "Polyethylene — LDPE (0.920 g/cm³)", "hdpe": "Polyethylene — HDPE (0.950 g/cm³)", "water": "Fresh water (4°C / 39.2°F)", "aluminum": "Aluminum 6061", "titanium": "Titanium — commercially pure Grade 2", "steel": "Carbon steel (7,850 kg/m³)", "stainless": "Stainless steel 304", "stainless316": "Stainless steel 316", "inconel": "Nickel alloy 718 (Inconel 718)", "inconel625": "Nickel alloy 625 (Inconel 625)", "brass": "Brass — C26000", "cuni": "CuNi 90/10 — C70600", "cuni7030": "CuNi 70/30 — C71500", "nicu": "NiCu — Monel 400", "lead": "Lead"};
+const materialNotes = {"poly": "LDPE example: 0.920 g/cm³. Other polymers and grades have different densities.", "hdpe": "HDPE grade 100B example: 0.950 g/cm³.", "water": "Fresh water at 4°C: 62.424 lb/ft³. Density changes with temperature.", "aluminum": "6061 supplier reference: 0.098 lb/in³.", "titanium": "ATI Grade 2 reference: 0.163 lb/in³. Replaces the card’s aluminum-like value.", "steel": "SSAB steel plate reference: 7,850 kg/m³. Other steel alloys can differ.", "stainless": "Outokumpu Core 304 reference: 0.285 lb/in³.", "stainless316": "Outokumpu Supra 316 reference: 0.289 lb/in³.", "inconel": "ATI alloy 718 reference: 0.296 lb/in³.", "inconel625": "Alloy 625 reference: 0.305 lb/in³.", "brass": "Copper Development Association C26000 reference: 0.308 lb/in³.", "cuni": "Copper Development Association C70600 reference: 0.323 lb/in³.", "cuni7030": "Copper Development Association C71500 reference: 0.323 lb/in³.", "nicu": "Monel 400 reference: 0.318 lb/in³.", "lead": "Published lead reference: 0.409 lb/in³.", "custom": "Enter the known density of your material in lb/ft³ under Density / override."};
 const el = id => document.getElementById(id);
 function clearResult(){el('error').textContent='';el('result').textContent='Enter measurements to calculate.';}
 function updateMaterial(){
@@ -116,9 +120,9 @@ function calculateWeight(){
   const pounds=weightFromVolume(volume,el('density').value);
   const format=(value,digits)=>value>0&&value<10**(-digits)?value.toExponential(3):value.toFixed(digits);
   const preset=materials[el('material').value];
-  const source=preset!==undefined&&Number(el('density').value)===preset?'Company preset':'Density override';
+  const source=preset!==undefined&&Number(el('density').value)===preset?'Published preset':'Density override';
   el('error').textContent='';
-  el('result').textContent='Estimated weight: '+format(pounds,2)+' lb\n'+format(pounds*16,1)+' oz total\nVolume: '+format(volume,3)+' in³\n'+source+': '+Number(el('density').value)+' lb/ft³';
+  el('result').textContent='Estimated weight: '+format(pounds,2)+' lb\n'+format(pounds*16,1)+' oz total\nVolume: '+format(volume,3)+' in³\n'+source+': '+Number(el('density').value).toFixed(3)+' lb/ft³';
  }catch(error){el('result').textContent='';el('error').textContent=error.message;}
 }
 el('calculator').addEventListener('submit',event=>{event.preventDefault();calculateWeight();});
@@ -128,7 +132,7 @@ el('shape').addEventListener('change',updateShape);
 el('pipeMethod').addEventListener('change',updatePipeMethod);
 for(const [name,density] of Object.entries(materials)){
  const row=document.createElement('tr');
- for(const value of [name==='cuni'?'CuNi':name==='nicu'?'NiCu':name[0].toUpperCase()+name.slice(1),density]){const cell=document.createElement('td');cell.textContent=value;row.appendChild(cell);}
+ for(const value of [materialLabels[name],density.toFixed(3)]){const cell=document.createElement('td');cell.textContent=value;row.appendChild(cell);}
  el('densityTable').appendChild(row);
 }
 updateMaterial();updateShape();

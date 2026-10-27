@@ -2,7 +2,7 @@
 
 A standalone pocket calculator for estimating material weight. Select a material, enter length, width, and thickness in inches, and read the result in pounds. Runs entirely on one microcontroller with physical buttons and replaceable AAA batteries.
 
-Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using the supplied company density presets with optional overrides. Hardware, firmware, wiring, and battery life have not yet been tested.
+Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware, firmware, wiring, and battery life have not yet been tested.
 
 ## Recommended first build
 
@@ -51,11 +51,11 @@ For a solid rectangular piece:
 
 `weight_lb = length_in × width_in × thickness_in × density_lb_per_ft3 / 1728`
 
-Example using the HTML's steel density: `12 × 12 × 1 × 490 / 1728 = 40.8333… lb`, displayed as `40.83 lb`.
+Example using the published carbon-steel density of 7,850 kg/m³ (about 490.059 lb/ft³): a 12 × 12 × 1-inch plate weighs about 40.838 lb, displayed as `40.84 lb`.
 
 The HTML now supports rectangular stock, pipe/round tube, and known volume. Pipe volume is `π × wall × (OD − wall) × length`, or equivalently `π/4 × (OD − ID) × (OD + ID) × length`. All dimensions are in decimal inches. Use actual diameters, not nominal pipe sizes. Pipe results exclude contents and fittings. Other hollow profiles and irregular parts need their own formulas.
 
-The user confirmed that the original densities came from their company. All eleven supplied presets remain unchanged and are labeled as company values. Each material now has a comparison note; the density can be overridden for a specific grade or custom material. See [DENSITY_REVIEW.md](DENSITY_REVIEW.md) for the complete sourced comparison, original plate factors, formulas, and limitations. Titanium is the largest discrepancy against published examples; CuNi and NiCu also need alloy identification. Published comparisons do not establish which factors the company intends employees to use.
+At the user’s direction, the calculator replaces the company card values with published grade-specific densities. Material names now identify the grade, and separate presets cover LDPE/HDPE, 304/316 stainless, 718/625 nickel alloys, and 90/10 or 70/30 CuNi. Density overrides remain available for other grades. See [DENSITY_REVIEW.md](DENSITY_REVIEW.md) for active values, sources, and the historical card comparison. Do not use a broad material family as if every grade had the same density.
 
 The handheld firmware should provide the same shape choices and density policy. These controls are planned; device firmware has not yet been implemented.
 
@@ -96,4 +96,4 @@ Illustrative budget only: at 5 mA for 20 minutes per day plus 10 µA for the res
 
 ## Validation
 
-Run `node tests/calculator.test.cjs` to check rectangular and pipe formulas, equivalent wall/ID inputs, preservation of all company presets, input validation, override labeling, and mocked UI transitions. These checks pass. A real-browser check could not run in the current environment because the Chromium executable is unavailable; browser rendering and physical hardware remain unverified.
+Run `node tests/calculator.test.cjs` to check rectangular and pipe formulas, equivalent wall/ID inputs, published grade densities and replacement of the titanium misprint, input validation, override labeling, and mocked UI transitions. These checks pass. A real-browser check could not run in the current environment because the Chromium executable is unavailable; browser rendering and physical hardware remain unverified.
