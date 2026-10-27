@@ -1,0 +1,182 @@
+[
+  {
+    "file": "all_16_buttons.stl",
+    "triangles": 41282,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "battery_cover.stl",
+    "triangles": 3158,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r1c1_7.stl",
+    "triangles": 1368,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r1c2_8.stl",
+    "triangles": 4070,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r1c3_9.stl",
+    "triangles": 2922,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r1c4_menu.stl",
+    "triangles": 2256,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r2c1_4.stl",
+    "triangles": 1396,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r2c2_5.stl",
+    "triangles": 2118,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r2c3_6.stl",
+    "triangles": 2916,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r2c4_back.stl",
+    "triangles": 3824,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r3c1_1.stl",
+    "triangles": 1384,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r3c2_2.stl",
+    "triangles": 1972,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r3c3_3.stl",
+    "triangles": 2800,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r3c4_clear.stl",
+    "triangles": 3392,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r4c1_on.stl",
+    "triangles": 4112,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r4c2_0.stl",
+    "triangles": 2716,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r4c3_decimal.stl",
+    "triangles": 1356,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "button_r4c4_enter.stl",
+    "triangles": 2680,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "display_clamp_left.stl",
+    "triangles": 1180,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "display_clamp_right.stl",
+    "triangles": 1180,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "display_cradle.stl",
+    "triangles": 4132,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "fit_coupon_face.stl",
+    "triangles": 1348,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "fit_coupon_guide.stl",
+    "triangles": 1348,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "fit_coupon_nuts.stl",
+    "triangles": 8908,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "keypad_backing.stl",
+    "triangles": 2204,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "keypad_guide.stl",
+    "triangles": 11100,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "keypad_backing.stl",
+    "triangles": 2204,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "keypad_guide.stl",
+    "triangles": 11100,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_front_lower.stl",
+    "triangles": 12580,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_front_upper.stl",
+    "triangles": 9282,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_rear_lower.stl",
+    "triangles": 8920,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_rear_upper.stl",
+    "triangles": 2612,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_front_lower.stl",
+    "triangles": 12580,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_front_upper.stl",
+    "triangles": 9282,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_rear_lower.stl",
+    "triangles": 8920,
+    "non_manifold_edges": 0
+  },
+  {
+    "file": "mars_rear_upper.stl",
+    "triangles": 2612,
+    "non_manifold_edges": 0
+  }
+]

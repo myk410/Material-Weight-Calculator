@@ -1,6 +1,6 @@
 # Resin enclosure and keypad requirements
 
-Updated October 27, 2026. These requirements capture the user's printing choices and the sixteen-key UI walkthrough. They are design requirements and initial prototype targets, not completed CAD or validated print dimensions.
+Updated October 27, 2026. These requirements capture the user's printing choices and the sixteen-key UI walkthrough. Hardware R1 CAD and STLs now implement these requirements in [hardware/](hardware/README.md). Physical print/actuation tolerances remain untested.
 
 ## Printed parts
 
@@ -24,11 +24,11 @@ Use two lines where needed, particularly ON/OFF and ENTER/=. Engrave both the di
 
 ## Button mechanism
 
-Use normally open momentary switches wired into four rows and four columns. The 4×4 matrix describes the wiring; the user-facing printed keys do not require a purchased membrane keypad.
+Reuse the user-owned DIYmalls 4×4, 16-key, 8-pin membrane keypad as the electrical switch layer. Do not buy sixteen separate switches. Mount the intact pad flat on a rigid backing plate, conceal its original labels behind the front bezel and custom caps, and route its ribbon into the housing. Do not peel apart its laminated switch layers. Match the original key centers; remap logical key functions in firmware to the custom labels.
 
-Each flexible cap should have a broad pressing surface, a centered underside actuator aligned with its switch, and a captured flange that prevents the cap falling out through the front. A rigid retaining plate locates the buttons relative to the switch board. The switch should provide tactile feedback and return force; verify that the chosen cap does not prevent its return.
+Each flexible cap should have a broad pressing surface, a broad smooth underside contact pad aligned with its membrane key center, and a captured flange that prevents the cap falling out through the front. A rigid retaining plate locates the buttons relative to the switch board. Validate the actual membrane’s feel and release with the flexible caps; the guide/retainer and any flexible return features must let each cap release reliably. Do not assume the membrane can lift an arbitrarily heavy or stiff cap. Broad contact pads should avoid sharp edges or concentrated pressure on the membrane.
 
-Provide travel stops so excessive pressing loads go into the housing rather than overtraveling the switches or bending the board. Final actuator height, travel, stop position, board supports, and rest gap must be based on the selected switch's dimensions and force/travel data. There must be no switch preload at rest.
+Provide travel stops so excessive pressing loads go into the housing rather than overtraveling the membrane or flexing its backing. Final contact-pad height, travel, stop position, backing supports, and rest gap must follow the actual keypad’s actuation and release behavior. Its short travel does not permit assuming a conventional tact-switch travel distance. There must be no switch preload at rest.
 
 ## Initial prototype targets
 
@@ -50,6 +50,8 @@ Keep supports off the button faces, inside engraved legends, and away from slidi
 
 ## Enclosure assembly
 
-The housing should provide an accessible AAA compartment and removable rear cover, with board and display mounts independent of the flexible keypad. Use rounded transitions around mounting bosses and avoid relying on thin rigid-resin snap tabs for repeated access. Final outer dimensions and mount locations follow selection of the display, switches, board, battery holder, and fasteners.
+The housing should provide an accessible AAA compartment and removable rear cover, with board and display mounts independent of the flexible keypad. Use rounded transitions around mounting bosses and avoid relying on thin rigid-resin snap tabs for repeated access. Final outer dimensions and mount locations follow selection of the display, existing membrane keypad, board, battery holder, and fasteners.
 
-No STL or CAD files have been generated yet. The next mechanical step is component selection followed by a button/clearance coupon and parametric housing design.
+Editable CadQuery source, an assembled STEP model, individual STLs, sixteen engraved button caps, and printer-oriented shell sections are now in hardware/. Main joints use M2.5 screws and hex nuts glued into 5.35 mm across-flats pockets. Two bonded shell sections per face fit the Mars 5 Ultra; see hardware/README.md for the complete assembly order and screw lengths.
+
+See [PARTS_LIST.md](PARTS_LIST.md) for the reuse-first prototype and candidate final AAA components.

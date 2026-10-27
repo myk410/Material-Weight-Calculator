@@ -1,0 +1,436 @@
+[
+  {
+    "part": "front_shell",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 61067.622842710094,
+    "assembly_bbox": [
+      -1.0000000088817842e-07,
+      -1.0000000088817842e-07,
+      12.0,
+      96.0000001,
+      184.0000001,
+      31.0000001
+    ]
+  },
+  {
+    "part": "rear_shell",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 56831.96724390226,
+    "assembly_bbox": [
+      -8.881784197001252e-16,
+      -8.881784197001252e-16,
+      0.0,
+      96.0,
+      184.0,
+      13.5
+    ]
+  },
+  {
+    "part": "battery_cover",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 5819.614907558913,
+    "assembly_bbox": [
+      13.299999899999998,
+      2.29999989999999,
+      0.0,
+      82.7000001,
+      46.70000009999999,
+      1.9000001
+    ]
+  },
+  {
+    "part": "keypad_backing",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 14831.571152795332,
+    "assembly_bbox": [
+      5.5,
+      34.5,
+      22.5,
+      90.5,
+      123.5,
+      24.5
+    ]
+  },
+  {
+    "part": "keypad_guide",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 3436.5496618864727,
+    "assembly_bbox": [
+      5.5,
+      34.5,
+      24.5,
+      90.5,
+      123.5,
+      26.6
+    ]
+  },
+  {
+    "part": "display_cradle",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 3657.2659447754236,
+    "assembly_bbox": [
+      19.0,
+      124.0,
+      21.5,
+      77.0,
+      176.0,
+      25.1
+    ]
+  },
+  {
+    "part": "display_clamp_left",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 247.94736124558617,
+    "assembly_bbox": [
+      26.4,
+      128.0,
+      25.4,
+      30.6,
+      172.0,
+      26.9
+    ]
+  },
+  {
+    "part": "display_clamp_right",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 247.94736124558693,
+    "assembly_bbox": [
+      65.4,
+      128.0,
+      25.4,
+      69.6,
+      172.0,
+      26.9
+    ]
+  },
+  {
+    "part": "button_r1c1_7",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1378.3962678169726,
+    "assembly_bbox": [
+      12.899999999999999,
+      98.9,
+      25.45,
+      29.1,
+      115.1,
+      33.0
+    ]
+  },
+  {
+    "part": "button_r1c2_8",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.108475320346,
+    "assembly_bbox": [
+      30.899999999999995,
+      98.9,
+      25.45,
+      47.1,
+      115.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r1c3_9",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.5235759193906,
+    "assembly_bbox": [
+      48.9,
+      98.9,
+      25.45,
+      65.1,
+      115.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r1c4_menu",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1376.155182445115,
+    "assembly_bbox": [
+      66.9,
+      98.9,
+      25.45,
+      83.1,
+      115.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r2c1_4",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.821147367906,
+    "assembly_bbox": [
+      12.899999999999999,
+      80.9,
+      25.45,
+      29.1,
+      97.1,
+      33.0
+    ]
+  },
+  {
+    "part": "button_r2c2_5",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.7672580433202,
+    "assembly_bbox": [
+      30.899999999999995,
+      80.9,
+      25.45,
+      47.1,
+      97.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r2c3_6",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.5246791082354,
+    "assembly_bbox": [
+      48.9,
+      80.9,
+      25.45,
+      65.1,
+      97.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r2c4_back",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1376.654899103073,
+    "assembly_bbox": [
+      66.9,
+      80.9,
+      25.45,
+      83.1,
+      97.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r3c1_1",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1378.2909630989548,
+    "assembly_bbox": [
+      12.899999999999999,
+      62.9,
+      25.45,
+      29.1,
+      79.1,
+      33.0
+    ]
+  },
+  {
+    "part": "button_r3c2_2",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.6875367630314,
+    "assembly_bbox": [
+      30.899999999999995,
+      62.9,
+      25.45,
+      47.1,
+      79.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r3c3_3",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.8928306113369,
+    "assembly_bbox": [
+      48.9,
+      62.9,
+      25.45,
+      65.1,
+      79.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r3c4_clear",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1376.2184456024315,
+    "assembly_bbox": [
+      66.9,
+      62.9,
+      25.45,
+      83.1,
+      79.1,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r4c1_on",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1375.7411934600102,
+    "assembly_bbox": [
+      12.899999999999999,
+      44.89999999999999,
+      25.45,
+      29.1,
+      61.099999999999994,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r4c2_0",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1377.459030193844,
+    "assembly_bbox": [
+      30.899999999999995,
+      44.89999999999999,
+      25.45,
+      47.1,
+      61.099999999999994,
+      33.0000001
+    ]
+  },
+  {
+    "part": "button_r4c3_decimal",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1379.9039172386645,
+    "assembly_bbox": [
+      48.9,
+      44.89999999999999,
+      25.45,
+      65.1,
+      61.099999999999994,
+      33.0
+    ]
+  },
+  {
+    "part": "button_r4c4_enter",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 1376.0175969302898,
+    "assembly_bbox": [
+      66.9,
+      44.89999999999999,
+      25.45,
+      83.1,
+      61.099999999999994,
+      33.0000001
+    ]
+  },
+  {
+    "part": "fit_coupon_face",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 2951.659436402667,
+    "assembly_bbox": [
+      7.0,
+      90.0,
+      28.4,
+      53.0,
+      124.0,
+      31.0
+    ]
+  },
+  {
+    "part": "fit_coupon_guide",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 786.4710792106605,
+    "assembly_bbox": [
+      7.0,
+      90.0,
+      26.0,
+      53.0,
+      124.0,
+      26.6
+    ]
+  },
+  {
+    "part": "mars_front_upper",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 23592.552082420236,
+    "assembly_bbox": [
+      -1.0000000088817842e-07,
+      117.75,
+      12.0,
+      96.0000001,
+      184.0000001,
+      31.0000001
+    ]
+  },
+  {
+    "part": "mars_front_lower",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 37851.34276121288,
+    "assembly_bbox": [
+      -8.881784197001252e-16,
+      -8.881784197001252e-16,
+      12.0,
+      96.0,
+      123.75,
+      31.0
+    ]
+  },
+  {
+    "part": "mars_rear_upper",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 21674.483318244736,
+    "assembly_bbox": [
+      -8.881784197001252e-16,
+      117.75,
+      0.0,
+      96.0,
+      184.0,
+      12.0
+    ]
+  },
+  {
+    "part": "mars_rear_lower",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 35212.84392565758,
+    "assembly_bbox": [
+      -8.881784197001252e-16,
+      -8.881784197001252e-16,
+      0.0,
+      96.0,
+      123.75,
+      13.5
+    ]
+  },
+  {
+    "part": "fit_coupon_nuts",
+    "valid": true,
+    "solid_count": 1,
+    "volume_mm3": 4078.751971330698,
+    "assembly_bbox": [
+      -1.000000002220446e-07,
+      165.9999999,
+      0.0,
+      48.0000001,
+      184.0000001,
+      5.0000001
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "file": "keypad_backing.stl",
+    "bbox_mm": [
+      89.0,
+      37.73516845703125,
+      77.8814010620117
+    ],
+    "with_support_allowance_fits": true
+  },
+  {
+    "file": "keypad_guide.stl",
+    "bbox_mm": [
+      89.0,
+      37.69840747542912,
+      77.65177154541016
+    ],
+    "with_support_allowance_fits": true
+  },
+  {
+    "file": "mars_front_lower.stl",
+    "bbox_mm": [
+      123.75,
+      57.791202545166016,
+      95.03529357910155
+    ],
+    "with_support_allowance_fits": true
+  },
+  {
+    "file": "mars_front_upper.stl",
+    "bbox_mm": [
+      66.2499999,
+      57.791202545166016,
+      95.03529357910155
+    ],
+    "with_support_allowance_fits": true
+  },
+  {
+    "file": "mars_rear_lower.stl",
+    "bbox_mm": [
+      123.75,
+      51.44704818725586,
+      92.07696533203124
+    ],
+    "with_support_allowance_fits": true
+  },
+  {
+    "file": "mars_rear_upper.stl",
+    "bbox_mm": [
+      66.25,
+      51.44704818725586,
+      92.07696533203124
+    ],
+    "with_support_allowance_fits": true
+  }
+]

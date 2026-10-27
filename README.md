@@ -2,21 +2,21 @@
 
 A standalone pocket calculator for estimating material weight. Select a material, enter length, width, and thickness in inches, and read the result in pounds. Runs entirely on one microcontroller with physical buttons and replaceable AAA batteries.
 
-Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware, firmware, wiring, and battery life have not yet been tested.
+Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware R1 CAD, STLs, schematic, routed PCB and print/fabrication files are now in [hardware/](hardware/README.md). Digital checks pass; physical fit, electronics, firmware and battery runtime are not yet tested.
 
-## Recommended first build
+## Proposed final low-power hardware
 
 | Part | Proposed choice | Reason |
 | --- | --- | --- |
 | Controller | Microchip AVR128DA28, preferably the through-hole package for a hand-built prototype | One low-power microcontroller; enough RAM for a graphical display; internal oscillator; no wireless hardware needed |
 | Display | Reflective Sharp memory LCD; Adafruit 3502, 1.3-inch 168 × 144 breakout is the reference candidate | Paper-like, daylight-readable screen with fast updates and no backlight |
-| Buttons | Sixteen flexible-resin button caps over momentary switches wired as a passive 4 × 4 matrix | Sixteen physical keys using eight controller pins; no separate keypad processor |
+| Buttons | Sixteen flexible-resin button caps over the user-owned DIYmalls 4 × 4 membrane keypad | Sixteen physical keys using eight controller pins; no separate keypad processor |
 | Batteries | Three AAA alkaline cells in a replaceable holder | Simple power supply using a low-quiescent-current linear regulator |
-| Regulator | MCP1700, 3.0 V output variant | Typical quiescent current of 1.6 µA; common 3 V rail for the controller and display interface |
-| Supporting parts | Regulator input/output capacitors, local MCU decoupling, battery protection, switch, programming header | Reliable supply and a way to program the controller without leaving a USB interface powered |
+| Regulator | MCP1700, 3.3 V output variant | Typical quiescent current of 1.6 µA; 3.3 V rail for the MCU and reference display breakout input |
+| Supporting parts | Regulator input/output capacitors, local MCU decoupling, battery protection diode, display power transistor, service link, programming header | Reliable supply and a way to program the controller without leaving a USB interface powered |
 | Housing | Rigid-resin printed calculator enclosure with accessible battery compartment | Large readable labels and easy battery replacement |
 
-These are design candidates, not a purchase-ready bill of materials. Adafruit's reference display was listed as out of stock when checked. Its viewable area is only about 24.5 × 21 mm: check text readability before committing to this size. A larger reflective display may be better for shop use.
+See [PARTS_LIST.md](PARTS_LIST.md) for previously purchased parts and the prototype route. The exact hardware R1 component and M2.5 fastener lists are in [hardware/README.md](hardware/README.md). The table below is the final low-power direction; these are design candidates, not a purchase-ready schematic. Adafruit's reference display was listed as out of stock when checked. Its viewable area is only about 24.5 × 21 mm: check text readability before committing to this size. A larger reflective display may be better for shop use.
 
 The AVR128DA28 has 16 KB SRAM. The reference display's monochrome framebuffer needs 3,024 bytes, leaving room for the application. An ATmega328P's 2 KB SRAM is too small for this display's standard full-buffer driver. Verify the chosen graphics library and AVR core together during prototyping.
 
@@ -57,20 +57,20 @@ The HTML now supports rectangular stock, pipe/round tube, and known volume. Pipe
 
 At the user’s direction, the calculator replaces the company card values with published grade-specific densities. Material names now identify the grade, and separate presets cover LDPE/HDPE, 304/316 stainless, 718/625 nickel alloys, and 90/10 or 70/30 CuNi. Density overrides remain available for other grades. See [DENSITY_REVIEW.md](DENSITY_REVIEW.md) for active values, sources, and the historical card comparison. Do not use a broad material family as if every grade had the same density.
 
-The handheld firmware should provide the same shape choices and density policy. These controls are planned; device firmware has not yet been implemented.
+The handheld firmware should provide the same shape choices and density policy. Device firmware has not yet been implemented; the hardware pin map and power-control requirements are documented in hardware/README.md.
 
 ## Battery and sleep design
 
-Use three AAA alkaline cells through a 3.0 V MCP1700 regulator. Check the regulator's selected ordering code, input rating, dropout at the actual load, capacitor requirements, and the exact display breakout's regulator path before finalizing the schematic. A 3.0 V source feeding a breakout's onboard regulator may reduce its output; confirm adequate display voltage rather than assuming the breakout has no dropout.
+Use three AAA alkaline cells through a 3.3 V MCP1700 regulator for the reference breakout configuration. This revises the earlier 3.0 V proposal to provide headroom for the breakout’s onboard 3 V regulator. Check the regulator's selected ordering code, input rating, dropout at the actual load, capacitor requirements, and the exact display breakout's regulator path before finalizing the schematic. Confirm adequate panel voltage rather than assuming the breakout has no dropout.
 
-Two AAA cells are possible, but a regulated 3 V display supply would require a boost or buck-boost converter as the cells discharge. Three cells with an LDO are the proposed simpler circuit. The LDO will leave some battery capacity unused near the end of discharge.
+Two AAA cells are possible, but the regulated display supply would require a boost or buck-boost converter as the cells discharge. Three cells with an LDO are the proposed simpler circuit. The LDO will leave some battery capacity unused near the end of discharge.
 
 - While active, scan/debounce keys and update changed content. Keep required memory-LCD polarity inversion running at the panel's specified interval; the Adafruit example calls for servicing at least once per second.
 - After about two minutes without input, save current state in RAM, blank the display, shut the display down according to its documentation, disable unused peripherals, and enter MCU power-down mode.
 - If display power is switched off, put connected signal pins in a safe state to prevent back-powering. Reinitialize and redraw on wake.
 - Wake from a keypad interrupt. In sleep, drive matrix columns low and use pulled-up interrupt-capable row inputs. Confirm exact AVR pin wake behavior before assigning pins. Consume the wake press so it does not enter a stray digit. Wait for key release before accepting another entry.
 - Avoid continuous keypad polling during sleep, always-on LEDs, powered USB adapters, and continuously connected battery-sense resistor dividers.
-- Use a mechanical master switch for complete battery disconnection. Normal ON/OFF is sleep; RAM state is lost after battery removal or master power-off.
+- The R1 board uses an internal shunt/service link instead of an external master switch; removing a battery through the door fully disconnects power. Normal ON/OFF is sleep; RAM state is lost after battery removal or master power-off.
 
 Battery-life goals must use measured current for the entire assembly, including display breakout and regulator. Initial targets are below 10 µA in automatic sleep and a few mA while actively used; these are goals, not verified specifications.
 
