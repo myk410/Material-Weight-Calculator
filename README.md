@@ -10,11 +10,11 @@ Status: proposed hardware design, October 27, 2026. The HTML calculator now supp
 | --- | --- | --- |
 | Controller | Microchip AVR128DA28, preferably the through-hole package for a hand-built prototype | One low-power microcontroller; enough RAM for a graphical display; internal oscillator; no wireless hardware needed |
 | Display | Reflective Sharp memory LCD; Adafruit 3502, 1.3-inch 168 × 144 breakout is the reference candidate | Paper-like, daylight-readable screen with fast updates and no backlight |
-| Buttons | Passive 4 × 4 matrix keypad, with calculator labels | Sixteen physical keys using eight controller pins; no separate keypad processor |
+| Buttons | Sixteen flexible-resin button caps over momentary switches wired as a passive 4 × 4 matrix | Sixteen physical keys using eight controller pins; no separate keypad processor |
 | Batteries | Three AAA alkaline cells in a replaceable holder | Simple power supply using a low-quiescent-current linear regulator |
 | Regulator | MCP1700, 3.0 V output variant | Typical quiescent current of 1.6 µA; common 3 V rail for the controller and display interface |
 | Supporting parts | Regulator input/output capacitors, local MCU decoupling, battery protection, switch, programming header | Reliable supply and a way to program the controller without leaving a USB interface powered |
-| Housing | Small calculator-style enclosure with accessible battery compartment | Large readable labels and easy battery replacement |
+| Housing | Rigid-resin printed calculator enclosure with accessible battery compartment | Large readable labels and easy battery replacement |
 
 These are design candidates, not a purchase-ready bill of materials. Adafruit's reference display was listed as out of stock when checked. Its viewable area is only about 24.5 × 21 mm: check text readability before committing to this size. A larger reflective display may be better for shop use.
 
@@ -33,15 +33,15 @@ E-paper is compatible with a microcontroller and does not require a Raspberry Pi
 ## User operation
 
 1. Press ON to wake the calculator.
-2. Press MAT to cycle through named materials; press ENTER to select. Default to the last material during the current powered session.
+2. Use MENU for material selection; 8/↑ and 2/↓ move through menus and ENTER selects. Default to the last material during the current powered session.
 3. Choose solid rectangular stock or pipe using a short menu on the existing keypad.
 4. For rectangular stock, enter length, width, and thickness in inches.
 5. For pipe, enter length, actual outside diameter, and wall thickness (or inside diameter). Press ENTER after each input.
 6. Show the material, dimensions, and estimated pounds, with the weight in the largest text.
 
-Key functions: digits 0–9, decimal point, ENTER, MAT, BACK, CLEAR, and ON/OFF. This fits a 16-key matrix. A generic keypad can be relabeled for the prototype; tactile calculator-style keys are preferable for the finished housing.
+Key functions: digits 0–9, decimal point, ENTER, MENU, BACK, CLEAR, and ON/OFF. This fits a 16-key matrix. The printed button caps will be made in rubbery resin, with recessed legends, and will actuate electrical switches underneath. See [MECHANICAL_DESIGN.md](MECHANICAL_DESIGN.md) for the key layout and printing requirements.
 
-BACK deletes the last digit; with an empty field it returns to the previous field. CLEAR starts a new calculation while retaining the selected material. ON/OFF puts the calculator to sleep. Do not use long-press combinations for routine entry. Start with decimal inches; fraction entry can be added if needed after testing the controls.
+BACK deletes the last digit; with an empty field it returns to the previous field. CLEAR empties the current entry; on the result screen it starts a new piece while retaining the selected material and shape. ON/OFF puts the calculator to sleep. Do not use long-press combinations for routine entry. Start with decimal inches; fraction entry can be added if needed after testing the controls.
 
 Reject empty fields, zero or negative dimensions, malformed numbers, overflow, and values beyond the supported input range. Display an explicit error instead of a plausible-looking weight. Always label the result as an estimate.
 
