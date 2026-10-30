@@ -38,7 +38,7 @@ for y in KEY_Y:
  for x in KEY_X:f=f.cut(block(x-7.35,y-7.35,28,14.7,14.7,4,2))
 for x in [30,48,66]:f=f.union(block(x-.4,66,26.9,.8,76,1.5))
 for y in [86,104,122]:f=f.union(block(13,y-.4,26.9,70,.8,1.5))
-# Guide/backing mount positions outside all membrane variants in this envelope.
+# Guide/backing mount positions outside the active key field.
 keymounts=[(9,64),(87,64),(9,146),(87,146)]
 for x,y in keymounts:
  f=boss(f,x,y,26.6,1.8,4.1)
@@ -84,7 +84,7 @@ for x,y in keymounts:backing=slot(backing,x,y,22.3,h=3)
 # Ribbon exits toward footer; recess avoids pinching the flex tail.
 backing=backing.cut(block(36,139,23.7,24,10.5,1))
 parts['keypad_backing']=backing
-# Guide has fixed key spacing. Floating smooth feet bridge modest contact-center variation.
+# Guide registers the electrical membrane and acts as a travel stop below the flexible keypad sheet.
 guide=block(5.5,60.5,26,85,89,.6,2)
 for y in KEY_Y:
  for x in KEY_X:guide=guide.cut(block(x-5.6,y-5.6,25.9,11.2,11.2,1,.8))
@@ -106,27 +106,43 @@ for x,y in caseholes[:2]:cradle=cradle.cut(cyl(x,y,19.5,4.4,8))
 for x in [2.4,91.5]:cradle=cradle.cut(block(x,56.05,19.5,2.1,4.1,2.3))
 for x in [17.275,78.725]:cradle=cradle.cut(cyl(x,56.3,19.5,1.5,3))
 parts['display_cradle']=cradle
-# No separate edge clamps: cradle screws retain the foam-supported display.
-# Button geometry and legends. All texts are Boolean recesses.
-button_parts=[]
+# One-piece 55A flexible keypad. All 16 buttons are part of one continuous thin sheet.
+# The sheet remains continuous to act as a dust barrier; tune membrane thickness after a real print test.
+SHEET_X,SHEET_Y,SHEET_W,SHEET_H=12.0,68.0,72.0,72.0
+SHEET_Z,SHEET_T=27.15,.85
+BUTTON_W,BUTTON_H,BUTTON_RISE=14.0,14.0,5.0
+ACTUATOR_D,ACTUATOR_H=8.0,1.55
+keypad=block(SHEET_X,SHEET_Y,SHEET_Z,SHEET_W,SHEET_H,SHEET_T,2.5)
 for row,y in enumerate(KEY_Y):
  for col,x in enumerate(KEY_X):
   text=LABELS[row][col]
-  cap=block(x-8.1,y-8.1,27.1,16.2,16.2,1.2,1.8)
-  cap=cap.union(block(x-7,y-7,28.1,14,14,4.9,2))
-  cap=cap.union(block(x-5,y-5,25.45,10,10,1.85,1))
+  # Thick button island above the thin flexible web.
+  keypad=keypad.union(block(x-BUTTON_W/2,y-BUTTON_H/2,SHEET_Z+SHEET_T,BUTTON_W,BUTTON_H,BUTTON_RISE,2))
+  # Smooth centered actuator below the sheet presses the existing DIYmalls electrical membrane.
+  keypad=keypad.union(cyl(x,y,SHEET_Z-ACTUATOR_H,ACTUATOR_D/2,ACTUATOR_H+.05))
+  legend_z=SHEET_Z+SHEET_T+BUTTON_RISE
   if text in ['8 ↑','2 ↓']:
-   cap=engrave(cap,text[0],x,y-2,33,4.8)
-   cap=engrave(cap,text[-1],x,y+3.7,33,3)
+   keypad=engrave(keypad,text[0],x,y-2,legend_z,4.8)
+   keypad=engrave(keypad,text[-1],x,y+3.7,legend_z,3)
   elif text=='ON OFF':
-   cap=engrave(cap,'ON',x,y-2,33,2.8);cap=engrave(cap,'OFF',x,y+2,33,2.8)
+   keypad=engrave(keypad,'ON',x,y-2,legend_z,2.8);keypad=engrave(keypad,'OFF',x,y+2,legend_z,2.8)
   elif text=='ENTER =':
-   cap=engrave(cap,'ENTER',x,y-2,33,2.5);cap=engrave(cap,'=',x,y+2.5,33,3.5)
-  else:cap=engrave(cap,text,x,y,33,5 if len(text)==1 else 2.8)
-  name=f'button_r{row+1}c{col+1}_{text.split()[0].lower().replace(".","decimal")}'
-  parts[name]=cap;button_parts.append((name,cap))
-# Fit coupon: two neighboring keys, guide and matching face/backing, all separate.
-# Same surfaces as final CAD; lets resin behavior be checked before the full print.
+   keypad=engrave(keypad,'ENTER',x,y-2,legend_z,2.5);keypad=engrave(keypad,'=',x,y+2.5,legend_z,3.5)
+  else:keypad=engrave(keypad,text,x,y,legend_z,5 if len(text)==1 else 2.8)
+parts['keypad_sheet_55A']=keypad
+# Two-key connected-sheet coupon reproduces the real membrane, cap rise and actuator geometry.
+coupon_sheet=block(12,68,SHEET_Z,36,18,SHEET_T,2)
+for col,x in enumerate(KEY_X[:2]):
+ text=LABELS[0][col]
+ coupon_sheet=coupon_sheet.union(block(x-BUTTON_W/2,77-BUTTON_H/2,SHEET_Z+SHEET_T,BUTTON_W,BUTTON_H,BUTTON_RISE,2))
+ coupon_sheet=coupon_sheet.union(cyl(x,77,SHEET_Z-ACTUATOR_H,ACTUATOR_D/2,ACTUATOR_H+.05))
+ legend_z=SHEET_Z+SHEET_T+BUTTON_RISE
+ if text=='8 ↑':
+  coupon_sheet=engrave(coupon_sheet,'8',x,75,legend_z,4.8)
+  coupon_sheet=engrave(coupon_sheet,'↑',x,80.7,legend_z,3)
+ else:
+  coupon_sheet=engrave(coupon_sheet,text,x,77,legend_z,5)
+parts['fit_coupon_keypad_55A']=coupon_sheet
 coupon_face=block(7,60,28.4,46,34,2.6,2)
 for x in KEY_X[:2]:coupon_face=coupon_face.cut(block(x-7.35,77-7.35,28.3,14.7,14.7,3,2))
 parts['fit_coupon_face']=coupon_face
@@ -173,7 +189,8 @@ for name,part in parts.items():
   ob=oriented.val().BoundingBox();oriented=oriented.translate((-ob.xmin,-ob.ymin,-ob.zmin))
   od=ROOT/'stl'/'mars5_ultra_oriented';od.mkdir(exist_ok=True)
   cq.exporters.export(oriented,str(od/f'{name}.stl'),tolerance=.035,angularTolerance=.12)
- if name not in ['front_shell','rear_shell'] and not name.startswith('fit_coupon'):assembly.add(part,name=name,color=cq.Color(.28,.3,.32) if name.startswith('button') else cq.Color(.65,.67,.69))
+ if name not in ['front_shell','rear_shell'] and not name.startswith('fit_coupon'):
+  assembly.add(part,name=name,color=cq.Color(.28,.3,.32) if name=='keypad_sheet_55A' else cq.Color(.65,.67,.69))
  print(name,round(shape.Volume(),1),flush=True)
 # Reference electronic envelopes are included in STEP, never in the printable STLs.
 lcd_reference=block(13,7.5,22.1,70,50,5.8)
@@ -182,15 +199,41 @@ assembly.add(lcd_reference,name='LCD_reference_not_for_printing',color=cq.Color(
 assembly.add(adapter_reference,name='adapter_PCB_reference_not_for_printing',color=cq.Color(.1,.4,.2))
 cq.exporters.export(adapter_reference,str(ROOT/'cad'/'display_adapter_outline.step'))
 assembly.save(str(ROOT/'cad'/'calculator_assembly.step'))
-# Flat button set: retain 18 mm pitch; top legends face +Z.
-flat=[]
-for i,(name,cap) in enumerate(button_parts):
- bb=cap.val().BoundingBox();flat.append(cap.translate(((i%8)*17.5-bb.xmin,(1-i//8)*17.5-bb.ymin,-bb.zmin)).val())
-cq.exporters.export(cq.Compound.makeCompound(flat),str(ROOT/'stl'/'all_16_buttons.stl'),tolerance=.035,angularTolerance=.12)
+# Remove obsolete loose-button aggregate if it exists from an older build.
+(ROOT/'stl'/'all_16_buttons.stl').unlink(missing_ok=True)
+for old in (ROOT/'stl').glob('button_r*.stl'):old.unlink(missing_ok=True)
 # Exact board outline proxy is for visual assembly checks, not a printed PCB substrate.
 pcb=block(7,62,7,82,68,1.6)
 for x,y in pcbholes:pcb=hole(pcb,x,y,6.9,d=2.9,h=2)
 cq.exporters.export(pcb,str(ROOT/'cad'/'pcb_outline.step'))
 (ROOT/'validation'/'cad_checks.json').write_text(json.dumps(checks,indent=2))
-(ROOT/'source'/'mechanical_parameters.json').write_text(json.dumps({'case_mm':[W,H,31],'pcb_mm':[82,68,1.6],'pcb_origin_plan_mm':[7,62],'pcb_bottom_z':7,'key_x_mm':KEY_X,'key_y_mm':KEY_Y,'nominal_key_pitch_mm':18,'keypad_membrane_max_envelope_mm':[72,79,.8],'button_travel_stop_mm':.5,'button_rest_gap_mm':.15,'legend_depth_mm':.4,'screw_clearance_mm':2.9,'nut_AF_mm':5.35,'nut_pocket_depth_mm':2.45,'keypad_pitch_status':'nominal; check full-size template against actual DIYmalls keypad','display':{'part':'ERC12864FS-655','body_mm':[70,50,5.8],'origin_plan_mm':[13,7.5],'window_mm':[14.5,11,67,37],'adapter_mm':[70,18,1.6],'adapter_origin_mm':[13,5.7,13],'foam_each_face_mm':.5},'battery_holder':'Pololu 1144, 52 x 37 x 13 mm'},indent=2))
+(ROOT/'source'/'mechanical_parameters.json').write_text(json.dumps({
+ 'case_mm':[W,H,31],
+ 'pcb_mm':[82,68,1.6],
+ 'pcb_origin_plan_mm':[7,62],
+ 'pcb_bottom_z':7,
+ 'key_x_mm':KEY_X,
+ 'key_y_mm':KEY_Y,
+ 'nominal_key_pitch_mm':18,
+ 'electrical_keypad_membrane_max_envelope_mm':[72,79,.8],
+ 'custom_keypad':{
+  'construction':'single connected flexible sheet',
+  'material':'55A flexible resin',
+  'sheet_origin_plan_mm':[SHEET_X,SHEET_Y],
+  'sheet_mm':[SHEET_W,SHEET_H,SHEET_T],
+  'button_top_mm':[BUTTON_W,BUTTON_H,BUTTON_RISE],
+  'actuator_diameter_mm':ACTUATOR_D,
+  'actuator_projection_mm':ACTUATOR_H,
+  'legend_depth_mm':.4,
+  'continuous_dust_barrier':True
+ },
+ 'button_travel_stop_mm':.5,
+ 'button_rest_gap_mm':.15,
+ 'screw_clearance_mm':2.9,
+ 'nut_AF_mm':5.35,
+ 'nut_pocket_depth_mm':2.45,
+ 'keypad_pitch_status':'nominal; check full-size template against actual DIYmalls keypad',
+ 'display':{'part':'ERC12864FS-655','body_mm':[70,50,5.8],'origin_plan_mm':[13,7.5],'window_mm':[14.5,11,67,37],'adapter_mm':[70,18,1.6],'adapter_origin_mm':[13,5.7,13],'foam_each_face_mm':.5},
+ 'battery_holder':'Pololu 1144, 52 x 37 x 13 mm'
+},indent=2))
 print('CAD EXPORT COMPLETE',flush=True)
