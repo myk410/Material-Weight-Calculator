@@ -1,13 +1,13 @@
 # Resin enclosure and keypad requirements
 
-Updated October 27, 2026. These requirements capture the user's printing choices and the sixteen-key UI walkthrough. Hardware R2 CAD and STLs now implement these requirements in [hardware/](hardware/README.md). Physical print/actuation tolerances remain untested.
+Updated October 30, 2026. These requirements capture the user's printing choices and the sixteen-key UI walkthrough. The keypad is now intentionally designed as one connected flexible-resin sheet rather than sixteen loose caps. Hardware CAD source in [hardware/](hardware/README.md) is being kept consistent with this requirement. Physical print/actuation tolerances remain untested.
 
 ## Printed parts
 
-- Rigid resin: front housing/bezel, rear housing, battery cover, internal board supports, and keypad retaining plate.
-- Rubbery/flexible resin: sixteen button caps with underside actuators and retention features. Start with individually replaceable buttons captured by the retaining plate; this avoids committing to a large flexible membrane before testing the resin's feel.
+- Rigid resin: front housing/bezel, rear housing, battery cover, internal board supports, keypad guide/backing, and display cradle.
+- Rubbery/flexible resin: **one connected sixteen-button keypad sheet printed in 55A flexible resin**. The sixteen button tops, thin connecting membrane, underside actuator pads, and perimeter retention area are one printed part. Do not split the normal production keypad into sixteen loose buttons.
 - Button legends must be recessed into the printed top faces. They must be part of the CAD geometry, not raised lettering, decals, or a texture visible only in a render.
-- Electronics, display, electrical switches, battery contacts, and fasteners remain conventional components. Printed flexible resin caps press real switches underneath; the caps themselves are not assumed to be electrically conductive.
+- Electronics, display, electrical switch membrane, battery contacts, and fasteners remain conventional components. The printed flexible keypad presses the existing electrical membrane underneath; the 55A resin itself is not assumed to be electrically conductive.
 
 ## Sixteen-key layout
 
@@ -22,37 +22,65 @@ Front view; every cell is one physical key. The 8 and 2 keys also navigate menus
 
 Use two lines where needed, particularly ON/OFF and ENTER/=. Engrave both the digits and the secondary arrows on 8 and 2. MENU replaces the earlier proposed dedicated MAT key and provides material, shape, density, and resume options.
 
-## Button mechanism
+## One-piece 55A keypad construction
 
-Reuse the user-owned DIYmalls 4×4, 16-key, 8-pin membrane keypad as the electrical switch layer. Do not buy sixteen separate switches. Mount the intact pad flat on a rigid backing plate, conceal its original labels behind the front bezel and custom caps, and route its ribbon into the housing. Do not peel apart its laminated switch layers. Match the original key centers; remap logical key functions in firmware to the custom labels.
+The custom keypad is a single flexible part, similar in concept to a calculator or remote-control rubber keypad. All sixteen keys are joined by a thin continuous membrane so the entire keypad can be installed and removed as one piece.
 
-Each flexible cap should have a broad pressing surface, a broad smooth underside contact pad aligned with its membrane key center, and a captured flange that prevents the cap falling out through the front. A rigid retaining plate locates the buttons relative to the switch board. Validate the actual membrane’s feel and release with the flexible caps; the guide/retainer and any flexible return features must let each cap release reliably. Do not assume the membrane can lift an arbitrarily heavy or stiff cap. Broad contact pads should avoid sharp edges or concentrated pressure on the membrane.
-
-Provide travel stops so excessive pressing loads go into the housing rather than overtraveling the membrane or flexing its backing. Final contact-pad height, travel, stop position, backing supports, and rest gap must follow the actual keypad’s actuation and release behavior. Its short travel does not permit assuming a conventional tact-switch travel distance. There must be no switch preload at rest.
-
-## Initial prototype targets
-
-These are proposed starting dimensions to test, not universal resin printing specifications:
+Starting geometry for the flexible part:
 
 | Feature | Starting target |
 | --- | --- |
+| Flexible material | 55A resin |
+| Connected sheet footprint | about 72 × 72 mm, centered on the 4 × 4 key field |
+| Connecting membrane thickness | 0.8–1.0 mm; CAD nominal 0.85 mm |
+| Button top | about 14 × 14 mm |
+| Button-top height above membrane | about 5 mm |
+| Underside actuator | centered, smooth, about 8 mm diameter |
+| Actuator projection below sheet | about 1.5 mm; tune after real keypad test |
+| Nominal key pitch | 18 mm |
 | Recessed legend depth | 0.4 mm |
 | Minimum engraved stroke/channel width | 0.6 mm |
 | Main numeral height | 4–5 mm, subject to key size |
-| Word legend height | At least 2.5–3 mm where space allows |
-| Button-to-bezel clearance | Test 0.25, 0.35, and 0.45 mm per side |
+| Word legend height | at least 2.5–3 mm where space allows |
+| Button-to-bezel clearance | test 0.25, 0.35, and 0.45 mm per side |
 
-Use a plain, bold sans-serif font with open counters and simple arrows. Recessed labels may optionally be paint-filled after curing for contrast. Paint compatibility and adhesion to the flexible resin must be tested before filling the full set.
+The thin sheet provides the flex zone. The button tops must remain substantially thicker than the connecting membrane so pressing one key does not significantly drag neighboring keys. Do not make the entire keypad uniformly several millimeters thick.
 
-Print a small coupon containing a labeled button, its bezel opening, retaining flange, and actuator before printing the full keypad. Check the fully washed and cured parts for legibility, free movement, reliable return, and no accidental adjacent-key presses. Tune clearance and engraving depth for the actual resin and cure process.
+The outer membrane should be captured between rigid enclosure features so it cannot shift sideways. The rigid guide/backing stack may provide registration and travel-stop functions, but it must not clamp the active flex zones so tightly that the keys cannot return. The flexible sheet should remain replaceable without destroying the enclosure.
 
-Keep supports off the button faces, inside engraved legends, and away from sliding/actuating surfaces where possible. Accessible recesses and internal cavities must allow washing and curing according to the resin manufacturer's process. Do not assume every flexible resin will produce the same stiffness or repeatable button action.
+## Button mechanism
+
+Reuse the user-owned DIYmalls 4×4, 16-key, 8-pin membrane keypad as the **electrical switch layer**. Do not buy sixteen separate switches. Mount the intact electrical pad flat on a rigid backing plate, conceal its original labels behind the front bezel and custom 55A keypad sheet, and route its ribbon into the housing. Do not peel apart its laminated switch layers. Match the original key centers; remap logical key functions in firmware to the custom labels.
+
+Each printed key should have a broad pressing surface and a centered smooth underside actuator aligned with its electrical membrane key center. The sixteen printed keys are not separate pieces; they rise from the common thin sheet. Avoid sharp actuator edges or concentrated pressure on the electrical membrane.
+
+Provide travel stops so excessive pressing loads go into the housing/guide rather than overtraveling the membrane or flexing its backing. Final actuator height, travel, stop position, backing supports, and rest gap must follow the actual keypad’s actuation and release behavior. Its short travel does not permit assuming conventional tact-switch travel. There must be no switch preload at rest.
+
+The single-sheet construction should also act as a dust barrier over the button field. Avoid unnecessary through-slots between keys unless later testing proves the continuous sheet is too stiff.
+
+## Prototype and print validation
+
+Use a plain, bold sans-serif font with open counters and simple arrows. Recessed labels may optionally be paint-filled after curing for contrast. Paint compatibility and adhesion to the 55A resin must be tested before filling the full keypad.
+
+Print a small **two-key connected-sheet coupon** before committing to the complete keypad. The coupon should reproduce the real membrane thickness, button-top thickness, actuator projection, bezel clearance, and key pitch. Check the fully washed and cured part for:
+
+- independent motion of adjacent keys;
+- reliable return after release;
+- no electrical-switch preload at rest;
+- no accidental neighboring-key presses;
+- legible recessed labels;
+- no tearing at the thin membrane around the button bases; and
+- enough perimeter stiffness for clean enclosure capture.
+
+Keep supports off the button faces, inside engraved legends, and away from actuator/contact surfaces where possible. The 55A sheet should preferably be oriented so the visible key faces and thin membrane require minimal cleanup. Accessible recesses and internal cavities must allow washing and curing according to the resin manufacturer's process.
 
 ## Enclosure assembly
 
-The housing should provide an accessible AAA compartment and removable rear cover, with board and display mounts independent of the flexible keypad. Use rounded transitions around mounting bosses and avoid relying on thin rigid-resin snap tabs for repeated access. Final outer dimensions and mount locations follow selection of the display, existing membrane keypad, board, battery holder, and fasteners.
+The housing should provide an accessible AAA compartment and removable rear cover, with board and display mounts independent of the flexible keypad. Use rounded transitions around mounting bosses and avoid relying on thin rigid-resin snap tabs for repeated access.
 
-Editable CadQuery source, an assembled STEP model, individual STLs, sixteen engraved button caps, and printer-oriented shell sections are now in hardware/. Main joints use M2.5 screws and hex nuts glued into 5.35 mm across-flats pockets. Two bonded shell sections per face fit the Mars 5 Ultra; see hardware/README.md for the complete assembly order and screw lengths.
+The front bezel presents sixteen individual openings, but from the inside there is only **one custom flexible keypad part**. The sheet is placed behind the bezel, aligned to the sixteen openings, then retained by the guide/backing stack over the original DIYmalls electrical membrane. This eliminates sixteen loose printed parts during assembly.
+
+Editable CadQuery source, an assembled STEP model, individual rigid-part STLs, the one-piece flexible keypad STL, and printer-oriented shell sections belong in hardware/. Main joints use M2.5 screws and hex nuts glued into 5.35 mm across-flats pockets. Two bonded shell sections per face fit the Mars 5 Ultra; see hardware/README.md for the complete assembly order and screw lengths.
 
 See [PARTS_LIST.md](PARTS_LIST.md) for the reuse-first prototype and candidate final AAA components.
 
