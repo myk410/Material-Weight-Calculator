@@ -8,7 +8,7 @@ Download [complete R2 package](downloads/material_weight_calculator_hardware_r2.
 
 1. Open `docs/case_front_preview.png` to inspect the actual CAD and recessed legends.
 2. Print `docs/keypad_fit_template.pdf` at **100% / Actual Size**. Place the existing DIYmalls pad over the key-center marks. The screenshot identifies the pad type but does not establish its exact pitch. The model currently uses nominal 18 mm key pitch; confirm this fit before printing the full shell. The source has explicit `KEY_X` and `KEY_Y` parameters if the actual pad differs.
-3. Print the small fit coupons and one flexible button before the full set. Check legend detail, cap release, nut fit, and actuation with the actual membrane. No claim is made that a particular flexible resin's force or shrinkage has been tested.
+3. Print the two-key connected 55A keypad coupon before the full keypad sheet. Check legend detail, independent motion, return, actuator contact, nut fit, and actuation with the actual DIYmalls membrane. No claim is made that the 55A resin's force, shrinkage, or long-term fatigue has been physically validated yet.
 4. For the Mars 5 Ultra, use the shell sections in `stl/mars5_ultra_oriented/`. They have been rotated to fit the manufacturer's 153.36 × 77.76 × 165 mm build volume; add supports and a raft in the slicer without exceeding that volume. These are unsliced STLs, not exposure profiles.
 5. Use `pcb/gerbers/` for a conventional **two-layer, 1.6 mm copper-clad PCB with plated through holes**. Open the KiCad project to inspect/edit it before ordering.
 
@@ -16,12 +16,12 @@ Download [complete R2 package](downloads/material_weight_calculator_hardware_r2.
 
 | Location | Contents |
 | --- | --- |
-| `stl/` | Four case sections, battery cover, keypad plates, display cradle, sixteen individual buttons, full button set, and fit coupons |
+| `stl/` | Four case sections, battery cover, keypad plates, display cradle, **one-piece 55A flexible keypad sheet**, and fit coupons |
 | `stl/mars5_ultra_oriented/` | Printer-fitting orientations for the shell sections and larger keypad plates |
 | `cad/calculator_assembly.step` | Assembly with parts in their assembled locations; split case sections included |
 | `cad/pcb_outline.step` | Board outline and four mounting holes, matching the enclosure |
 | `cad/*whole_reference.stl` | Unsplit shell references for a larger printer; do not use these on the Mars 5 Ultra |
-| `source/build_case.py` | Editable CadQuery source for case, buttons, nut pockets, and split shells |
+| `source/build_case.py` | Editable CadQuery source for case, one-piece keypad sheet, nut pockets, and split shells |
 | `pcb/material_weight_calculator.kicad_pro` | KiCad 7 project |
 | `pcb/material_weight_calculator.kicad_sch` | Editable, embedded-symbol schematic with every used pin/net explicitly named |
 | `pcb/material_weight_calculator.kicad_pcb` | Routed two-layer board, 82 × 68 mm |
@@ -40,11 +40,19 @@ Download [complete R2 package](downloads/material_weight_calculator_hardware_r2.
 | `DISPLAY_INTEGRATION.md` | Authoritative R2 display pin map, sources and firmware requirements |
 | `validation/` | CAD, mesh, schematic-net and KiCad design-rule reports |
 
-The STLs are in millimeters, not mirrored. Each individual file is translated to its own positive bounding box. Use STEP for assembly positions. `all_16_buttons.stl` is arranged as **8 × 2 for printing**, while the actual assembled keypad remains **4 × 4**. No support structures are baked into the meshes.
+The STLs are in millimeters, not mirrored. Each individual file is translated to its own positive bounding box. Use STEP for assembly positions. The old loose-button aggregate `all_16_buttons.stl` is obsolete; rebuilding the current source deletes it and exports `keypad_sheet_55A.stl` instead. No support structures are baked into the meshes.
+
+## One-piece 55A keypad
+
+The custom visible keypad is now **one connected flexible-resin part**, not sixteen loose buttons. The CAD nominally uses a 72 × 72 × 0.85 mm continuous sheet behind the 4 × 4 button field. Each key has a 14 × 14 mm top rising about 5 mm above that sheet, plus a centered smooth 8 mm-diameter actuator projecting about 1.55 mm below it.
+
+The thin sheet is the flex zone. The thicker key tops remain individual islands geometrically, but they are permanently joined by the 0.85 mm membrane. This should reduce assembly parts, keep the key field aligned, and provide a continuous dust barrier over the original electrical membrane. The dimensions are prototype targets and should be tuned after the first real 55A print.
+
+The existing DIYmalls 4 × 4 pad remains the **electrical switch layer** underneath. The printed 55A part is only the custom mechanical keypad. Do not assume the printed resin is conductive.
 
 ## Case and fasteners
 
-Overall body: 96 × 184 × 31 mm, with button tops at 33 mm. Wall/face thickness is generally 2.6 mm, with internal reinforcement webs. The PCB's lower face is 7 mm from the rear reference plane. The holder pocket targets a Pololu 1144-style 52 × 37 × 13 mm three-AAA holder with leads, allowing clearance around that envelope.
+Overall body: 96 × 184 × 31 mm, with button tops at about 33 mm. Wall/face thickness is generally 2.6 mm, with internal reinforcement webs. The PCB's lower face is 7 mm from the rear reference plane. The holder pocket targets a Pololu 1144-style 52 × 37 × 13 mm three-AAA holder with leads, allowing clearance around that envelope.
 
 All fastening provisions are **M2.5 with hex nuts**, as requested. Nominal nut pockets are 5.35 mm across flats and about 2.45 mm deep; clearance holes are 2.9 mm. Glue nuts around their outside faces, keeping threads and screw paths clean. On front-facing pocket openings, hold the nut flush to the pocket's open face while the adhesive sets, rather than pushing it deeper into the clearance allowance. Verify actual nut dimensions with the coupon before gluing the full set.
 
@@ -64,9 +72,9 @@ The long front and rear shells each have an upper/lower **bonded seam** at plan 
 
 1. Wash/cure the printed parts according to the actual resin's instructions. Clear supports from recesses and mating faces. Bond the two front sections and the two rear sections using their locating features.
 2. Test-fit and glue the M2.5 nuts into their pockets. Allow adhesive to set before applying screw load.
-3. From inside the front, insert the sixteen flexible buttons into their corresponding openings. Their larger flanges remain behind the front face. Legends are actual 0.4 mm Boolean recesses, not rendered textures.
-4. Install the guide above the membrane and the rigid backing below it. Nominal stack: backing top Z=24.5; 0.8 mm membrane; button contact foot Z=25.45; guide stop top Z=26.6. The initial rest clearance is 0.15 mm and mechanical stop travel 0.5 mm. These targets need a real membrane/resin test. The original labels stay hidden and the membrane stays intact.
-5. Route the flexible ribbon through the backing relief; avoid sharp folds or pinching at the enclosure edge. The backing's screw slots allow small translational adjustments, not arbitrary correction of key pitch.
+3. From inside the front, place the **single connected 55A keypad sheet** behind all sixteen bezel openings at once. Align its sixteen button tops with the openings. The 0.85 mm connecting membrane remains behind the bezel and keeps the entire keypad registered as one piece. Legends are actual 0.4 mm Boolean recesses, not rendered textures.
+4. Install the rigid guide/backing stack and the existing DIYmalls electrical membrane underneath the printed keypad. The guide acts as registration and a travel-stop layer while the thin printed sheet provides key return. The current actuator projection and rest/stop values are prototype geometry only; verify that the electrical pad is not preloaded at rest and that each key returns without dragging its neighbors.
+5. Route the electrical membrane's flexible ribbon through the backing relief; avoid sharp folds or pinching at the enclosure edge. The backing's screw slots allow small translational adjustments, not arbitrary correction of key pitch.
 6. Use the ERC12864FS-655 **without touch panel**. Its body fits at plan (13,7.5), 70 × 50 × 5.8 mm maximum. The 67 × 37 mm bezel opening follows the drawing's viewing-area offset: 1.5 mm from the left and 3.5 mm from the top. Place thin 0.5 mm closed-cell foam on opaque perimeter/frame surfaces, between the front shell and module and between the module's backlight frame and rear cradle. Fit the cradle with four M2.5 × 6 mm screws. Tighten only enough to retain it; do not compress LCD glass, the polarizer or the solder tail. No separate printed edge clamps are used in R2.
    Assemble the display adapter before installing the cradle. J2 is a **1×22 row at 1.27 mm pitch**, not 2.54 mm. Solder the module's own pins directly into the adapter holes; do not add another tall header/socket. Keep the adapter at nominal Z=13 to 14.6 mm behind the top tail. Check pin-1 orientation against the manufacturer's front-view drawing. Use short insulated wires at adapter J1 rather than a tall plug. Secure the cable to the cradle side with a soft tie/adhesive anchor, without loading the glass. Capacitor C5 must be ≤4 mm diameter and ≤7 mm high; other adapter parts ≤5 mm high. Confirm actual pin reach before soldering; the fit template provides the 22 pin centers.
 7. Assemble the PCB, check power rails with U1/display disconnected, fit the socketed MCU, then connect the keypad, display cable, and battery holder using the wiring below.
@@ -130,23 +138,24 @@ For a PCB manufacturer, use the Gerbers and separate PTH/NPTH drill files, speci
 
 For home etching, the copper PDF includes labeled reference and transfer orientations. Print 100%, verify the 100 mm scale, and register both layers accurately. Home-drilled holes are not automatically plated: every via and any PTH joining layers requires a conductive connection soldered on both sides. DIP sockets and headers can obstruct top-side soldering, so use accessible raised/machined contacts or a professionally plated board. Exact Gerbers are authoritative; the PDFs are for manual processes.
 
-Ordinary printing resin forms the housing and buttons, **not conductive PCB traces**. The PCB files describe copper on an insulating board. No resin-printer exposure file, printer-specific sliced file, or CNC isolation toolpath is supplied because those depend on the actual fabrication process and tools.
+Ordinary printing resin forms the housing and keypad, **not conductive PCB traces**. The PCB files describe copper on an insulating board. No resin-printer exposure file, printer-specific sliced file, or CNC isolation toolpath is supplied because those depend on the actual fabrication process and tools.
 
-The STLs are unsliced. Use rigid resin for housing, cradle and plates; flexible resin for button caps. Keep supports away from label recesses, screw bores, nut pockets, contact feet and mating faces. The raised front face should remain legible after cure; optional compatible paint-fill can improve contrast. Hollow shell cavities must remain accessible for washing and curing; orient them to drain.
+The STLs are unsliced. Use rigid resin for housing, cradle and plates; use **55A flexible resin for `keypad_sheet_55A.stl`**. Keep supports away from label recesses, screw bores, nut pockets, actuator faces and mating surfaces. The keypad sheet is only 0.85 mm thick between keys, so avoid support placement or cleanup methods that can tear or permanently distort the flex zones. Optional compatible paint-fill can improve legend contrast. Hollow shell cavities must remain accessible for washing and curing; orient them to drain.
 
 ## What was verified
 
-- Each individual CAD part is a valid, single solid.
-- Each exported STL has a closed two-use edge graph at the mesh-check precision.
-- Pairwise assembled-part checks found no positive intersections above 0.02 mm³ (nominal, unloaded geometry).
+- Each individual CAD part in the prior R2 build was a valid, single solid.
+- Each exported STL in the prior R2 build had a closed two-use edge graph at the mesh-check precision.
+- Pairwise assembled-part checks in the prior R2 build found no positive intersections above 0.02 mm³ (nominal, unloaded geometry).
 - Exported schematic pin-to-net connections match the PCB design definition, normalizing the root-sheet prefix on local net names.
 - KiCad's final report: **0 DRC violations, 0 unconnected pads, 0 footprint errors**, with local footprints available.
 - PCB outline/mount-hole positions and case PCB posts share the same design coordinates.
-- These are digital checks. Actual keypad pitch, cured-resin tolerances, membrane actuation, display pin fit/ambient-light contrast, soldered component heights, electrical operation and battery runtime still need physical confirmation. Computational DRC is not an electrical bench test or an independent ERC review.
+- **The new one-piece 55A keypad source has not yet been physically printed or re-validated as an exported mesh in this commit.** Rebuild the CAD and inspect `validation/cad_checks.json` before treating the generated keypad STL as final.
+- Actual keypad pitch, cured-resin tolerances, membrane actuation, display pin fit/ambient-light contrast, soldered component heights, electrical operation and battery runtime still need physical confirmation. Computational DRC is not an electrical bench test or an independent ERC review.
 
 ## Rebuilding
 
-Use CadQuery 2.7 / OpenCascade for `python source/build_case.py`. `source/check_and_render.py` also rebuilds the CAD, checks meshes and net mappings, and draws previews. Run `source/build_pcb.py` and `source/build_display_adapter.py` with KiCad 7's `pcbnew` Python bindings and standard footprints installed, then run `source/export_pcbs.py` with `KICAD_CLI` pointing to KiCad 7 CLI. Run `source/validate_display.py` for the manufacturer pin/capacitor audit. Export both schematic netlists before running the net checks. `source/plot_copper.py` uses KiCad's native plot controller for exact copper artwork. `source/make_print_templates.py` requires ReportLab. Plot main copper with `source/plot_copper.py`, then again with `DISPLAY_ADAPTER=1`; run `source/finish_exports.py` last to assemble labeled PDFs, verify both netlists and package R2 ZIPs.
+Use CadQuery 2.7 / OpenCascade for `python source/build_case.py`. The current source exports `stl/keypad_sheet_55A.stl`, a two-key 55A fit coupon, and removes obsolete loose-button STLs from older builds. `source/check_and_render.py` also rebuilds the CAD, checks meshes and net mappings, and draws previews. Run `source/build_pcb.py` and `source/build_display_adapter.py` with KiCad 7's `pcbnew` Python bindings and standard footprints installed, then run `source/export_pcbs.py` with `KICAD_CLI` pointing to KiCad 7 CLI. Run `source/validate_display.py` for the manufacturer pin/capacitor audit. Export both schematic netlists before running the net checks. `source/plot_copper.py` uses KiCad's native plot controller for exact copper artwork. `source/make_print_templates.py` requires ReportLab. Plot main copper with `source/plot_copper.py`, then again with `DISPLAY_ADAPTER=1`; run `source/finish_exports.py` last to assemble labeled PDFs, verify both netlists and package R2 ZIPs.
 
 ## Source references
 
