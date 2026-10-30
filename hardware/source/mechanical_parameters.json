@@ -89,5 +89,21 @@
     ],
     "foam_each_face_mm": 0.5
   },
-  "battery_holder": "Pololu 1144, 52 x 37 x 13 mm"
+  "battery_holder": "Pololu 1144, 52 x 37 x 13 mm",
+  "battery_door": {
+    "retention": "screwless sliding cover with integrated snap latch",
+    "material": "ABS-like rigid resin",
+    "door_clearance_per_side_mm": 0.35,
+    "slide_rail_engagement_mm": 1.2,
+    "latch_tab_length_mm": 18.0,
+    "latch_tab_width_mm": 10.0,
+    "latch_tab_thickness_mm": 1.4,
+    "latch_required_deflection_mm": 0.65,
+    "latch_catch_height_mm": 0.5,
+    "latch_root_fillet_mm": 2.0,
+    "thumb_release_recess": true,
+    "tool_required": false,
+    "screws_required": false,
+    "design_note": "Keep flexure strain low for cured resin; use long tab, shallow catch, generous root fillet and sliding rails so the latch only prevents sliding rather than carrying cover loads."
+  }
 }
