@@ -1,0 +1,41 @@
+name: Regenerate battery door CAD
+
+on:
+  push:
+    paths:
+      - 'hardware/source/build_battery_door_r3.py'
+      - '.github/workflows/regenerate-battery-door.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CAD tooling
+        run: pip install cadquery
+      - name: Regenerate battery door and rear shell STLs
+        run: python hardware/source/build_battery_door_r3.py
+      - name: Commit generated CAD
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add hardware/stl/battery_cover.stl \
+                  hardware/stl/mars_rear_upper.stl \
+                  hardware/stl/mars_rear_lower.stl \
+                  hardware/stl/mars5_ultra_oriented/mars_rear_upper.stl \
+                  hardware/stl/mars5_ultra_oriented/mars_rear_lower.stl \
+                  hardware/cad/rear_shell_whole_reference.stl \
+                  hardware/validation/battery_r3_checks.json
+          if git diff --cached --quiet; then
+            echo 'Generated files already current.'
+          else
+            git commit -m 'Regenerate screwless battery door STLs'
+            git push
+          fi
