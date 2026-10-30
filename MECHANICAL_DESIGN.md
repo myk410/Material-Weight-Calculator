@@ -8,6 +8,7 @@ Updated October 30, 2026. These requirements capture the user's printing choices
 - Rubbery/flexible resin: **one connected sixteen-button keypad sheet printed in 55A flexible resin**. The sixteen button tops, thin connecting membrane, underside actuator pads, and perimeter retention area are one printed part. Do not split the normal production keypad into sixteen loose buttons.
 - Button legends must be recessed into the printed top faces. They must be part of the CAD geometry, not raised lettering, decals, or a texture visible only in a render.
 - Electronics, display, electrical switch membrane, battery contacts, and fasteners remain conventional components. The printed flexible keypad presses the existing electrical membrane underneath; the 55A resin itself is not assumed to be electrically conductive.
+- **Anti-warp reinforcement is a standing design requirement.** Add shallow ribs, perimeter flanges, webs, or equivalent stiffening to broad/flat rigid-resin parts wherever useful to resist cupping and warping during printing and post-cure. Ribs must not interfere with electronics, fasteners, fit, sliding features, battery access, or assembly. Avoid unnecessary mass and trapped resin pockets.
 
 ## Sixteen-key layout
 
@@ -76,11 +77,13 @@ Keep supports off the button faces, inside engraved legends, and away from actua
 
 ## Enclosure assembly
 
-The housing should provide an accessible AAA compartment and removable rear cover, with board and display mounts independent of the flexible keypad. Use rounded transitions around mounting bosses and avoid relying on thin rigid-resin snap tabs for repeated access.
+The housing should provide an accessible AAA compartment with a **tool-free, screwless sliding rear battery door** similar to a conventional calculator or remote-control cover. The door should ride in side rails so normal cover loads are carried by the rails, not by the snap feature. Use an integrated low-deflection snap latch only to prevent the cover from sliding open. For ABS-like resin, use a relatively long, broad flexure tab, shallow catch, generous root fillet, and thumb-release recess rather than a short injection-mold-style clip. Nominal starting targets are approximately 1.4 mm latch thickness, 18 mm flex length, 10 mm width, 0.65 mm required deflection, and 0.5 mm catch height; tune with a small latch coupon before printing the complete rear shell.
+
+The battery door and other broad flat rigid-resin surfaces must include underside anti-warp ribs where clearance allows. On the battery cover, use shallow longitudinal/cross ribs inside the perimeter and keep them clear of the AAA holder, slide rails, snap flexure path, and battery contacts. The ribs should stiffen the cover without turning it into a thick solid plate.
 
 The front bezel presents sixteen individual openings, but from the inside there is only **one custom flexible keypad part**. The sheet is placed behind the bezel, aligned to the sixteen openings, then retained by the guide/backing stack over the original DIYmalls electrical membrane. This eliminates sixteen loose printed parts during assembly.
 
-Editable CadQuery source, an assembled STEP model, individual rigid-part STLs, the one-piece flexible keypad STL, and printer-oriented shell sections belong in hardware/. Main joints use M2.5 screws and hex nuts glued into 5.35 mm across-flats pockets. Two bonded shell sections per face fit the Mars 5 Ultra; see hardware/README.md for the complete assembly order and screw lengths.
+Editable CadQuery source, an assembled STEP model, individual rigid-part STLs, the one-piece flexible keypad STL, and printer-oriented shell sections belong in hardware/. Main case joints use M2.5 screws and hex nuts glued into 5.35 mm across-flats pockets; the battery door itself uses no screw. Two bonded shell sections per face fit the Mars 5 Ultra; see hardware/README.md for the complete assembly order and screw lengths.
 
 See [PARTS_LIST.md](PARTS_LIST.md) for the reuse-first prototype and candidate final AAA components.
 
