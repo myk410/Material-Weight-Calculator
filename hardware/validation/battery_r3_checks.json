@@ -17,7 +17,7 @@
     "part": "rear_shell_whole_reference",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 56644.72128961653,
+    "volume_mm3": 56826.7899635293,
     "bbox": [
       -8.881784197001252e-16,
       -8.881784197001252e-16,
@@ -31,7 +31,7 @@
     "part": "mars_rear_upper",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 21674.483318244736,
+    "volume_mm3": 21856.551992157918,
     "bbox": [
       -8.881784197001252e-16,
       117.75,
@@ -45,7 +45,7 @@
     "part": "mars_rear_lower",
     "valid": true,
     "solid_count": 1,
-    "volume_mm3": 35025.59797137172,
+    "volume_mm3": 35025.597971371724,
     "bbox": [
       -8.881784197001252e-16,
       -8.881784197001252e-16,
