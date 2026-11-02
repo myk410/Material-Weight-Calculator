@@ -1,54 +1,18 @@
 {
-  "case_mm": [
-    96.0,
-    184.0,
-    31
-  ],
-  "pcb_mm": [
-    82,
-    68,
-    1.6
-  ],
-  "pcb_origin_plan_mm": [
-    7,
-    62
-  ],
+  "case_mm": [96.0, 184.0, 31],
+  "pcb_mm": [82, 68, 1.6],
+  "pcb_origin_plan_mm": [7, 62],
   "pcb_bottom_z": 7,
-  "key_x_mm": [
-    21,
-    39,
-    57,
-    75
-  ],
-  "key_y_mm": [
-    77,
-    95,
-    113,
-    131
-  ],
+  "key_x_mm": [21, 39, 57, 75],
+  "key_y_mm": [77, 95, 113, 131],
   "nominal_key_pitch_mm": 18,
-  "electrical_keypad_membrane_max_envelope_mm": [
-    72,
-    79,
-    0.8
-  ],
+  "electrical_keypad_membrane_max_envelope_mm": [72, 79, 0.8],
   "custom_keypad": {
     "construction": "single connected flexible sheet",
     "material": "55A flexible resin",
-    "sheet_origin_plan_mm": [
-      12.0,
-      68.0
-    ],
-    "sheet_mm": [
-      72.0,
-      72.0,
-      0.85
-    ],
-    "button_top_mm": [
-      14.0,
-      14.0,
-      5.0
-    ],
+    "sheet_origin_plan_mm": [12.0, 68.0],
+    "sheet_mm": [72.0, 72.0, 0.85],
+    "button_top_mm": [14.0, 14.0, 5.0],
     "actuator_diameter_mm": 8.0,
     "actuator_projection_mm": 1.55,
     "legend_depth_mm": 0.4,
@@ -62,31 +26,11 @@
   "keypad_pitch_status": "nominal; check full-size template against actual DIYmalls keypad",
   "display": {
     "part": "ERC12864FS-655",
-    "body_mm": [
-      70,
-      50,
-      5.8
-    ],
-    "origin_plan_mm": [
-      13,
-      7.5
-    ],
-    "window_mm": [
-      14.5,
-      11,
-      67,
-      37
-    ],
-    "adapter_mm": [
-      70,
-      18,
-      1.6
-    ],
-    "adapter_origin_mm": [
-      13,
-      5.7,
-      13
-    ],
+    "body_mm": [70, 50, 5.8],
+    "origin_plan_mm": [13, 7.5],
+    "window_mm": [14.5, 11, 67, 37],
+    "adapter_mm": [70, 18, 1.6],
+    "adapter_origin_mm": [13, 5.7, 13],
     "foam_each_face_mm": 0.5
   },
   "battery_holder": "Pololu 1144, 52 x 37 x 13 mm",
@@ -105,5 +49,18 @@
     "tool_required": false,
     "screws_required": false,
     "design_note": "Keep flexure strain low for cured resin; use long tab, shallow catch, generous root fillet and sliding rails so the latch only prevents sliding rather than carrying cover loads."
+  },
+  "power_switch": {
+    "part_family": "CYT1107 / WOWOONE OW-SlideSwitch-S20(A)",
+    "type": "SPDT 1P2T 3-pin slide switch used as SPST hard power disconnect",
+    "published_body_envelope_mm": [12.7, 6.6, 13.2],
+    "published_actuator_length_mm": 3.5,
+    "published_terminal_pitch_mm": 4.7,
+    "mount_location": "upper right side of rear shell, above PCB zone",
+    "actuator_slot_mm": [10.1, 4.0],
+    "recessed_to_reduce_accidental_switching": true,
+    "wiring": "AAA positive to center/common pin; one outer pin to PCB battery positive input; other outer pin unused. AAA negative goes directly to PCB ground.",
+    "off_state": "physical battery-positive disconnect; essentially zero intentional standby load through the calculator electronics",
+    "fit_note": "Verify the actual purchased switch body and knob travel before final assembly; inexpensive CYT1107-style batches may vary slightly."
   }
 }
