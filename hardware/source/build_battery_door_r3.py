@@ -18,8 +18,7 @@ def nut(s,x,y,z,af=5.35,h=2.45):
     return s.cut(n)
 def boss(s,x,y,z,h,r=4): return s.union(cyl(x,y,z,r,h))
 
-# Rear shell: R2 geometry retained except battery-door screw bosses are replaced
-# by locating ledges, two lower hooks and one broad shallow top snap catch.
+# Rear shell with screwless battery door and external hard-power slide switch.
 b=block(0,0,0,W,H,12,6).cut(block(2.6,2.6,2.6,W-5.2,H-5.2,10,4))
 caseholes=[(6,6),(90,6),(6,178),(90,178)]
 for x,y in caseholes:
@@ -30,6 +29,25 @@ for x,y in pcbholes:
 # Existing shell anti-warp ribs.
 for x in [19,77]: b=b.union(block(x,10,2.5,1.2,122,1.8))
 for y in [30,58,100]: b=b.union(block(10,y,2.5,76,1.2,1.8))
+
+# CYT1107 / WOWOONE-style SPDT hard power switch.
+# Published envelope is approximately 12.7 x 6.6 x 13.2 mm with a 3.5 mm actuator.
+# Mount is placed high on the right side, above the PCB zone, to avoid the battery pocket.
+# A generous actuator slot and simple internal cradle are used because actual molded-body
+# tolerances can vary between low-cost switch batches. Verify against one physical switch.
+SW_Y=31.5
+# Actuator travel opening through the right wall.
+b=b.cut(block(92.8,SW_Y+1.3,4.6,4.2,10.1,4.0,.6))
+# Recess the outside around the slot so the knob is less likely to be bumped accidentally.
+b=b.cut(block(94.9,SW_Y,.95,1.3,12.7,10.1,.8))
+# Internal cradle/end stops for the switch body; body sits against the rear floor.
+b=b.union(block(85.8,SW_Y-1.0,2.55,7.4,1.1,7.5,.25))
+b=b.union(block(85.8,SW_Y+12.6,2.55,7.4,1.1,7.5,.25))
+b=b.union(block(85.8,SW_Y,2.55,1.1,12.7,7.5,.25))
+# Local ribs around the interrupted side wall to preserve stiffness and limit print warping.
+b=b.union(block(82.5,SW_Y-2.2,2.55,10.8,1.0,7.6,.25))
+b=b.union(block(82.5,SW_Y+13.9,2.55,10.8,1.0,7.6,.25))
+
 # Pololu 1144 holder envelope and access cavity.
 for x in [20,74.8]: b=b.union(block(x,139,2.5,1.2,39,11))
 b=b.union(block(20,138,2.5,56,1.2,11)).union(block(20,178,2.5,56,1.2,11))
