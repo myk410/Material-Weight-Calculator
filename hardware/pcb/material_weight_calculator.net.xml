@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/workspace/scratch/f1b283492210/Material-Weight-Calculator/hardware/pcb/material_weight_calculator.kicad_sch</source>
-    <date>Tue Oct 27 14:56:49 2026</date>
-    <tool>Eeschema 7.0.11+dfsg-1build4</tool>
+    <source>/workspace/scratch/8ab636f7e612/Material-Weight-Calculator/hardware/pcb/material_weight_calculator.kicad_sch</source>
+    <date>2026-11-02T11:14:03+0100</date>
+    <tool>Eeschema 9.0.2+dfsg-1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Material Weight Calculator</title>
         <company/>
-        <rev>R2</rev>
-        <date>2026-10-27</date>
+        <rev>R2.1</rev>
+        <date>2026-11-02</date>
         <source>material_weight_calculator.kicad_sch</source>
-        <comment number="1" value="Prototype - see hardware/README.md"/>
+        <comment number="1" value="Prototype - see PCB_REVIEW.md"/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
         <comment number="4" value=""/>
@@ -25,155 +25,298 @@
   </design>
   <components>
     <comp ref="C1">
-      <value>1uF 10V X7R</value>
-      <footprint>MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <value>2.2uF 50V X7R</value>
+      <footprint>MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_C1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>5c596a4a-a3bd-4ab0-9778-4ca0aabf9f04</tstamps>
+      <tstamps>06e9eb63-e4ca-5c85-a3be-a731b82caaab</tstamps>
     </comp>
     <comp ref="C2">
-      <value>1uF 10V X7R</value>
-      <footprint>MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <value>2.2uF 50V X7R</value>
+      <footprint>MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_C2" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>c013005c-c398-48cb-a822-2ef88cd9f845</tstamps>
+      <tstamps>b2561368-0c4c-5006-97a0-9a35e46e4182</tstamps>
     </comp>
     <comp ref="C3">
       <value>100nF 10V</value>
       <footprint>MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_C3" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>e9e6c723-f64d-4122-9694-509c4028612c</tstamps>
+      <tstamps>4817101f-3975-5494-82b3-62e141733a34</tstamps>
     </comp>
     <comp ref="C4">
       <value>100nF 10V</value>
       <footprint>MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_C4" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>a7ae6915-3d72-4d83-a937-044680d3c3ec</tstamps>
+      <tstamps>565a90c0-ea8c-517d-b059-4c742e92ce4d</tstamps>
     </comp>
     <comp ref="C5">
-      <value>1uF 10V X7R</value>
-      <footprint>MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <value>2.2uF 50V X7R</value>
+      <footprint>MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_C5" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>deefeda6-33a2-4a71-b60e-87d5c2426448</tstamps>
+      <tstamps>6f98268b-4d7c-5250-8928-4e396f92381f</tstamps>
     </comp>
     <comp ref="D1">
       <value>1N5817</value>
       <footprint>MW_footprints:D_DO-41_SOD81_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:D_DO-41_SOD81_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_D1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>9582f181-c40f-464d-97e2-dd6801c74bc6</tstamps>
+      <tstamps>6bd61e3e-8c35-537e-86dd-ddea4c690740</tstamps>
+    </comp>
+    <comp ref="H1">
+      <value>M2.5</value>
+      <footprint>MW_footprints:MountingHole_2.7mm_M2.5</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:MountingHole_2.7mm_M2.5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="MW" part="MW_H1" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>53dbc8e0-7f88-5619-92f4-42056689091d</tstamps>
+    </comp>
+    <comp ref="H2">
+      <value>M2.5</value>
+      <footprint>MW_footprints:MountingHole_2.7mm_M2.5</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:MountingHole_2.7mm_M2.5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="MW" part="MW_H2" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bf06819a-e401-5fe8-b564-399f188b0fc4</tstamps>
+    </comp>
+    <comp ref="H3">
+      <value>M2.5</value>
+      <footprint>MW_footprints:MountingHole_2.7mm_M2.5</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:MountingHole_2.7mm_M2.5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="MW" part="MW_H3" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7b381cb4-9c2a-5d55-96cc-15e2c2fd8472</tstamps>
+    </comp>
+    <comp ref="H4">
+      <value>M2.5</value>
+      <footprint>MW_footprints:MountingHole_2.7mm_M2.5</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:MountingHole_2.7mm_M2.5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="MW" part="MW_H4" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>148bd7dc-c032-5da2-9064-a924e71ff45a</tstamps>
     </comp>
     <comp ref="J1">
       <value>KEYPAD_8PIN</value>
       <footprint>MW_footprints:PinHeader_1x08_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:PinHeader_1x08_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_J1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>8ceacf4c-d78c-4994-ad29-232caab8192c</tstamps>
+      <tstamps>1afa2d3f-865d-59dd-9c98-b5eaa886acab</tstamps>
     </comp>
     <comp ref="J2">
-      <value>BATTERY_3AAA</value>
+      <value>SWITCHED_3AAA_IN</value>
       <footprint>MW_footprints:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:PinHeader_1x02_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_J2" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>95d22fd9-bf75-420a-9d10-e5135ec92da0</tstamps>
+      <tstamps>09cc138b-33ef-5fb8-9214-22d1d1f48a77</tstamps>
     </comp>
     <comp ref="J3">
       <value>UC1701_ADAPTER_CABLE</value>
       <footprint>MW_footprints:PinHeader_1x08_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:PinHeader_1x08_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_J3" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>ed12012a-d2db-46d4-b876-fb67f9ba2039</tstamps>
+      <tstamps>0d732479-b996-5a82-a7bc-258495665885</tstamps>
     </comp>
     <comp ref="J4">
       <value>UPDI_3V3</value>
       <footprint>MW_footprints:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:PinHeader_1x03_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_J4" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>54d0946f-b208-434e-b64c-5e95fda7c318</tstamps>
+      <tstamps>a24c1cbd-b253-5004-9177-be5ff56539d7</tstamps>
     </comp>
     <comp ref="JP1">
       <value>MASTER_LINK</value>
       <footprint>MW_footprints:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:PinHeader_1x02_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_JP1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>85b7626f-f75d-4e8c-a5eb-7ea8552f8f58</tstamps>
+      <tstamps>f85c99f3-855a-5887-95f4-78ecce1cd400</tstamps>
     </comp>
     <comp ref="Q1">
       <value>onsemi 2N3906 EBC</value>
       <footprint>MW_footprints:TO-92_Inline_Wide</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:TO-92_Inline_Wide</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_Q1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>f0bc3e0e-37ab-43c5-9997-31db23e812da</tstamps>
+      <tstamps>3d41c557-2cb4-59bc-977d-072ca2302672</tstamps>
     </comp>
     <comp ref="R1">
       <value>10k</value>
       <footprint>MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_R1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>dfdf4d2c-56b2-4c03-93af-37a73fbb3a85</tstamps>
+      <tstamps>e4e43a11-67d4-5f63-a440-c4f767ae7ea6</tstamps>
     </comp>
     <comp ref="R2">
       <value>100k</value>
       <footprint>MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_R2" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>9d5224c8-c846-4299-a76e-ceb99bf71382</tstamps>
+      <tstamps>d8ec19d8-17e5-54a6-8f16-c7bfd73c3f46</tstamps>
     </comp>
     <comp ref="U1">
       <value>AVR128DA28-I/SP</value>
       <footprint>MW_footprints:DIP-28_W7.62mm</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:DIP-28_W7.62mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_U1" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>60a9c374-e577-49bb-831f-f6e52de08aca</tstamps>
+      <tstamps>e5a23919-e7e5-5817-8f51-27faa6255740</tstamps>
     </comp>
     <comp ref="U2">
       <value>MCP1700-3302E/TO</value>
       <footprint>MW_footprints:TO-92_Inline_Wide</footprint>
+      <fields>
+        <field name="Footprint">MW_footprints:TO-92_Inline_Wide</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
       <libsource lib="MW" part="MW_U2" description=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="material_weight_calculator.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>a6785e56-0f5e-451f-9155-85b01b33ba14</tstamps>
+      <tstamps>5c752557-fbd3-51f7-8992-bfe3151e2052</tstamps>
     </comp>
   </components>
   <libparts>
     <libpart lib="MW" part="MW_C1">
       <fields>
         <field name="Reference">C1</field>
-        <field name="Value">1uF 10V X7R</field>
+        <field name="Value">2.2uF 50V X7R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -183,7 +326,10 @@
     <libpart lib="MW" part="MW_C2">
       <fields>
         <field name="Reference">C2</field>
-        <field name="Value">1uF 10V X7R</field>
+        <field name="Value">2.2uF 50V X7R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -194,6 +340,9 @@
       <fields>
         <field name="Reference">C3</field>
         <field name="Value">100nF 10V</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -204,6 +353,9 @@
       <fields>
         <field name="Reference">C4</field>
         <field name="Value">100nF 10V</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -213,7 +365,10 @@
     <libpart lib="MW" part="MW_C5">
       <fields>
         <field name="Reference">C5</field>
-        <field name="Value">1uF 10V X7R</field>
+        <field name="Value">2.2uF 50V X7R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -224,16 +379,58 @@
       <fields>
         <field name="Reference">D1</field>
         <field name="Value">1N5817</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="K" type="passive"/>
         <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="MW" part="MW_H1">
+      <fields>
+        <field name="Reference">H1</field>
+        <field name="Value">M2.5</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+    </libpart>
+    <libpart lib="MW" part="MW_H2">
+      <fields>
+        <field name="Reference">H2</field>
+        <field name="Value">M2.5</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+    </libpart>
+    <libpart lib="MW" part="MW_H3">
+      <fields>
+        <field name="Reference">H3</field>
+        <field name="Value">M2.5</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+    </libpart>
+    <libpart lib="MW" part="MW_H4">
+      <fields>
+        <field name="Reference">H4</field>
+        <field name="Value">M2.5</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+    </libpart>
     <libpart lib="MW" part="MW_J1">
       <fields>
         <field name="Reference">J1</field>
         <field name="Value">KEYPAD_8PIN</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -249,17 +446,23 @@
     <libpart lib="MW" part="MW_J2">
       <fields>
         <field name="Reference">J2</field>
-        <field name="Value">BATTERY_3AAA</field>
+        <field name="Value">SWITCHED_3AAA_IN</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
-        <pin num="1" name="BAT+" type="passive"/>
-        <pin num="2" name="BAT-" type="passive"/>
+        <pin num="1" name="SW1_OUT_PLUS" type="power_out"/>
+        <pin num="2" name="BAT_MINUS" type="power_out"/>
       </pins>
     </libpart>
     <libpart lib="MW" part="MW_J3">
       <fields>
         <field name="Reference">J3</field>
         <field name="Value">UC1701_ADAPTER_CABLE</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="VCC" type="passive"/>
@@ -276,6 +479,9 @@
       <fields>
         <field name="Reference">J4</field>
         <field name="Value">UPDI_3V3</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="VTREF" type="passive"/>
@@ -287,6 +493,9 @@
       <fields>
         <field name="Reference">JP1</field>
         <field name="Value">MASTER_LINK</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -297,17 +506,23 @@
       <fields>
         <field name="Reference">Q1</field>
         <field name="Value">onsemi 2N3906 EBC</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
-        <pin num="1" name="E" type="passive"/>
-        <pin num="2" name="B" type="passive"/>
-        <pin num="3" name="C" type="passive"/>
+        <pin num="1" name="E" type="power_in"/>
+        <pin num="2" name="B" type="input"/>
+        <pin num="3" name="C" type="power_out"/>
       </pins>
     </libpart>
     <libpart lib="MW" part="MW_R1">
       <fields>
         <field name="Reference">R1</field>
         <field name="Value">10k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -318,6 +533,9 @@
       <fields>
         <field name="Reference">R2</field>
         <field name="Value">100k</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
         <pin num="1" name="1" type="passive"/>
@@ -328,188 +546,168 @@
       <fields>
         <field name="Reference">U1</field>
         <field name="Value">AVR128DA28-I/SP</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
-        <pin num="1" name="PA7" type="passive"/>
-        <pin num="2" name="PC0" type="passive"/>
-        <pin num="3" name="PC1" type="passive"/>
-        <pin num="4" name="PC2" type="passive"/>
-        <pin num="5" name="PC3" type="passive"/>
-        <pin num="6" name="PD0" type="passive"/>
-        <pin num="7" name="PD1" type="passive"/>
-        <pin num="8" name="PD2" type="passive"/>
-        <pin num="9" name="PD3" type="passive"/>
-        <pin num="10" name="PD4" type="passive"/>
-        <pin num="11" name="PD5" type="passive"/>
-        <pin num="12" name="PD6" type="passive"/>
-        <pin num="13" name="PD7" type="passive"/>
-        <pin num="14" name="AVDD" type="passive"/>
-        <pin num="15" name="GND" type="passive"/>
-        <pin num="16" name="PF0" type="passive"/>
-        <pin num="17" name="PF1" type="passive"/>
-        <pin num="18" name="PF6_RESET" type="passive"/>
-        <pin num="19" name="UPDI" type="passive"/>
-        <pin num="20" name="VDD" type="passive"/>
-        <pin num="21" name="GND" type="passive"/>
-        <pin num="22" name="PA0" type="passive"/>
-        <pin num="23" name="PA1" type="passive"/>
-        <pin num="24" name="PA2" type="passive"/>
-        <pin num="25" name="PA3" type="passive"/>
-        <pin num="26" name="PA4" type="passive"/>
-        <pin num="27" name="PA5" type="passive"/>
-        <pin num="28" name="PA6" type="passive"/>
+        <pin num="1" name="PA7" type="bidirectional"/>
+        <pin num="2" name="PC0" type="bidirectional"/>
+        <pin num="3" name="PC1" type="bidirectional"/>
+        <pin num="4" name="PC2" type="bidirectional"/>
+        <pin num="5" name="PC3" type="bidirectional"/>
+        <pin num="6" name="PD0" type="bidirectional"/>
+        <pin num="7" name="PD1" type="bidirectional"/>
+        <pin num="8" name="PD2" type="bidirectional"/>
+        <pin num="9" name="PD3" type="bidirectional"/>
+        <pin num="10" name="PD4" type="bidirectional"/>
+        <pin num="11" name="PD5" type="bidirectional"/>
+        <pin num="12" name="PD6" type="bidirectional"/>
+        <pin num="13" name="PD7" type="bidirectional"/>
+        <pin num="14" name="AVDD" type="power_in"/>
+        <pin num="15" name="GND" type="power_in"/>
+        <pin num="16" name="PF0" type="bidirectional"/>
+        <pin num="17" name="PF1" type="bidirectional"/>
+        <pin num="18" name="PF6_RESET" type="input"/>
+        <pin num="19" name="UPDI" type="bidirectional"/>
+        <pin num="20" name="VDD" type="power_in"/>
+        <pin num="21" name="GND" type="power_in"/>
+        <pin num="22" name="PA0" type="bidirectional"/>
+        <pin num="23" name="PA1" type="bidirectional"/>
+        <pin num="24" name="PA2" type="bidirectional"/>
+        <pin num="25" name="PA3" type="bidirectional"/>
+        <pin num="26" name="PA4" type="bidirectional"/>
+        <pin num="27" name="PA5" type="bidirectional"/>
+        <pin num="28" name="PA6" type="bidirectional"/>
       </pins>
     </libpart>
     <libpart lib="MW" part="MW_U2">
       <fields>
         <field name="Reference">U2</field>
         <field name="Value">MCP1700-3302E/TO</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
       </fields>
       <pins>
-        <pin num="1" name="GND" type="passive"/>
-        <pin num="2" name="VIN" type="passive"/>
-        <pin num="3" name="VOUT" type="passive"/>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="VIN" type="power_in"/>
+        <pin num="3" name="VOUT" type="power_out"/>
       </pins>
     </libpart>
   </libparts>
-  <libraries/>
+  <libraries>
+    <library logical="MW">
+      <uri>/workspace/scratch/8ab636f7e612/Material-Weight-Calculator/hardware/pcb/MW.kicad_sym</uri>
+    </library>
+  </libraries>
   <nets>
-    <net code="1" name="/+3V3">
+    <net code="1" name="+3V3" class="Default">
       <node ref="C2" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="C3" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="C4" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="J4" pin="1" pinfunction="VTREF" pintype="passive"/>
-      <node ref="Q1" pin="1" pinfunction="E" pintype="passive"/>
+      <node ref="Q1" pin="1" pinfunction="E" pintype="power_in"/>
       <node ref="R2" pin="1" pinfunction="1" pintype="passive"/>
-      <node ref="U1" pin="14" pinfunction="AVDD" pintype="passive"/>
-      <node ref="U1" pin="20" pinfunction="VDD" pintype="passive"/>
-      <node ref="U2" pin="3" pinfunction="VOUT" pintype="passive"/>
+      <node ref="U1" pin="14" pinfunction="AVDD" pintype="power_in"/>
+      <node ref="U1" pin="20" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U2" pin="3" pinfunction="VOUT" pintype="power_out"/>
     </net>
-    <net code="2" name="/BAT_PLUS">
-      <node ref="J2" pin="1" pinfunction="BAT+" pintype="passive"/>
-      <node ref="JP1" pin="1" pinfunction="1" pintype="passive"/>
-    </net>
-    <net code="3" name="/BAT_SWITCH">
-      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
-      <node ref="JP1" pin="2" pinfunction="2" pintype="passive"/>
-    </net>
-    <net code="4" name="/COL0">
+    <net code="2" name="COL0" class="Default">
       <node ref="J1" pin="5" pinfunction="5" pintype="passive"/>
-      <node ref="U1" pin="6" pinfunction="PD0" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="PD0" pintype="bidirectional"/>
     </net>
-    <net code="5" name="/COL1">
+    <net code="3" name="COL1" class="Default">
       <node ref="J1" pin="6" pinfunction="6" pintype="passive"/>
-      <node ref="U1" pin="7" pinfunction="PD1" pintype="passive"/>
+      <node ref="U1" pin="7" pinfunction="PD1" pintype="bidirectional"/>
     </net>
-    <net code="6" name="/COL2">
+    <net code="4" name="COL2" class="Default">
       <node ref="J1" pin="7" pinfunction="7" pintype="passive"/>
-      <node ref="U1" pin="8" pinfunction="PD2" pintype="passive"/>
+      <node ref="U1" pin="8" pinfunction="PD2" pintype="bidirectional"/>
     </net>
-    <net code="7" name="/COL3">
+    <net code="5" name="COL3" class="Default">
       <node ref="J1" pin="8" pinfunction="8" pintype="passive"/>
-      <node ref="U1" pin="9" pinfunction="PD3" pintype="passive"/>
+      <node ref="U1" pin="9" pinfunction="PD3" pintype="bidirectional"/>
     </net>
-    <net code="8" name="/GND">
+    <net code="6" name="GND" class="Default">
       <node ref="C1" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C2" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C3" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C4" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C5" pin="2" pinfunction="2" pintype="passive"/>
-      <node ref="J2" pin="2" pinfunction="BAT-" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="BAT_MINUS" pintype="power_out"/>
       <node ref="J3" pin="2" pinfunction="GND" pintype="passive"/>
       <node ref="J4" pin="2" pinfunction="GND" pintype="passive"/>
-      <node ref="U1" pin="15" pinfunction="GND" pintype="passive"/>
-      <node ref="U1" pin="21" pinfunction="GND" pintype="passive"/>
-      <node ref="U2" pin="1" pinfunction="GND" pintype="passive"/>
+      <node ref="U1" pin="15" pinfunction="GND" pintype="power_in"/>
+      <node ref="U1" pin="21" pinfunction="GND" pintype="power_in"/>
+      <node ref="U2" pin="1" pinfunction="GND" pintype="power_in"/>
     </net>
-    <net code="9" name="/LCD_BASE">
-      <node ref="Q1" pin="2" pinfunction="B" pintype="passive"/>
+    <net code="7" name="LCD_BASE" class="Default">
+      <node ref="Q1" pin="2" pinfunction="B" pintype="input"/>
       <node ref="R1" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="R2" pin="2" pinfunction="2" pintype="passive"/>
     </net>
-    <net code="10" name="/LCD_CD">
+    <net code="8" name="LCD_CD" class="Default">
       <node ref="J3" pin="6" pinfunction="CD" pintype="passive"/>
-      <node ref="U1" pin="26" pinfunction="PA4" pintype="passive"/>
+      <node ref="U1" pin="26" pinfunction="PA4" pintype="bidirectional"/>
     </net>
-    <net code="11" name="/LCD_CLK">
+    <net code="9" name="LCD_CLK" class="Default">
       <node ref="J3" pin="3" pinfunction="SCK" pintype="passive"/>
-      <node ref="U1" pin="23" pinfunction="PA1" pintype="passive"/>
+      <node ref="U1" pin="23" pinfunction="PA1" pintype="bidirectional"/>
     </net>
-    <net code="12" name="/LCD_CS">
+    <net code="10" name="LCD_CS" class="Default">
       <node ref="J3" pin="5" pinfunction="CS_N" pintype="passive"/>
-      <node ref="U1" pin="25" pinfunction="PA3" pintype="passive"/>
+      <node ref="U1" pin="25" pinfunction="PA3" pintype="bidirectional"/>
     </net>
-    <net code="13" name="/LCD_DATA">
+    <net code="11" name="LCD_DATA" class="Default">
       <node ref="J3" pin="4" pinfunction="SDA" pintype="passive"/>
-      <node ref="U1" pin="24" pinfunction="PA2" pintype="passive"/>
+      <node ref="U1" pin="24" pinfunction="PA2" pintype="bidirectional"/>
     </net>
-    <net code="14" name="/LCD_PWR_CTRL">
+    <net code="12" name="LCD_PWR_CTRL" class="Default">
       <node ref="R1" pin="1" pinfunction="1" pintype="passive"/>
-      <node ref="U1" pin="13" pinfunction="PD7" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="PD7" pintype="bidirectional"/>
     </net>
-    <net code="15" name="/LCD_RST">
+    <net code="13" name="LCD_RST" class="Default">
       <node ref="J3" pin="7" pinfunction="RST_N" pintype="passive"/>
-      <node ref="U1" pin="27" pinfunction="PA5" pintype="passive"/>
+      <node ref="U1" pin="27" pinfunction="PA5" pintype="bidirectional"/>
     </net>
-    <net code="16" name="/LCD_VCC">
+    <net code="14" name="LCD_VCC" class="Default">
       <node ref="C5" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="J3" pin="1" pinfunction="VCC" pintype="passive"/>
-      <node ref="Q1" pin="3" pinfunction="C" pintype="passive"/>
+      <node ref="Q1" pin="3" pinfunction="C" pintype="power_out"/>
     </net>
-    <net code="17" name="/ROW0">
+    <net code="15" name="ROW0" class="Default">
       <node ref="J1" pin="1" pinfunction="1" pintype="passive"/>
-      <node ref="U1" pin="2" pinfunction="PC0" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="PC0" pintype="bidirectional"/>
     </net>
-    <net code="18" name="/ROW1">
+    <net code="16" name="ROW1" class="Default">
       <node ref="J1" pin="2" pinfunction="2" pintype="passive"/>
-      <node ref="U1" pin="3" pinfunction="PC1" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="PC1" pintype="bidirectional"/>
     </net>
-    <net code="19" name="/ROW2">
+    <net code="17" name="ROW2" class="Default">
       <node ref="J1" pin="3" pinfunction="3" pintype="passive"/>
-      <node ref="U1" pin="4" pinfunction="PC2" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="PC2" pintype="bidirectional"/>
     </net>
-    <net code="20" name="/ROW3">
+    <net code="18" name="ROW3" class="Default">
       <node ref="J1" pin="4" pinfunction="4" pintype="passive"/>
-      <node ref="U1" pin="5" pinfunction="PC3" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="PC3" pintype="bidirectional"/>
     </net>
-    <net code="21" name="/UPDI">
+    <net code="19" name="UPDI" class="Default">
       <node ref="J4" pin="3" pinfunction="UPDI" pintype="passive"/>
-      <node ref="U1" pin="19" pinfunction="UPDI" pintype="passive"/>
+      <node ref="U1" pin="19" pinfunction="UPDI" pintype="bidirectional"/>
     </net>
-    <net code="22" name="/VIN">
+    <net code="20" name="VBAT_LINK" class="Default">
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="JP1" pin="2" pinfunction="2" pintype="passive"/>
+    </net>
+    <net code="21" name="VBAT_SW" class="Default">
+      <node ref="J2" pin="1" pinfunction="SW1_OUT_PLUS" pintype="power_out"/>
+      <node ref="JP1" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="22" name="VIN" class="Default">
       <node ref="C1" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
-      <node ref="U2" pin="2" pinfunction="VIN" pintype="passive"/>
-    </net>
-    <net code="23" name="unconnected-(J3-NC-Pad8)">
-      <node ref="J3" pin="8" pinfunction="NC" pintype="passive+no_connect"/>
-    </net>
-    <net code="24" name="unconnected-(U1-PA0-Pad22)">
-      <node ref="U1" pin="22" pinfunction="PA0" pintype="passive+no_connect"/>
-    </net>
-    <net code="25" name="unconnected-(U1-PA6-Pad28)">
-      <node ref="U1" pin="28" pinfunction="PA6" pintype="passive+no_connect"/>
-    </net>
-    <net code="26" name="unconnected-(U1-PA7-Pad1)">
-      <node ref="U1" pin="1" pinfunction="PA7" pintype="passive+no_connect"/>
-    </net>
-    <net code="27" name="unconnected-(U1-PD4-Pad10)">
-      <node ref="U1" pin="10" pinfunction="PD4" pintype="passive+no_connect"/>
-    </net>
-    <net code="28" name="unconnected-(U1-PD5-Pad11)">
-      <node ref="U1" pin="11" pinfunction="PD5" pintype="passive+no_connect"/>
-    </net>
-    <net code="29" name="unconnected-(U1-PD6-Pad12)">
-      <node ref="U1" pin="12" pinfunction="PD6" pintype="passive+no_connect"/>
-    </net>
-    <net code="30" name="unconnected-(U1-PF0-Pad16)">
-      <node ref="U1" pin="16" pinfunction="PF0" pintype="passive+no_connect"/>
-    </net>
-    <net code="31" name="unconnected-(U1-PF1-Pad17)">
-      <node ref="U1" pin="17" pinfunction="PF1" pintype="passive+no_connect"/>
-    </net>
-    <net code="32" name="unconnected-(U1-PF6_RESET-Pad18)">
-      <node ref="U1" pin="18" pinfunction="PF6_RESET" pintype="passive+no_connect"/>
+      <node ref="U2" pin="2" pinfunction="VIN" pintype="power_in"/>
     </net>
   </nets>
 </export>

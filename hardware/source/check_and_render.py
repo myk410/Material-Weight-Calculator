@@ -34,7 +34,7 @@ actual={}
 for net in xml.findall('.//nets/net'):
  for node in net.findall('node'):
   name=net.get('name')
-  if not name.startswith('unconnected-'):actual[(node.get('ref'),node.get('pin'))]=name.lstrip('/')
+  if not name.startswith('unconnected-') and not node.get('ref').startswith('#'):actual[(node.get('ref'),node.get('pin'))]=name.lstrip('/')
 expected={(c['ref'],p):n for c in elec['components'] for p,n in c['pins'].items() if n}
 assert actual==expected,{'missing':sorted(set(expected.items())-set(actual.items())),'extra':sorted(set(actual.items())-set(expected.items()))}
 (ROOT/'validation'/'schematic_net_check.json').write_text(json.dumps({'matched_connected_pins':len(actual),'result':'PASS'},indent=2))

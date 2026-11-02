@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "injected_fault": "Raw battery supply net merged into regulated 3V3 in temporary copy",
+  "detected": "Pins of type Power output and Power output are connected",
+  "violation_type": "pin_to_pin",
+  "exit_code": 5,
+  "production_files_modified": false
+}

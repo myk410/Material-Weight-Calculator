@@ -1,4 +1,6 @@
-# Material Weight Calculator — hardware R2
+# Material Weight Calculator — hardware R2.1
+
+PCB review updated November 2, 2026: [review, evidence and assembly gates](PCB_REVIEW.md). Open the reviewed PCB files with **KiCad 9 or newer**. The download filenames retain `r2` for existing links; their fabrication contents identify R2.1. Mechanical files retain their separate revision history.
 
 This package contains real parametric CAD, printable STLs, a routed KiCad PCB, schematic, Gerbers, drills, and actual-scale print templates. It is a **prototype design**, not a physically tested or production-qualified assembly. The device firmware is not included in this hardware release; its revised 128 × 64 display and sleep requirements are specified in DISPLAY_INTEGRATION.md. R2 replaces the small Sharp display. R1 files remain in Git history, not in current print/download folders.
 
@@ -22,7 +24,7 @@ Download [complete R2 package](downloads/material_weight_calculator_hardware_r2.
 | `cad/pcb_outline.step` | Board outline and four mounting holes, matching the enclosure |
 | `cad/*whole_reference.stl` | Unsplit shell references for a larger printer; do not use these on the Mars 5 Ultra |
 | `source/build_case.py` | Editable CadQuery source for case, one-piece keypad sheet, nut pockets, and split shells |
-| `pcb/material_weight_calculator.kicad_pro` | KiCad 7 project |
+| `pcb/material_weight_calculator.kicad_pro` | KiCad 9 project |
 | `pcb/material_weight_calculator.kicad_sch` | Editable, embedded-symbol schematic with every used pin/net explicitly named |
 | `pcb/material_weight_calculator.kicad_pcb` | Routed two-layer board, 82 × 68 mm |
 | `pcb/mw-footprints.pretty/` | Bundled standard footprints; project does not depend on an external footprint-library path |
@@ -62,9 +64,9 @@ All fastening provisions are **M2.5 with hex nuts**, as requested. Nominal nut p
 | PCB to rear posts | 4 × M2.5 × 6 mm | 4, glued into rear-post pockets |
 | Keypad backing + guide stack to front | 4 × M2.5 × 6 mm | 4, glued into front pockets |
 | Display cradle to front | 4 × M2.5 × 6 mm | 4, glued into front pockets |
-| Battery cover | 2 × M2.5 × 6 mm | 2, glued into rear pockets |
+| Battery cover | None; sliding rails and snap latch | None |
 
-Total: **18 nuts; four 16 mm and fourteen 6 mm screws**. Screw lengths are measured under the head. Trial-fit and shorten any screw that bottoms before clamping; do not force a screw into resin. The design does not use heat-set inserts or self-tapping threads.
+Total: **16 nuts; four 16 mm and twelve 6 mm screws**. Screw lengths are measured under the head. Trial-fit and shorten any screw that bottoms before clamping; do not force a screw into resin. The design does not use heat-set inserts or self-tapping threads.
 
 The long front and rear shells each have an upper/lower **bonded seam** at plan Y=60.25 mm, with locating tongues and mating relief. Bond each upper/lower pair into one shell before final assembly. This printing seam is separate from the removable, screwed front/rear joint. Use an adhesive appropriate for the fully cured rigid resin and test it on a coupon. One-piece references are included if a larger printer is available.
 
@@ -76,7 +78,7 @@ The long front and rear shells each have an upper/lower **bonded seam** at plan 
 4. Install the rigid guide/backing stack and the existing DIYmalls electrical membrane underneath the printed keypad. The guide acts as registration and a travel-stop layer while the thin printed sheet provides key return. The current actuator projection and rest/stop values are prototype geometry only; verify that the electrical pad is not preloaded at rest and that each key returns without dragging its neighbors.
 5. Route the electrical membrane's flexible ribbon through the backing relief; avoid sharp folds or pinching at the enclosure edge. The backing's screw slots allow small translational adjustments, not arbitrary correction of key pitch.
 6. Use the ERC12864FS-655 **without touch panel**. Its body fits at plan (13,7.5), 70 × 50 × 5.8 mm maximum. The 67 × 37 mm bezel opening follows the drawing's viewing-area offset: 1.5 mm from the left and 3.5 mm from the top. Place thin 0.5 mm closed-cell foam on opaque perimeter/frame surfaces, between the front shell and module and between the module's backlight frame and rear cradle. Fit the cradle with four M2.5 × 6 mm screws. Tighten only enough to retain it; do not compress LCD glass, the polarizer or the solder tail. No separate printed edge clamps are used in R2.
-   Assemble the display adapter before installing the cradle. J2 is a **1×22 row at 1.27 mm pitch**, not 2.54 mm. Solder the module's own pins directly into the adapter holes; do not add another tall header/socket. Keep the adapter at nominal Z=13 to 14.6 mm behind the top tail. Check pin-1 orientation against the manufacturer's front-view drawing. Use short insulated wires at adapter J1 rather than a tall plug. Secure the cable to the cradle side with a soft tie/adhesive anchor, without loading the glass. Capacitor C5 must be ≤4 mm diameter and ≤7 mm high; other adapter parts ≤5 mm high. Confirm actual pin reach before soldering; the fit template provides the 22 pin centers.
+   Assemble the display adapter before installing the cradle. J2 is a **1×22 row at 1.27 mm pitch**, not 2.54 mm. Solder the module's own pins directly into the adapter holes; do not add another tall header/socket. Keep the adapter at nominal Z=13 to 14.6 mm behind the top tail. Check pin-1 orientation against the manufacturer's front-view drawing. Use short insulated wires at adapter J1 rather than a tall plug. Secure the cable to the cradle side with a soft tie/adhesive anchor, without loading the glass. Capacitor C5 must be ≤4 mm diameter and ≤7 mm high; C1/C2 ≤5.5 mm high and remaining adapter parts ≤5 mm high. Confirm actual pin reach before soldering; the fit template provides the 22 pin centers.
 7. Assemble the PCB, check power rails with U1/display disconnected, fit the socketed MCU, then connect the keypad, display cable, and battery holder using the wiring below.
 8. Install the PCB in the rear tray, secure the battery holder in its pocket, and route leads clear of nut pockets and ribs. Install the battery cover, then join front/rear with the four longer screws.
 
@@ -90,7 +92,7 @@ The long front and rear shells each have an upper/lower **bonded seam** at plan 
 | Q1 | onsemi 2N3906 PNP, E-B-C pins 1-2-3, TO-92 spread leads; switches display power | 1 |
 | R1 | 10 kΩ, axial, 7.62 mm lead spacing | 1 |
 | R2 | 100 kΩ, axial, 7.62 mm lead spacing | 1 |
-| C1, C2, C5 | 1 µF, at least 10 V, ceramic, 2.5 mm lead spacing; body within footprint envelope | 3 |
+| C1, C2, C5 | TDK FG14X7R1H225KRT00, 2.2 µF 50 V X7R, 2.5 mm pitch; body ≤4.5 × 3.0 mm, height ≤5.5 mm | 3 |
 | C3, C4 | 100 nF, at least 10 V, ceramic, 2.5 mm lead spacing | 2 |
 | J1 | 1×8, 2.54 mm male header to existing keypad tail | 1 |
 | J2 | 1×2, 2.54 mm battery-lead connector; observe polarity | 1 |
@@ -99,7 +101,7 @@ The long front and rear shells each have an upper/lower **bonded seam** at plan 
 | J4 | 1×3, 2.54 mm UPDI programming header | 1 |
 | External | Existing membrane keypad, ERC12864FS-655 display and R2 adapter, three-AAA holder and cells, wiring | 1 set |
 
-No USB interface, radio, indicator LED or charging circuit is on this board. It uses alkaline AAA cells. D1 adds a small forward drop, so regulation ends earlier in battery discharge than with an ideal-diode design. JP1 is an internal service link; the normal ON/OFF button is scanned sleep/wake. Removing one battery through the door provides full power disconnection.
+No USB interface, radio, indicator LED or charging circuit is on this board. It uses alkaline AAA cells. D1 adds a small forward drop, so regulation ends earlier in battery discharge than with an ideal-diode design. The case-mounted CYT1107 slide switch is the primary hard ON/OFF control, wired before J2 pin 1; J2 pin 2 is battery negative. JP1 remains a normally fitted internal service link. The keypad ON/OFF key provides sleep/wake only while hard power is ON. See POWER_SWITCH.md. Hard OFF removes the battery source, but a connected powered UPDI programmer can still power the board.
 
 Q1 is off at reset through R2. Firmware must drive U1 PD7 **low** to enable display power and **high** to turn it off. Before removing display power, drive all display signal outputs low to prevent back-powering, then redraw/reinitialize on wake. UC1701 maintains LCD drive internally while powered; no Sharp-style VCOM servicing is used. Reset and reinitialize the UC1701 after each display power cycle. Use PA4 for command/data and PA5 for active-low LCD reset. Disable unused peripherals and configure unused MCU pins appropriately; whole-device sleep current is not yet measured.
 
@@ -120,7 +122,7 @@ J1 pins 1–4 are assigned ROW0–ROW3 on PC0–PC3; pins 5–8 are COL0–COL3 
 
 Connect matching **pin numbers** between main J3 and adapter J1. These are seven wires on an eight-position footprint. No part of this cable is compatible with R1's Sharp wiring. The adapter straps BM1/BM0, WR0/WR1 and unused D0–D5 to ground, and provides the LCD charge-pump capacitors. Leave the separate backlight A/K terminals insulated and unconnected.
 
-Adapter BOM: C1/C2 = 2.2 µF 25 V ceramic (2.5 mm lead pitch, body within footprint), C3 = 330 nF 25 V ceramic, C4 = 100 nF, C5 = 10 µF 16 V low-leakage electrolytic (4 mm diameter, 1.5 mm pitch, ≤7 mm height), R1 = 10 MΩ axial. The two flying capacitors bridge VB0+/VB0− and VB1+/VB1−; C3 and R1 connect VLCD to ground. See the separate adapter schematic, BOM and DISPLAY_INTEGRATION.md.
+Adapter BOM: C1/C2 = TDK FG14X7R1H225KRT00, 2.2 µF 50 V X7R (2.5 mm pitch, 4.5 × 3.0 mm body, height ≤5.5 mm), C3 = 330 nF 25 V ceramic, C4 = 100 nF, C5 = 10 µF 16 V low-leakage electrolytic (4 mm diameter, 1.5 mm pitch, ≤7 mm height), R1 = 10 MΩ axial. The two flying capacitors bridge VB0+/VB0− and VB1+/VB1−; C3 and R1 connect VLCD to ground. See the separate adapter schematic, BOM and DISPLAY_INTEGRATION.md.
 J4 pin 1 is +3.3 V / VTREF, pin 2 GND, pin 3 UPDI. A suitable example programmer is **Adafruit UPDI Friend 5879**, set to **3V**. Disconnect the AAA pack when powering the target from the programmer. Do not connect two independent supplies together. The CANADUINO ATmega328P automatic bootloader programmer is not compatible with this MCU.
 
 ### Existing pad labels to custom keys
@@ -148,14 +150,14 @@ The STLs are unsliced. Use rigid resin for housing, cradle and plates; use **55A
 - Each exported STL in the prior R2 build had a closed two-use edge graph at the mesh-check precision.
 - Pairwise assembled-part checks in the prior R2 build found no positive intersections above 0.02 mm³ (nominal, unloaded geometry).
 - Exported schematic pin-to-net connections match the PCB design definition, normalizing the root-sheet prefix on local net names.
-- KiCad's final report: **0 DRC violations, 0 unconnected pads, 0 footprint errors**, with local footprints available.
+- R2.1 KiCad 9.0.2 reports: **0 ERC violations, 0 DRC violations, 0 unconnected items and 0 schematic parity issues**, on both boards. Symbols have electrical pin types and bundled project libraries. See `validation/pcb_audit.json` for the actual-pad/copper and case-hole audit.
 - PCB outline/mount-hole positions and case PCB posts share the same design coordinates.
 - **The new one-piece 55A keypad source has not yet been physically printed or re-validated as an exported mesh in this commit.** Rebuild the CAD and inspect `validation/cad_checks.json` before treating the generated keypad STL as final.
-- Actual keypad pitch, cured-resin tolerances, membrane actuation, display pin fit/ambient-light contrast, soldered component heights, electrical operation and battery runtime still need physical confirmation. Computational DRC is not an electrical bench test or an independent ERC review.
+- Actual keypad pitch, cured-resin tolerances, membrane actuation, display pin fit/ambient-light contrast, soldered component heights, electrical operation and battery runtime still need physical confirmation. Computational checks do not replace an electrical bench test or an independent hardware review.
 
 ## Rebuilding
 
-Use CadQuery 2.7 / OpenCascade for `python source/build_case.py`. The current source exports `stl/keypad_sheet_55A.stl`, a two-key 55A fit coupon, and removes obsolete loose-button STLs from older builds. `source/check_and_render.py` also rebuilds the CAD, checks meshes and net mappings, and draws previews. Run `source/build_pcb.py` and `source/build_display_adapter.py` with KiCad 7's `pcbnew` Python bindings and standard footprints installed, then run `source/export_pcbs.py` with `KICAD_CLI` pointing to KiCad 7 CLI. Run `source/validate_display.py` for the manufacturer pin/capacitor audit. Export both schematic netlists before running the net checks. `source/plot_copper.py` uses KiCad's native plot controller for exact copper artwork. `source/make_print_templates.py` requires ReportLab. Plot main copper with `source/plot_copper.py`, then again with `DISPLAY_ADAPTER=1`; run `source/finish_exports.py` last to assemble labeled PDFs, verify both netlists and package R2 ZIPs.
+Use CadQuery 2.7 / OpenCascade for `python source/build_case.py`. The current source exports `stl/keypad_sheet_55A.stl`, a two-key 55A fit coupon, and removes obsolete loose-button STLs from older builds. `source/check_and_render.py` also rebuilds the CAD, checks meshes and net mappings, and draws previews. For the current reviewed boards, run `source/refresh_schematics.py`, then `source/export_pcbs.py` and `source/audit_pcb.py` using KiCad 9 Python bindings and CLI. The original `build_pcb.py` and `build_display_adapter.py` routing generators rebuild copper from scratch and call the schematic refresh afterward; a fresh routed build requires a new full audit. Prefer refresh for metadata/schematic changes so the reviewed copper is retained. Run `source/validate_display.py` for the manufacturer pin/capacitor audit. Export both schematic netlists before running the net checks. `source/plot_copper.py` uses KiCad's native plot controller for exact copper artwork. `source/make_print_templates.py` requires ReportLab. Plot main copper with `source/plot_copper.py`, then again with `DISPLAY_ADAPTER=1`; run `source/finish_exports.py` last to assemble labeled PDFs, verify both netlists and package R2 ZIPs.
 
 ## Source references
 
@@ -166,4 +168,4 @@ Use CadQuery 2.7 / OpenCascade for `python source/build_case.py`. The current so
 - [Pololu 1144 three-AAA holder envelope](https://www.pololu.com/product/1144).
 - [Adafruit UPDI Friend](https://www.adafruit.com/product/5879).
 - [ELEGOO Mars 5 Ultra build volume](https://us.elegoo.com/products/mars-5-ultra-9k-7inch-monochrome-lcd-resin-3d-printer).
-- Standard footprints copied unchanged from KiCad 7 libraries; see `pcb/FOOTPRINT_LICENSE.txt`.
+- Standard footprints were copied from KiCad 7 libraries; the R2.1 radial capacitor footprint is project-created. see `pcb/FOOTPRINT_LICENSE.txt`.

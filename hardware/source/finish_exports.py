@@ -11,7 +11,7 @@ for adapter in [False,True]:
   p=next((ROOT/'validation'/('adapter_plot_intermediates' if adapter else 'plot_intermediates')).glob('*'+suffix+'.pdf'))
   page=PdfReader(p).pages[0];w,h=map(float,[page.mediabox.width,page.mediabox.height]);buf=io.BytesIO();c=canvas.Canvas(buf,pagesize=(w,h))
   c.setFont('Helvetica-Bold',13);c.drawString(18*mm,h-18*mm,('Display adapter: ' if adapter else '')+title)
-  c.setFont('Helvetica',9);c.drawString(18*mm,h-25*mm,'Material Weight Calculator R2 - '+dims+' mm board - print 100%, no fit-to-page')
+  c.setFont('Helvetica',9);c.drawString(18*mm,h-25*mm,'Material Weight Calculator R2.1 - '+dims+' mm board - print 100%, no fit-to-page')
   c.drawString(18*mm,25*mm,'Black is retained copper. Use Gerbers for factory fabrication. Two layers require registration.')
   c.setLineWidth(.25*mm);c.line(20*mm,15*mm,120*mm,15*mm);c.setFont('Helvetica',8);c.drawString(20*mm,19*mm,'100 mm scale check')
   c.save();buf.seek(0);page.merge_page(PdfReader(buf).pages[0]);writer.add_page(page)
@@ -20,11 +20,12 @@ for adapter in [False,True]:
  folder=ROOT/'pcb'/'display_adapter' if adapter else ROOT/'pcb';stem='display_adapter' if adapter else 'material_weight_calculator'
  for net in E.parse(folder/(stem+'.net.xml')).findall('.//nets/net'):
   if net.get('name').startswith('unconnected-'):continue
-  for node in net.findall('node'):actual[(node.get('ref'),node.get('pin'))]=net.get('name').lstrip('/')
+  for node in net.findall('node'):
+   if not node.get('ref').startswith('#'):actual[(node.get('ref'),node.get('pin'))]=net.get('name').lstrip('/')
  expected={(c['ref'],p):n for c in elec['components'] for p,n in c['pins'].items() if n}
  assert actual==expected,{'expected':expected,'actual':actual}
  (ROOT/'validation'/('adapter_net_check.json' if adapter else 'schematic_net_check.json')).write_text(json.dumps({'matched_connected_pins':len(actual),'result':'PASS'},indent=2))
- (folder/'gerbers'/'FABRICATION.txt').write_text('Material Weight Calculator R2 PROTOTYPE\n'+dims+' mm; 2 copper layers; 1.6 mm FR-4; plated through holes.\nSeparate PTH/NPTH Excellon drills. 0.4 mm tracks; 0.25 mm clearance; 1.0/0.5 mm vias.\nNo electrical prototype has been bench tested.\n')
+ (folder/'gerbers'/'FABRICATION.txt').write_text('Material Weight Calculator R2.1 PROTOTYPE\n'+dims+' mm; 2 copper layers; 1.6 mm FR-4; plated through holes.\nSeparate PTH/NPTH Excellon drills. 0.4 mm tracks; 0.25 mm clearance; 1.0/0.5 mm vias.\nNo electrical prototype has been bench tested. See hardware/PCB_REVIEW.md for component/fit gates.\n')
 for name,count in [('schematic.pdf',1),('display_adapter_schematic.pdf',1),('copper_artwork_1to1.pdf',4),('display_adapter_copper_1to1.pdf',4),('drill_template.pdf',1),('display_adapter_drill.pdf',1),('keypad_fit_template.pdf',1),('display_fit_template.pdf',1)]:assert len(PdfReader(ROOT/'docs'/name).pages)==count
 for f in ['pcb_fabrication_r1.zip','material_weight_calculator_hardware_r1.zip']:(ROOT/'downloads'/f).unlink(missing_ok=True)
 (ROOT/'downloads').mkdir(exist_ok=True)

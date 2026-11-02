@@ -2,7 +2,7 @@
 
 A standalone pocket calculator for estimating material weight. Select a material, enter length, width, and thickness in inches, and read the result in pounds. Runs entirely on one microcontroller with physical buttons and replaceable AAA batteries.
 
-Status: proposed hardware design, October 27, 2026. The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware R2 CAD, STLs, schematics, routed main and display-adapter PCBs and print/fabrication files are now in [hardware/](hardware/README.md). Digital checks pass; physical fit, electronics, firmware and battery runtime are not yet tested.
+Status: PCB revision R2.1 reviewed November 2, 2026. See [PCB review and prototype checks](hardware/PCB_REVIEW.md). The HTML calculator now supports rectangular stock, pipe/round tube, and known volume, using published grade-specific density presets with optional overrides. Hardware R2 CAD, STLs, schematics, routed main and display-adapter PCBs and print/fabrication files are now in [hardware/](hardware/README.md). Both boards pass KiCad 9 ERC, DRC and schematic parity checks; physical fit, electrical operation, firmware and battery runtime still need testing.
 
 ## Proposed final low-power hardware
 
@@ -70,7 +70,7 @@ Two AAA cells are possible, but the regulated display supply would require a boo
 - If display power is switched off, put connected signal pins in a safe state to prevent back-powering. Reinitialize and redraw on wake.
 - Wake from a keypad interrupt. In sleep, drive matrix columns low and use pulled-up interrupt-capable row inputs. Confirm exact AVR pin wake behavior before assigning pins. Consume the wake press so it does not enter a stray digit. Wait for key release before accepting another entry.
 - Avoid continuous keypad polling during sleep, always-on LEDs, powered USB adapters, and continuously connected battery-sense resistor dividers.
-- The R2 board uses an internal shunt/service link instead of an external master switch; removing a battery through the door fully disconnects power. Normal ON/OFF is sleep; RAM state is lost after battery removal or master power-off.
+- The case-mounted CYT1107 slide switch disconnects battery positive before main-board J2 pin 1; battery negative goes to J2 pin 2. JP1 remains an internal service link with its shunt normally fitted. The keypad ON/OFF key controls sleep only while the slide switch is ON. Hard power-off loses RAM state. See [power-switch wiring](hardware/POWER_SWITCH.md).
 
 Battery-life goals must use measured current for the entire assembly, including display breakout and regulator. Initial targets are below 10 µA in automatic sleep and a few mA while actively used; these are goals, not verified specifications.
 

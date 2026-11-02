@@ -1,6 +1,6 @@
 # Parts list — reuse existing parts first
 
-Updated October 27, 2026. The user confirmed owning the DIYmalls 4×4 membrane keypad shown in their screenshot. Relevant purchase records also identify Nano V3 boards, an ELEGOO Uno R3, HiLetgo ESP-WROOM-32 boards, ELEGOO jumper wires, and a five-piece I2C display-module order. Purchases establish prior acquisition, not that unused working spares remain available.
+Updated November 2, 2026 (PCB R2.1). The user confirmed owning the DIYmalls 4×4 membrane keypad shown in their screenshot. Relevant purchase records also identify Nano V3 boards, an ELEGOO Uno R3, HiLetgo ESP-WROOM-32 boards, ELEGOO jumper wires, and a five-piece I2C display-module order. Purchases establish prior acquisition, not that unused working spares remain available.
 
 ## Reuse for the first working prototype
 
@@ -21,19 +21,19 @@ An owned Uno can substitute on the bench. An owned ESP32 board is another protot
 
 ## Final hardware R2 parts
 
-The exact reference-designator BOM and 18-nut M2.5 fastener list are in [hardware/README.md](hardware/README.md); the machine-readable BOM is [hardware/pcb/bom.csv](hardware/pcb/bom.csv). The following summarizes what to locate or buy for that board.
+The exact reference-designator BOM and 16-nut M2.5 fastener list are in [hardware/README.md](hardware/README.md); the machine-readable BOM is [hardware/pcb/bom.csv](hardware/pcb/bom.csv). The following summarizes what to locate or buy for that board.
 
 | Qty | Part | Reuse / purchase status |
 | ---: | --- | --- |
 | 1 | Existing DIYmalls membrane keypad | Reuse confirmed. |
 | 1 | AVR128DA28-I/SP | User is checking this exact 28-pin DIP version; not marked purchased. |
 | 1 | 28-pin DIP socket, 7.62 mm row spacing | Check stock. |
-| 1 | EastRising ERC12864FS-655, 2.8-inch LCD, no touch panel | Selected for R2; 70 × 50 × 5.8 mm body, 128 × 64 pixels. Backlight disconnected. |
+| 1 | EastRising ERC12864FS-655, 2.8-inch LCD, no touch panel | Two purchased on eBay; one used. 70 × 50 × 5.8 mm body, 128 × 64 pixels. Backlight disconnected. |
 | 1 | MCP1700-3302E/TO, 3.3 V | Check stock / likely purchase. |
 | 1 | 1N5817 diode | Check stock; reverse-battery protection. |
 | 1 | onsemi 2N3906 PNP transistor (E-B-C) | Check stock; display power switching. |
 | 1 each | 10 kΩ and 100 kΩ axial resistors | Check stock. |
-| 3 | 1 µF ceramic capacitors, at least 10 V, 2.5 mm lead pitch | Check stock. |
+| 3 | TDK FG14X7R1H225KRT00, 2.2 µF 50 V X7R, 2.5 mm pitch | Main C1/C2/C5. Enlarged 4.5 × 3.0 mm body footprints; 5.5 mm maximum body height. |
 | 2 | 100 nF ceramic capacitors, at least 10 V, 2.5 mm lead pitch | Check stock. |
 | 1 | Three-AAA holder, nominal 52 × 37 × 13 mm (Pololu 1144 envelope) | Not confirmed owned. |
 | 3 | AAA alkaline cells | Check stock. |
@@ -41,10 +41,10 @@ The exact reference-designator BOM and 18-nut M2.5 fastener list are in [hardwar
 | 1 set | Existing jumper/hookup wire | Reuse where connectors fit. |
 | 1 | Custom two-layer R2 PCB | Fabricate from included Gerbers/drills; PCB source and 1:1 copper artwork supplied. |
 | 1 shared tool | 3 V SerialUPDI programmer | Adafruit UPDI Friend 5879 is a verified example. User also showed a generic switchable 3V/5V USB Serial UPDI board; correct type, specific seller's implementation unverified. CANADUINO's ATmega328P bootloader-only tool is incompatible. |
-| 18 | M2.5 hex nuts | Glue into printed pockets; check existing stock. |
-| 4 / 14 | M2.5 screws, 16 mm / 6 mm under-head lengths | Use existing matching lengths or obtain/trim as needed. |
+| 16 | M2.5 hex nuts | Glue into printed pockets; check existing stock. |
+| 4 / 12 | M2.5 screws, 16 mm / 6 mm under-head lengths | Use existing matching lengths or obtain/trim as needed. |
 
-The final R2 board uses a master shunt link instead of the earlier proposed external slide switch. Ordinary ON/OFF is keypad sleep/wake; removing a battery fully disconnects it. The discrete PNP transistor and two resistors implement the display switch, so no separate load-switch module is needed.
+Use the selected case-mounted CYT1107 SPDT slide switch as a hard battery disconnect: battery positive to common, one outer terminal to main J2.1, negative to J2.2. Insulate the unused outer terminal. JP1 is a separate internal service link, normally shunted. The keypad ON/OFF key controls sleep while the slide switch is ON. The discrete PNP transistor and two resistors implement the display switch, so no separate load-switch module is needed.
 
 The 128 × 64 UC1701 display needs a 1,024-byte full framebuffer. Keep the selected AVR128DA28; compatibility with existing Nano/Uno prototypes is a separate firmware/electrical task.
 
@@ -59,7 +59,7 @@ Do not connect three fresh AAA cells directly to a bare 3 V display. Final power
 | 1 | Battery access cover | Rigid resin |
 | 1 | Flat membrane-keypad backing plate | Rigid resin |
 | 1 | Button guide/retainer | Rigid resin |
-| 16 | Custom button caps, recessed labels and broad underside contact pads | Rubbery resin |
+| 1 | Connected sixteen-key keypad sheet, recessed labels | 55A flexible resin; export/physical validation remains a mechanical task |
 | 1 | R2 rear display cradle | Rigid resin |
 
 Use the already-established key layout from [MECHANICAL_DESIGN.md](MECHANICAL_DESIGN.md). Keep the buttons aligned over the existing membrane's key centers and remap their electrical positions in firmware. No need to expose the membrane's original printed labels.
@@ -81,4 +81,6 @@ Exact key pitch, active contact centers, ribbon exit, connector pinout, display 
 
 ## R2 display adapter additions
 
-Fabricate the separate 70 × 18 mm display adapter. Use 22 holes at 1.27 mm pitch for the module pins; solder seven short wires from adapter J1 to main J3. Add 2 × 2.2 µF 25 V ceramic, 1 × 330 nF 25 V ceramic, 1 × 100 nF ceramic, 1 × 10 µF 16 V low-leakage electrolytic (4 mm diameter, ≤7 mm high), and 1 × 10 MΩ axial resistor. Use 0.5 mm closed-cell foam strips on the opaque display-frame perimeter. No touch panel, backlight driver or Sharp module is required. Order parts against both `hardware/pcb/bom.csv` and `hardware/pcb/display_adapter/bom.csv`.
+Fabricate the separate 70 × 18 mm display adapter. Use 22 holes at 1.27 mm pitch for the module pins; solder seven short wires from adapter J1 to main J3. Add 2 × TDK FG14X7R1H225KRT00 (2.2 µF 50 V X7R), 1 × 330 nF 25 V ceramic, 1 × 100 nF ceramic, 1 × 10 µF 16 V low-leakage electrolytic (4 mm diameter, ≤7 mm high), and 1 × 10 MΩ axial resistor. Use 0.5 mm closed-cell foam strips on the opaque display-frame perimeter. No touch panel, backlight driver or Sharp module is required. Order parts against both `hardware/pcb/bom.csv` and `hardware/pcb/display_adapter/bom.csv`.
+
+The CYT1107 hard switch is an external assembly component and does not appear as a PCB-mounted part in the board BOM. Review [PCB_REVIEW.md](hardware/PCB_REVIEW.md) for remaining component selection and physical checks.

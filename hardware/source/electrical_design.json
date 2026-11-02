@@ -70,7 +70,8 @@
         "26": "PA4",
         "27": "PA5",
         "28": "PA6"
-      }
+      },
+      "schematic_uuid": "e5a23919-e7e5-5817-8f51-27faa6255740"
     },
     {
       "ref": "J1",
@@ -89,23 +90,25 @@
         "7": "COL2",
         "8": "COL3"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "1afa2d3f-865d-59dd-9c98-b5eaa886acab"
     },
     {
       "ref": "J2",
-      "value": "BATTERY_3AAA",
+      "value": "SWITCHED_3AAA_IN",
       "footprint": "MW_footprints:PinHeader_1x02_P2.54mm_Vertical",
       "x": 10,
       "y": 9,
       "angle": 0,
       "pins": {
-        "1": "BAT_PLUS",
+        "1": "VBAT_SW",
         "2": "GND"
       },
       "pin_names": {
-        "1": "BAT+",
-        "2": "BAT-"
-      }
+        "1": "SW1_OUT_PLUS",
+        "2": "BAT_MINUS"
+      },
+      "schematic_uuid": "09cc138b-33ef-5fb8-9214-22d1d1f48a77"
     },
     {
       "ref": "JP1",
@@ -115,10 +118,11 @@
       "y": 9,
       "angle": 0,
       "pins": {
-        "1": "BAT_PLUS",
-        "2": "BAT_SWITCH"
+        "1": "VBAT_SW",
+        "2": "VBAT_LINK"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "f85c99f3-855a-5887-95f4-78ecce1cd400"
     },
     {
       "ref": "D1",
@@ -129,12 +133,13 @@
       "angle": 0,
       "pins": {
         "1": "VIN",
-        "2": "BAT_SWITCH"
+        "2": "VBAT_LINK"
       },
       "pin_names": {
         "1": "K",
         "2": "A"
-      }
+      },
+      "schematic_uuid": "6bd61e3e-8c35-537e-86dd-ddea4c690740"
     },
     {
       "ref": "U2",
@@ -152,12 +157,13 @@
         "1": "GND",
         "2": "VIN",
         "3": "VOUT"
-      }
+      },
+      "schematic_uuid": "5c752557-fbd3-51f7-8992-bfe3151e2052"
     },
     {
       "ref": "C1",
-      "value": "1uF 10V X7R",
-      "footprint": "MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm",
+      "value": "2.2uF 50V X7R",
+      "footprint": "MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm",
       "x": 23,
       "y": 20,
       "angle": 0,
@@ -165,12 +171,14 @@
         "1": "VIN",
         "2": "GND"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "06e9eb63-e4ca-5c85-a3be-a731b82caaab",
+      "manufacturer_part_number": "FG14X7R1H225KRT00"
     },
     {
       "ref": "C2",
-      "value": "1uF 10V X7R",
-      "footprint": "MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm",
+      "value": "2.2uF 50V X7R",
+      "footprint": "MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm",
       "x": 29,
       "y": 20,
       "angle": 0,
@@ -178,7 +186,9 @@
         "1": "+3V3",
         "2": "GND"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "b2561368-0c4c-5006-97a0-9a35e46e4182",
+      "manufacturer_part_number": "FG14X7R1H225KRT00"
     },
     {
       "ref": "C3",
@@ -191,7 +201,8 @@
         "1": "+3V3",
         "2": "GND"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "4817101f-3975-5494-82b3-62e141733a34"
     },
     {
       "ref": "C4",
@@ -204,12 +215,13 @@
         "1": "+3V3",
         "2": "GND"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "565a90c0-ea8c-517d-b059-4c742e92ce4d"
     },
     {
       "ref": "C5",
-      "value": "1uF 10V X7R",
-      "footprint": "MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm",
+      "value": "2.2uF 50V X7R",
+      "footprint": "MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm",
       "x": 64,
       "y": 12,
       "angle": 0,
@@ -217,7 +229,9 @@
         "1": "LCD_VCC",
         "2": "GND"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "6f98268b-4d7c-5250-8928-4e396f92381f",
+      "manufacturer_part_number": "FG14X7R1H225KRT00"
     },
     {
       "ref": "Q1",
@@ -235,7 +249,8 @@
         "1": "E",
         "2": "B",
         "3": "C"
-      }
+      },
+      "schematic_uuid": "3d41c557-2cb4-59bc-977d-072ca2302672"
     },
     {
       "ref": "R1",
@@ -248,7 +263,8 @@
         "1": "LCD_PWR_CTRL",
         "2": "LCD_BASE"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "e4e43a11-67d4-5f63-a440-c4f767ae7ea6"
     },
     {
       "ref": "R2",
@@ -261,7 +277,8 @@
         "1": "+3V3",
         "2": "LCD_BASE"
       },
-      "pin_names": {}
+      "pin_names": {},
+      "schematic_uuid": "d8ec19d8-17e5-54a6-8f16-c7bfd73c3f46"
     },
     {
       "ref": "J3",
@@ -289,7 +306,8 @@
         "6": "CD",
         "7": "RST_N",
         "8": "NC"
-      }
+      },
+      "schematic_uuid": "0d732479-b996-5a82-a7bc-258495665885"
     },
     {
       "ref": "J4",
@@ -307,7 +325,8 @@
         "1": "VTREF",
         "2": "GND",
         "3": "UPDI"
-      }
+      },
+      "schematic_uuid": "a24c1cbd-b253-5004-9177-be5ff56539d7"
     },
     {
       "ref": "H1",
@@ -316,10 +335,9 @@
       "x": 5,
       "y": 5,
       "angle": 0,
-      "pins": {
-        "": ""
-      },
-      "pin_names": {}
+      "pins": {},
+      "pin_names": {},
+      "schematic_uuid": "53dbc8e0-7f88-5619-92f4-42056689091d"
     },
     {
       "ref": "H2",
@@ -328,10 +346,9 @@
       "x": 77,
       "y": 5,
       "angle": 0,
-      "pins": {
-        "": ""
-      },
-      "pin_names": {}
+      "pins": {},
+      "pin_names": {},
+      "schematic_uuid": "bf06819a-e401-5fe8-b564-399f188b0fc4"
     },
     {
       "ref": "H3",
@@ -340,10 +357,9 @@
       "x": 5,
       "y": 63,
       "angle": 0,
-      "pins": {
-        "": ""
-      },
-      "pin_names": {}
+      "pins": {},
+      "pin_names": {},
+      "schematic_uuid": "7b381cb4-9c2a-5d55-96cc-15e2c2fd8472"
     },
     {
       "ref": "H4",
@@ -352,10 +368,9 @@
       "x": 77,
       "y": 63,
       "angle": 0,
-      "pins": {
-        "": ""
-      },
-      "pin_names": {}
+      "pins": {},
+      "pin_names": {},
+      "schematic_uuid": "148bd7dc-c032-5da2-9064-a924e71ff45a"
     }
   ],
   "pads": [
@@ -689,7 +704,7 @@
       "x": 10.0,
       "y": 9.0,
       "r": 1.2020815280171309,
-      "net": "BAT_PLUS",
+      "net": "VBAT_SW",
       "drill": 1.0
     },
     {
@@ -707,7 +722,7 @@
       "x": 19.0,
       "y": 9.0,
       "r": 1.2020815280171309,
-      "net": "BAT_PLUS",
+      "net": "VBAT_SW",
       "drill": 1.0
     },
     {
@@ -716,7 +731,7 @@
       "x": 19.0,
       "y": 11.54,
       "r": 0.85,
-      "net": "BAT_SWITCH",
+      "net": "VBAT_LINK",
       "drill": 1.0
     },
     {
@@ -734,7 +749,7 @@
       "x": 31.620000000000005,
       "y": 9.0,
       "r": 1.1,
-      "net": "BAT_SWITCH",
+      "net": "VBAT_LINK",
       "drill": 1.1
     },
     {
@@ -3408,7 +3423,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_PLUS",
+      "net": "VBAT_SW",
       "layer": 0,
       "a": [
         10.0,
@@ -3421,7 +3436,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_PLUS",
+      "net": "VBAT_SW",
       "layer": 0,
       "a": [
         9.906,
@@ -3434,7 +3449,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_PLUS",
+      "net": "VBAT_SW",
       "layer": 0,
       "a": [
         19.05,
@@ -3447,7 +3462,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_SWITCH",
+      "net": "VBAT_LINK",
       "layer": 0,
       "a": [
         19.0,
@@ -3460,7 +3475,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_SWITCH",
+      "net": "VBAT_LINK",
       "layer": 0,
       "a": [
         19.05,
@@ -3473,7 +3488,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_SWITCH",
+      "net": "VBAT_LINK",
       "layer": 0,
       "a": [
         31.496000000000002,
@@ -3486,7 +3501,7 @@
       "width": 0.4
     },
     {
-      "net": "BAT_SWITCH",
+      "net": "VBAT_LINK",
       "layer": 0,
       "a": [
         31.496000000000002,

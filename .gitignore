@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.kicad_prl
+*.lck
+hardware/validation/plot_intermediates/
+hardware/validation/adapter_plot_intermediates/

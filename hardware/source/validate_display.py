@@ -11,7 +11,7 @@ expected={'1':'LCD_CS','2':'LCD_RST','3':'LCD_CD','4':'GND','5':'GND',**{str(x):
 assert A['J2']['pins']==expected
 for ref,pair in [('C1',{'VB0_PLUS','VB0_MINUS'}),('C2',{'VB1_PLUS','VB1_MINUS'}),('C3',{'VLCD','GND'}),('R1',{'VLCD','GND'})]:assert set(A[ref]['pins'].values())==pair
 assert A['C5']['pins']=={'1':'LCD_VCC','2':'GND'}
-assert A['C1']['value']==A['C2']['value']=='2.2uF 25V X7R'
+assert A['C1']['value']==A['C2']['value']=='2.2uF 50V X7R'
 assert A['C3']['value']=='330nF 25V' and A['R1']['value']=='10M'
 pads={p['pin']:p for p in adapter['pads'] if p['ref']=='J2'}
 assert len(pads)==22 and abs(pads['22']['x']-pads['1']['x']-26.67)<1e-6

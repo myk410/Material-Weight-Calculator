@@ -46,14 +46,14 @@ The main PCB stays 82 × 68 mm; the new adapter is 70 × 18 mm. Both are two-lay
 
 | Adapter ref | Part | Connection |
 | --- | --- | --- |
-| C1 | 2.2 µF ceramic, 25 V, 2.5 mm lead pitch | VB0+ to VB0− |
-| C2 | 2.2 µF ceramic, 25 V, 2.5 mm lead pitch | VB1+ to VB1− |
+| C1 | TDK FG14X7R1H225KRT00, 2.2 µF 50 V X7R, 2.5 mm pitch | VB0+ to VB0− |
+| C2 | TDK FG14X7R1H225KRT00, 2.2 µF 50 V X7R, 2.5 mm pitch | VB1+ to VB1− |
 | C3 | 330 nF ceramic, 25 V, 2.5 mm lead pitch | VLCD to ground |
 | C4 | 100 nF ceramic, 25 V, 2.5 mm lead pitch | VDD to ground |
 | C5 | 10 µF low-leakage electrolytic, ≥16 V, 4 mm diameter, 1.5 mm lead pitch | Positive to VDD, negative to ground |
 | R1 | 10 MΩ axial, 7.62 mm lead pitch | VLCD to ground |
 
-Ceramic footprints are 3 × 1.6 mm nominal; select parts that fit or revise the footprints before ordering. Do not force a larger capacitor body against an adjacent pad. Keep C5 ≤7 mm high and other adapter parts ≤5 mm high. Adapter plan origin is (13,5.7) mm, with its pin row at Y=8.7 mm. Two 2.1 mm NPTH clearances pass the module’s top NC pins; two rear-cradle reliefs clear the lower NC pins. Adapter lower face is nominal Z=13 mm; LCD body rear Z=22.1 mm. Trim solder leads, insulate exposed tails, and keep at least 0.5 mm between component bodies and the display rear frame. Confirm actual module-pin reach before final soldering. A printed display-fit template shows the pin spacing; direct mating remains physically untested.
+R2.1 C1/C2 footprints allow 4.5 × 3.0 mm bodies. C3/C4 ceramic footprints remain 3 × 1.6 mm nominal; select parts that fit or revise the footprints before ordering. Do not force a larger capacitor body against an adjacent pad. Keep C5 ≤7 mm high and C1/C2 body height ≤5.5 mm and other adapter parts ≤5 mm high. Keep C1/C2 bodies no more than 1.5 mm above the PCB surface to preserve 0.5 mm nominal rear-frame clearance; formed leads and solder standoff must be included in the fit check. Adapter plan origin is (13,5.7) mm, with its pin row at Y=8.7 mm. Two 2.1 mm NPTH clearances pass the module’s top NC pins; two rear-cradle reliefs clear the lower NC pins. Adapter lower face is nominal Z=13 mm; LCD body rear Z=22.1 mm. Trim solder leads, insulate exposed tails, and keep at least 0.5 mm between component bodies and the display rear frame. Confirm actual module-pin reach before final soldering. A printed display-fit template shows the pin spacing; direct mating remains physically untested.
 
 Four M2.5 screws hold the rear cradle. Thin 0.5 mm closed-cell foam supports only the opaque front perimeter and rear frame. No adhesive on the polarizer, no hard screw load through glass, no support against the flex/COG area. Cable strain relief attaches to a cradle side rail. The adapter is located by its 22 soldered module pins; its cable must carry no external load. The original 16 custom flexible caps and all keypad functions remain the same.
 
@@ -73,3 +73,7 @@ Device firmware remains pending. R2 is a hardware and interface revision, not a 
 ## Prototype acceptance checks
 
 Print the two alignment templates and one key coupon. Check display corners, 22-pin centers and actual solder-pin reach; verify the cured cradle and foam do not bow the glass. With the LCD disconnected, check main-board 3.3 V and Q1 switching. With current-limited power, verify adapter pin 14 supply and pin 15 ground, BM1 low, both flying capacitors and VLCD components, and C5 polarity. Bring up border/corner labels, then the calculator UI. Check ambient-light contrast with A/K disconnected, repeated sleep/wake, display power-off leakage, all keys and pipe input. Digital DRC/net checks do not replace these tests.
+
+## R2.1 PCB review
+
+The LCD pin map is unchanged. C1/C2 retain 2.2 µF capacitance with a 50 V rating and a named TDK part in the BOM. Updated footprints reserve the actual body size. The module remains fed from switched 3.3 V; the physical CYT1107 switch disconnects battery positive upstream of main J2. See [PCB_REVIEW.md](PCB_REVIEW.md).

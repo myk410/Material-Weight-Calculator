@@ -1,0 +1,36 @@
+{
+  "revision": "R2.1",
+  "result": "PASS",
+  "boards": {
+    "main": {
+      "result": "PASS",
+      "connected_pins": 63,
+      "track_segments": 438,
+      "vias": 8,
+      "size_mm": [
+        82.0,
+        68.0
+      ],
+      "pad_positions_drills_and_copper_match_source": true
+    },
+    "adapter": {
+      "result": "PASS",
+      "connected_pins": 41,
+      "track_segments": 227,
+      "vias": 1,
+      "size_mm": [
+        70.0,
+        18.0
+      ],
+      "pad_positions_drills_and_copper_match_source": true
+    }
+  },
+  "critical_pin_maps": "PASS",
+  "main_holes_match_case_source": true,
+  "selected_adapter_capacitor_height_clearance_mm": 2.0,
+  "limits": [
+    "No bench measurements or physical assembly test.",
+    "Generic remaining passive footprints still require selected-part body/lead checks.",
+    "Nominal capacitor height arithmetic is not a populated-component CAD collision test."
+  ]
+}
