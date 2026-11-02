@@ -39,7 +39,7 @@ SW_Y=31.5
 # Actuator travel opening through the right wall.
 b=b.cut(block(92.8,SW_Y+1.3,4.6,4.2,10.1,4.0,.6))
 # Recess the outside around the slot so the knob is less likely to be bumped accidentally.
-b=b.cut(block(94.9,SW_Y,.95,1.3,12.7,10.1,.8))
+b=b.cut(block(94.9,SW_Y,.95,1.3,12.7,10.1,.35))
 # Internal cradle/end stops for the switch body; body sits against the rear floor.
 b=b.union(block(85.8,SW_Y-1.0,2.55,7.4,1.1,7.5,.25))
 b=b.union(block(85.8,SW_Y+12.6,2.55,7.4,1.1,7.5,.25))
