@@ -8,7 +8,7 @@ REPORT=ROOT/'validation'/'r3';DOC=ROOT/'docs'/'r3'
 REPORT.mkdir(exist_ok=True);DOC.mkdir(exist_ok=True)
 def run(*args):subprocess.run(['kicad-cli',*map(str,args)],check=True)
 def validate():
-    for name,folder,stem in [('main',MAIN,'material_weight_calculator'),('adapter',ROOT/'pcb'/'display_adapter','display_adapter')]:
+    for name,folder,stem in [('main',MAIN,'material_weight_calculator'),('adapter',ROOT/'pcb'/'r3'/'display_adapter','display_adapter')]:
         sch=folder/(stem+'.kicad_sch');pcb=folder/(stem+'.kicad_pcb')
         run('sch','export','netlist','--format','kicadxml','-o',folder/(stem+'.net.xml'),sch)
         for fmt,ext in [('json','json'),('report','rpt')]:
@@ -34,7 +34,7 @@ def manufacturing():
     physical_gate()
     validate()
     with tempfile.TemporaryDirectory() as tmp:
-        for name,folder,stem in [('main',MAIN,'material_weight_calculator'),('adapter',ROOT/'pcb'/'display_adapter','display_adapter')]:
+        for name,folder,stem in [('main',MAIN,'material_weight_calculator'),('adapter',ROOT/'pcb'/'r3'/'display_adapter','display_adapter')]:
             out=Path(tmp)/name;out.mkdir()
             run('pcb','export','gerbers','-l','F.Cu,B.Cu,F.Mask,B.Mask,F.Silkscreen,B.Silkscreen,Edge.Cuts','-o',str(out)+'/',folder/(stem+'.kicad_pcb'))
             run('pcb','export','drill','--format','excellon','--excellon-separate-th','-o',str(out)+'/',folder/(stem+'.kicad_pcb'))

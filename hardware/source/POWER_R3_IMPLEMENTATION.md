@@ -25,7 +25,7 @@ Authority: [ADI LTC3440 3440fd](https://www.analog.com/media/en/technical-docume
 
 D2 PMEG2010ER plus the 2 Ω/1 nF SW1-to-GND series snubber implement the ADI requirement for possible VIN above 4.5 V. D1 SS14 remains series polarity protection; minimum 2.5 V applies **after its voltage drop**, not at the raw pack.
 
-The [actual R3 BOM](../pcb/r3/bom.csv) supersedes the earlier candidate list. New regulator passives use 0805/1206/1210 accessible pads. The MCU socket and existing through-hole non-supply components remain unchanged. No DFN, WSON or hidden thermal-pad regulator is used.
+The [actual R3 BOM](../pcb/r3/bom.csv) supersedes the earlier candidate list. New regulator passives use 0805/1206/1210 accessible pads. The purchased MCU/socket and connector interfaces remain unchanged; remaining resistors/capacitors and Q1 are now SMD, including the separate R3 adapter. No DFN, WSON or hidden thermal-pad regulator is used.
 
 ## Verified versus still open
 

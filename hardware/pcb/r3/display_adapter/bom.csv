@@ -1,0 +1,11 @@
+Reference,Value,Footprint,ManufacturerPartNumber
+J2,ERC12864FS-655,MW_footprints:PinHeader_1x22_P1.27mm_Vertical,
+J1,MAIN_J3_CABLE,MW_footprints:PinHeader_1x08_P2.54mm_Vertical,
+H1,LCD_NC_CLEARANCE,MW_footprints:MountingHole_2.1mm,
+H2,LCD_NC_CLEARANCE,MW_footprints:MountingHole_2.1mm,
+C1,2.2uF 25V X5R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM188R61E225KA12D
+C2,2.2uF 25V X5R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM188R61E225KA12D
+C3,330nF 25V X7R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,C1608X7R1E334K080AC
+C4,100nF 25V X7R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM188R71E104KA01D
+C5,10uF 25V X7R,MW_footprints:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,GRM31CR71E106KA12L
+R1,10M 1%,MW_footprints:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,RC0603FR-0710ML

@@ -19,9 +19,9 @@ KEEP_ALIVE = []
 
 
 def refresh(adapter=False, r3=False):
-    folder = ROOT / 'pcb' / 'r3' if r3 else ROOT / 'pcb' / 'display_adapter' if adapter else ROOT / 'pcb'
+    folder = ROOT / 'pcb' / 'r3' / 'display_adapter' if r3 and adapter else ROOT / 'pcb' / 'r3' if r3 else ROOT / 'pcb' / 'display_adapter' if adapter else ROOT / 'pcb'
     stem = 'display_adapter' if adapter else 'material_weight_calculator'
-    datafile = ROOT / 'source' / ('r3_electrical_design.json' if r3 else 'adapter_electrical_design.json' if adapter else 'electrical_design.json')
+    datafile = ROOT / 'source' / ('r3_adapter_electrical_design.json' if r3 and adapter else 'r3_electrical_design.json' if r3 else 'adapter_electrical_design.json' if adapter else 'electrical_design.json')
     data = json.loads(datafile.read_text())
     board = k.LoadBoard(str(folder / (stem + '.kicad_pcb')))
     def uid(key): return str(uuid.uuid5(NS, stem + '/' + key))
@@ -68,7 +68,7 @@ def refresh(adapter=False, r3=False):
                   'J4': (270, 100), 'R1': (325, 80), 'R2': (375, 80),
                   'C3': (270, 135), 'C4': (325, 135), 'C5': (375, 135),
                   'H1': (40, 155), 'H2': (90, 155), 'H3': (140, 155), 'H4': (190, 155)})
-    if r3:
+    if r3 and not adapter:
         positions.update({'L1': (245, 175), 'R3': (40, 175), 'R4': (90, 175),
                           'R5': (140, 175), 'R6': (190, 175), 'C6': (300, 175),
                           'R7': (355, 175), 'C7': (40, 220), 'D2': (90, 220),
@@ -95,7 +95,7 @@ def refresh(adapter=False, r3=False):
                             '4':'bidirectional', '5':'power_in', '6':'power_out',
                             '7':'power_in', '8':'input', '9':'input', '10':'output'}[pin]
                 return 'power_out' if pin == '3' else 'power_in'
-            if ref == 'Q1': return {'1': 'power_in', '2': 'input', '3': 'power_out'}[pin]
+            if ref == 'Q1': return ({'1':'input','2':'power_in','3':'power_out'} if r3 else {'1':'power_in','2':'input','3':'power_out'})[pin]
             if ref == 'J2': return 'power_out'
         return 'passive'
 
@@ -160,7 +160,7 @@ def refresh(adapter=False, r3=False):
               'J4: 1=3V3, 2=GND, 3=UPDI. Remove batteries for programmer-supplied power.',
               'Q1: PD7 low = LCD on. Keep LCD signal pins low while LCD power is off.',
               'C2 must retain at least 1 uF effective capacitance over voltage/temperature/tolerance.'])
-    if r3:
+    if r3 and not adapter:
         notes = ['R3 LTC3440EMS MSOP-10 only. VC -> R6 -> C6 -> FB (NOT ground).',
                  'D2: K=VIN A=SW1; R7/C7: SW1-to-ground snubber for VIN above 4.5V.',
                  'J2 switched battery positive; JP1 service shunt; SS14 D1 cathode to VIN.',
@@ -168,6 +168,9 @@ def refresh(adapter=False, r3=False):
                  'FABRICATION HOLD: physical LCD/keypad/programmer/switch mating remains unverified.',
                  'J4: remove batteries before programmer power. Never connect two power sources.',
                  'All components on F.Cu; underside drawing is mirrored; U1 notch at pins 1/28.']
+    if r3 and adapter:
+        notes += ['R3: all passive parts are SMD. C5 is ceramic/nonpolar, not an electrolytic.',
+                  'Use owned 0603 kits only after rating, dielectric and value qualification.']
     notes += ['Prototype: firmware and physical assembly tests pending. See PCB_REVIEW.md.',
               'Power pins on source connectors describe external supplies; Q1 collector is switched power output.']
     for i, note in enumerate(notes):

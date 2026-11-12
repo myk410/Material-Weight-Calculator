@@ -55,4 +55,4 @@ def render(name,path,width,height):
     (ROOT/'docs'/'r3'/(name+'_orientation_1to1.svg')).write_text(''.join(out))
 if __name__=='__main__':
     render('main',ROOT/'pcb'/'r3'/'material_weight_calculator.kicad_pcb',82,68)
-    render('adapter',ROOT/'pcb'/'display_adapter'/'display_adapter.kicad_pcb',70,18)
+    render('adapter',ROOT/'pcb'/'r3'/'display_adapter'/'display_adapter.kicad_pcb',70,18)

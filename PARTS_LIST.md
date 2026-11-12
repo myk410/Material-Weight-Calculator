@@ -1,6 +1,8 @@
 # Parts list — reuse existing parts first
 
-Updated November 2, 2026 (PCB R2.1). The user confirmed owning the DIYmalls 4×4 membrane keypad shown in their screenshot. Relevant purchase records also identify Nano V3 boards, an ELEGOO Uno R3, HiLetgo ESP-WROOM-32 boards, ELEGOO jumper wires, and a five-piece I2C display-module order. Purchases establish prior acquisition, not that unused working spares remain available.
+Current R3 update, November 12, 2026: [owned parts retained and SMD policy](hardware/OWNED_PARTS_AND_SMD.md), [main BOM](hardware/pcb/r3/bom.csv), [SMD adapter BOM](hardware/pcb/r3/display_adapter/bom.csv). The older R2.1 shopping list below is historical; it does not describe the current SMD footprints. AVR128DA28-I/SP and ED281DT sockets are purchase-confirmed, five each.
+
+Historical R2.1 inventory notes (November 2, 2026). The user confirmed owning the DIYmalls 4×4 membrane keypad shown in their screenshot. Relevant purchase records also identify Nano V3 boards, an ELEGOO Uno R3, HiLetgo ESP-WROOM-32 boards, ELEGOO jumper wires, and a five-piece I2C display-module order. Purchases establish prior acquisition, not that unused working spares remain available.
 
 ## Reuse for the first working prototype
 

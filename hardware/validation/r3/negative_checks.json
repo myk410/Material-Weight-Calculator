@@ -20,6 +20,10 @@
     "detected": true
   },
   {
+    "fault": "swapped_SOT23_base_emitter",
+    "detected": true
+  },
+  {
     "fault": "unresolved_physical_gate",
     "detected": true,
     "manufacturing_files_created": false

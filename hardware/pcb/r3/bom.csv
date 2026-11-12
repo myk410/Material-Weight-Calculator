@@ -3,12 +3,6 @@ U1,AVR128DA28-I/SP,MW_footprints:DIP-28_W7.62mm,
 J1,KEYPAD_8PIN,MW_footprints:PinHeader_1x08_P2.54mm_Vertical,
 J2,SWITCHED_3AAA_IN,MW_footprints:PinHeader_1x02_P2.54mm_Vertical,
 JP1,MASTER_LINK,MW_footprints:PinHeader_1x02_P2.54mm_Vertical,
-C3,100nF 10V,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm,
-C4,100nF 10V,MW_footprints:C_Disc_D3.0mm_W1.6mm_P2.50mm,
-C5,2.2uF 50V X7R,MW_footprints:C_Radial_L4.5mm_W3.0mm_P2.50mm,FG14X7R1H225KRT00
-Q1,onsemi 2N3906 EBC,MW_footprints:TO-92_Inline_Wide,
-R1,10k,MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,
-R2,100k,MW_footprints:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,
 J3,UC1701_ADAPTER_CABLE,MW_footprints:PinHeader_1x08_P2.54mm_Vertical,
 J4,UPDI_3V3,MW_footprints:PinHeader_1x03_P2.54mm_Vertical,
 H1,M2.5,MW_footprints:MountingHole_2.7mm_M2.5,
@@ -32,3 +26,9 @@ C7,1nF C0G 50V,MW_footprints:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,GRM2165
 TP1,VIN,MW_footprints:TestPoint_Pad_D2.0mm,
 TP2,GND,MW_footprints:TestPoint_Pad_D2.0mm,
 TP3,+3V3,MW_footprints:TestPoint_Pad_D2.0mm,
+C3,100nF 25V X7R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM188R71E104KA01D
+C4,100nF 25V X7R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM188R71E104KA01D
+C5,2.2uF 25V X5R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM188R61E225KA12D
+R1,10k 1%,MW_footprints:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,RC0603FR-0710KL
+R2,100k 1%,MW_footprints:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,RC0603FR-07100KL
+Q1,MMBT3906LT1G,MW_footprints:SOT-23_Handsoldering,MMBT3906LT1G

@@ -4,12 +4,14 @@
   "all_schematic_pins_match_pcb": "PASS",
   "mounting_holes_preserved": "PASS",
   "MSOP_pitch_and_no_hidden_pad": "PASS",
+  "all_discrete_parts_SMD_both_boards": "PASS",
+  "owned_DIP_and_connector_contracts_preserved": "PASS",
   "top_and_mirrored_bottom_coordinates": "PASS",
   "physical_mating": "UNVERIFIED",
   "release": "HOLD",
   "files_sha256": {
-    "pcb/r3/material_weight_calculator.kicad_pcb": "a48bc2a735abe049968690ffef1d0d0ac4a8b62540af4994e0ff64eb8c1fefd9",
-    "pcb/r3/material_weight_calculator.kicad_sch": "3c752bf272cb1f6d69bb82d16118fc2f7b38598c3393b1ad7018716d76dd4158",
-    "pcb/display_adapter/display_adapter.kicad_pcb": "6b6d0709c8c74c8578b514717e1584123724ff9069f02bac14aa9de1e15d508f"
+    "pcb/r3/material_weight_calculator.kicad_pcb": "6e6ec2c1ef031bf161d36d0ed502232793e2dd9e9fbfaa8c11646973f63f013e",
+    "pcb/r3/material_weight_calculator.kicad_sch": "1b872e04abc84b577abb6c28344866a8a02e35e84a04935a5b026562fa9235d2",
+    "pcb/r3/display_adapter/display_adapter.kicad_pcb": "92cbb0d9b2dbad07196aa5d4962f3f92aac7ccf63a0813a2c01143c46557acd9"
   }
 }

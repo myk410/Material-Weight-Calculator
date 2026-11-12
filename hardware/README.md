@@ -1,6 +1,6 @@
 # Material Weight Calculator — current R3 review
 
-**FABRICATION HOLD.** The current LTC3440 MSOP-10 design is in [pcb/r3](pcb/r3/material_weight_calculator.kicad_pro). Read [R3_REVIEW.md](R3_REVIEW.md) for the circuit, actual KiCad results, both-side orientation templates, BOM and required physical evidence. Main/adapter ERC, DRC and schematic parity pass with zero violations. No R3 Gerbers, drills or order ZIP are released. The R2 files and links below are historical MCP1700 designs, not the R3 supply, and must not be used for this redesign.
+**FABRICATION HOLD.** The current LTC3440 MSOP-10 design is in [pcb/r3](pcb/r3/material_weight_calculator.kicad_pro). Read [R3_REVIEW.md](R3_REVIEW.md) for the circuit, actual KiCad results, both-side orientation templates, BOM and required physical evidence. Both current R3 boards use SMD resistors, capacitors, transistors, diodes and inductors; the purchased AVR DIP/socket and connectors are retained. See [owned-parts policy](OWNED_PARTS_AND_SMD.md). Main/adapter ERC, DRC and schematic parity pass with zero violations. No R3 Gerbers, drills or order ZIP are released. The R2 files and links below are historical MCP1700 designs, not the R3 supply, and must not be used for this redesign.
 
 ## Historical R2.1 documentation
 

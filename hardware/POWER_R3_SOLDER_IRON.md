@@ -2,7 +2,7 @@
 
 Updated 2026-11-12. **Implemented in [pcb/r3](pcb/r3/); FABRICATION HOLD pending physical checks.** Read [R3 review](R3_REVIEW.md) and [electrical implementation](source/POWER_R3_IMPLEMENTATION.md).
 
-The selected IC is **LTC3440EMS#PBF in MSOP-10**, with visible 0.5 mm pitch gull-wing leads and no required underside thermal pad. The DFN LTC3440EDD is not interchangeable and must not be fitted. New regulator resistors/compensation/snubber capacitors use 0805 hand-solder lands; CIN uses 1206 and COUT 1210. The Sumida inductor has extended external toes for iron access. Existing through-hole non-supply parts remain usable.
+The selected IC is **LTC3440EMS#PBF in MSOP-10**, with visible 0.5 mm pitch gull-wing leads and no required underside thermal pad. The DFN LTC3440EDD is not interchangeable and must not be fitted. New regulator resistors/compensation/snubber capacitors use 0805 hand-solder lands; CIN uses 1206 and COUT 1210. The Sumida inductor has extended external toes for iron access. The purchased DIP/socket and connector interfaces are retained; all discrete parts on both R3 boards are SMD. See [owned-parts policy](OWNED_PARTS_AND_SMD.md).
 
 The assembly is intended for a regular iron, flux, fine solder, wick and magnification. Solder one corner to align all ten leads before completing the package. Inspect each gap and test for bridges with power disconnected. 0.5 mm pitch remains a precision hand-soldering task; no hot air or oven is required by the chosen regulator package. Never pre-approve an unverified substitute by package name alone.
 

@@ -2,7 +2,7 @@
 
 A standalone pocket calculator for estimating material weight. Select a material, enter length, width, and thickness in inches, and read the result in pounds. Runs entirely on one microcontroller with physical buttons and replaceable AAA batteries.
 
-Status: **R3 LTC3440 buck-boost PCB implemented and CAD-validated, November 12, 2026; FABRICATION HOLD.** See [R3 review, evidence and unresolved physical checks](hardware/R3_REVIEW.md) and open [the R3 KiCad project](hardware/pcb/r3/material_weight_calculator.kicad_pro). Main and display-adapter boards pass KiCad 9 ERC, DRC and schematic parity with zero violations. No R3 Gerbers/drills/order ZIP have been released because real-part mating and fit checks remain open. Existing R2 manufacturing archives use MCP1700 and must not be ordered as R3. Firmware, prototype operation and battery life remain untested.
+Status: **R3 LTC3440 buck-boost PCB implemented and CAD-validated, November 12, 2026; FABRICATION HOLD.** See [R3 review, evidence and unresolved physical checks](hardware/R3_REVIEW.md) and open [the R3 KiCad project](hardware/pcb/r3/material_weight_calculator.kicad_pro). Both current R3 boards use SMD resistors, capacitors, transistors, diodes and inductors; the purchased AVR DIP/socket and connectors are retained. See [owned-parts policy](hardware/OWNED_PARTS_AND_SMD.md). Main and display-adapter boards pass KiCad 9 ERC, DRC and schematic parity with zero violations. No R3 Gerbers/drills/order ZIP have been released because real-part mating and fit checks remain open. Existing R2 manufacturing archives use MCP1700 and must not be ordered as R3. Firmware, prototype operation and battery life remain untested.
 
 ## Proposed final low-power hardware
 

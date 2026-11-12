@@ -8,11 +8,13 @@ from verify_r3 import ROOT, FOLDER, actual, contracts
 results=[]
 def load():
     m=k.LoadBoard(str(FOLDER/'material_weight_calculator.kicad_pcb'))
-    a=k.LoadBoard(str(ROOT/'pcb'/'display_adapter'/'display_adapter.kicad_pcb'))
+    a=k.LoadBoard(str(ROOT/'pcb'/'r3'/'display_adapter'/'display_adapter.kicad_pcb'))
     return m,a
-for fault in ['rotated_regulator','VC_compensation_to_ground','rotated_MCU','reversed_main_LCD_connector','reversed_adapter_LCD_row']:
+for fault in ['rotated_regulator','VC_compensation_to_ground','rotated_MCU','reversed_main_LCD_connector','reversed_adapter_LCD_row','swapped_SOT23_base_emitter']:
     m,a=load();mp,ap=actual(m),actual(a)
     if fault=='VC_compensation_to_ground':mp['C6','2'].SetNet(m.FindNet('GND'))
+    elif fault=='swapped_SOT23_base_emitter':
+        mp['Q1','1'].SetNet(m.FindNet('+3V3'));mp['Q1','2'].SetNet(m.FindNet('LCD_BASE'))
     else:
         board,ref=(a,'J2') if fault=='reversed_adapter_LCD_row' else (m,{'rotated_regulator':'U2','rotated_MCU':'U1','reversed_main_LCD_connector':'J3'}[fault])
         f=next(f for f in board.GetFootprints() if f.GetReference()==ref)

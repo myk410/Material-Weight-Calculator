@@ -27,12 +27,15 @@ def contracts(main,adapter):
                      'R6':['VC','COMP_NODE'],'C6':['COMP_NODE','FB'],'R8':['MODE','VIN'],
                      'L1':['SW1','SW2'],'C1':['VIN','GND'],'C2':['+3V3','GND'],
                      'D1':['VIN','VBAT_LINK'],'D2':['VIN','SW1'],'R7':['SW1','SNUB'],
-                     'C7':['SNUB','GND'],'Q1':['+3V3','LCD_BASE','LCD_VCC']}.items():
+                     'C7':['SNUB','GND'],'Q1':['LCD_BASE','+3V3','LCD_VCC']}.items():
         for i,n in enumerate(pins,1):check(main,ref,i,n)
-    # Cathode bar orientation and TO-92 flat-face drawing, viewed from F.Cu.
+    # Cathode bar orientation, viewed from F.Cu.
     check(main,'D1',1,'VIN',12,5);check(main,'D1',2,'VBAT_LINK',16,5)
     check(main,'D2',1,'VIN',26.4,22.5);check(main,'D2',2,'SW1',23.6,22.5)
-    for i,n in enumerate(['+3V3','LCD_BASE','LCD_VCC'],1):check(main,'Q1',i,n,56+(i-1)*2.54,15)
+    # onsemi MMBT3906: pin 1 B, 2 E, 3 C; SOT-23 top-view footprint.
+    check(main,'Q1',1,'LCD_BASE',56.5,14.05)
+    check(main,'Q1',2,'+3V3',56.5,15.95)
+    check(main,'Q1',3,'LCD_VCC',59.5,15)
     # Microchip DS40002183 28-SPDIP. Notch at top. All socket contacts fixed.
     u1=['','ROW0','ROW1','ROW2','ROW3','COL0','COL1','COL2','COL3','','','','LCD_PWR_CTRL','+3V3','GND','','','','UPDI','+3V3','GND','','LCD_CLK','LCD_DATA','LCD_CS','LCD_CD','LCD_RST','']
     for i,n in enumerate(u1,1):check(main,'U1',i,n,35 if i<=14 else 42.62,20+(i-1 if i<=14 else 28-i)*2.54)
@@ -44,14 +47,14 @@ def contracts(main,adapter):
         check(main,'J3',i,n,70,16+(i-1)*2.54);check(adapter,'J1',i,n,9+(i-1)*2.54,13)
     lcd={1:'LCD_CS',2:'LCD_RST',3:'LCD_CD',**{i:'GND' for i in range(4,12)},12:'LCD_CLK',13:'LCD_DATA',14:'LCD_VCC',15:'GND',16:'VB0_PLUS',17:'VB0_MINUS',18:'VB1_MINUS',19:'VB1_PLUS',20:'VLCD',21:'GND',22:'GND'}
     for i,n in lcd.items():check(adapter,'J2',i,n,21.665+(i-1)*1.27,3)
-    check(adapter,'C5',1,'LCD_VCC',7,7);check(adapter,'C5',2,'GND',8.5,7)
+    check(adapter,'C5',1,'LCD_VCC',6.4375,7);check(adapter,'C5',2,'GND',9.5625,7)  # nonpolar MLCC
 
 def run():
     boards={'main':k.LoadBoard(str(FOLDER/(STEM+'.kicad_pcb'))),
-            'adapter':k.LoadBoard(str(ROOT/'pcb'/'display_adapter'/'display_adapter.kicad_pcb'))}
+            'adapter':k.LoadBoard(str(ROOT/'pcb'/'r3'/'display_adapter'/'display_adapter.kicad_pcb'))}
     maps={n:actual(b) for n,b in boards.items()};contracts(maps['main'],maps['adapter'])
     # Compare ALL connected pins to native KiCad schematic XML, not just power.
-    for name,folder,stem in [('main',FOLDER,STEM),('adapter',ROOT/'pcb'/'display_adapter','display_adapter')]:
+    for name,folder,stem in [('main',FOLDER,STEM),('adapter',ROOT/'pcb'/'r3'/'display_adapter','display_adapter')]:
         schematic={}
         for n in E.parse(folder/(stem+'.net.xml')).findall('.//nets/net'):
             if n.get('name').startswith('unconnected-'):continue
@@ -61,8 +64,12 @@ def run():
         assert schematic==copper,(name,'schematic/copper mismatch')
     main=boards['main'];f={f.GetReference():f for f in main.GetFootprints()}
     assert all(not p.IsFlipped() for p in f.values())
-    for ref in ['U2','L1','D1','D2','C1','C2','C6','C7','R3','R4','R5','R6','R7','R8']:
+    for ref in ['U2','L1','D1','D2','C1','C2','C6','C7','R3','R4','R5','R6','R7','R8','R1','R2','C3','C4','C5','Q1']:
         assert all(p.GetAttribute()==k.PAD_ATTRIB_SMD for p in f[ref].Pads())
+    for b in boards.values():
+        for part in b.GetFootprints():
+            if part.GetReference().startswith(('C','R','D','Q','L')) or part.GetReference()=='U2':
+                assert all(p.GetAttribute()==k.PAD_ATTRIB_SMD for p in part.Pads()),part.GetReference()
     # All connector pad 1s are square, as are U1 socket pad1. U2 is leaded MSOP.
     for ref in ['U1','J1','J2','JP1','J3','J4']:
         assert maps['main'][ref,'1'].GetShape()==k.PAD_SHAPE_RECT
@@ -72,8 +79,11 @@ def run():
     for p in body:
         assert abs(p.GetSize().y/1e6-.35)<1e-6
         assert abs(p.GetSize().x/1e6-1.625)<1e-6
-    # SOT-23/TO-92 ambiguity is avoided by retaining the original onsemi TO-92.
-    assert f['Q1'].GetFPIDAsString().endswith('TO-92_Inline_Wide')
+    assert f['Q1'].GetFPIDAsString().endswith('SOT-23_Handsoldering')
+    for fp in boards['adapter'].GetFootprints():
+        if fp.GetReference().startswith(('C','R')):
+            assert all(p.GetAttribute()==k.PAD_ATTRIB_SMD for p in fp.Pads())
+    assert f['U1'].GetFPIDAsString().endswith('DIP-28_W7.62mm')
     # Real bottom view reverses x around the board width; y remains upwards.
     with (REPORT/'orientation_pins.csv').open('w',newline='') as out:
         w=csv.writer(out,lineterminator="\n");w.writerow(['Board','Reference','Pin','Net','InstalledFrom','TopX_mm','TopY_mm','UndersideX_mm','UndersideY_mm'])
@@ -83,9 +93,9 @@ def run():
                 x,y=p.GetPosition().x/1e6-50,p.GetPosition().y/1e6-50
                 w.writerow([name,ref,num,net(p),'F.Cu',round(x,4),round(y,4),round(width-x,4),round(y,4)])
     report={'revision':'R3','cad_pin_contract':'PASS','all_schematic_pins_match_pcb':'PASS',
-            'mounting_holes_preserved':'PASS','MSOP_pitch_and_no_hidden_pad':'PASS',
+            'mounting_holes_preserved':'PASS','MSOP_pitch_and_no_hidden_pad':'PASS','all_discrete_parts_SMD_both_boards':'PASS','owned_DIP_and_connector_contracts_preserved':'PASS',
             'top_and_mirrored_bottom_coordinates':'PASS','physical_mating':'UNVERIFIED',
             'release':'HOLD','files_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
-                for p in [FOLDER/(STEM+'.kicad_pcb'),FOLDER/(STEM+'.kicad_sch'),ROOT/'pcb'/'display_adapter'/'display_adapter.kicad_pcb']}}
+                for p in [FOLDER/(STEM+'.kicad_pcb'),FOLDER/(STEM+'.kicad_sch'),ROOT/'pcb'/'r3'/'display_adapter'/'display_adapter.kicad_pcb']}}
     (REPORT/'pin_audit.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
 if __name__=='__main__':run()
