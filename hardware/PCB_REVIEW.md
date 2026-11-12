@@ -1,3 +1,5 @@
+> **R3 POWER CHANGE (2026-11-12):** The replacement LTC3440EMS MSOP-10 buck-boost reference design is committed at [hardware/source/POWER_R3_IMPLEMENTATION.md](source/POWER_R3_IMPLEMENTATION.md), with a provisional netlist and BOM. This is **not a copper update**: the existing schematics, PCB and Gerbers still use the MCP1700 LDO and are not fabrication-ready. Do not use the old Gerbers for this revised power architecture. KiCad ERC/DRC, footprint orientation and physical mating must be repeated after implementing R3.
+
 > **FABRICATION HOLD (2026-11-12):** R2.1 electrical DRC/ERC did not independently prove physical plug orientation. Read [PCB_ORIENTATION_GATE.md](PCB_ORIENTATION_GATE.md) and run `python hardware/source/check_orientation_contract.py` before any board order. LCD front-vs-solder-side mating, keypad ribbon, UPDI Friend header, TO-92 flat-face orientation and battery connector polarity remain unsigned physical checks. The existing Gerbers are NOT released for fabrication. The current board uses an MCP1700 LDO, not the later-discussed buck-boost regulator.
 
 # PCB R2.1 review - November 2, 2026
