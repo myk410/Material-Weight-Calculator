@@ -1,0 +1,11 @@
+Ref,Value,Package/Footprint,Manufacturer part,Status
+U2,LTC3440,MSOP-10 0.5mm pitch,LTC3440EMS#PBF,selected candidate
+L1,10uH,accessible surface pads,SUMIDA CDRH6D38-100,check availability and footprint
+CIN,10uF >=10V,1206 or larger ceramic,TBD,choose guaranteed effective C
+COUT,22uF >=10V,1210 or parallel 1206,TBD,choose guaranteed effective C
+RT,60.4k 1%,0805,TBD,reference value
+RFB_TOP,340k 1%,0805,TBD,reference value
+RFB_BOTTOM,200k 1%,0805,TBD,reference value
+RCOMP,15k,0805,TBD,reference value
+CCOMP,1.5nF,0805,TBD,reference value
+R_MODE,0 ohm link,0805,TBD,review startup choice
