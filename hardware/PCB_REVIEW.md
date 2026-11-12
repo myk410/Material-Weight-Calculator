@@ -1,3 +1,5 @@
+> **FABRICATION HOLD (2026-11-12):** R2.1 electrical DRC/ERC did not independently prove physical plug orientation. Read [PCB_ORIENTATION_GATE.md](PCB_ORIENTATION_GATE.md) and run `python hardware/source/check_orientation_contract.py` before any board order. LCD front-vs-solder-side mating, keypad ribbon, UPDI Friend header, TO-92 flat-face orientation and battery connector polarity remain unsigned physical checks. The existing Gerbers are NOT released for fabrication. The current board uses an MCP1700 LDO, not the later-discussed buck-boost regulator.
+
 # PCB R2.1 review - November 2, 2026
 
 **The PCB design review is complete for this prototype revision. This is not a bench-tested calculator.** Both boards pass KiCad 9.0.2 ERC, DRC and schematic parity with no exclusions. Firmware is still pending. Use the component/fit checks below before committing to fabrication or assembly; a small prototype run is the next hardware stage, not production release.
