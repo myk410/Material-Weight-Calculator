@@ -1,0 +1,15 @@
+{
+  "revision": "R3",
+  "status": "FABRICATION_HOLD",
+  "physical_checks": {
+    "lcd_pin1_from_actual_soldering_side": {"passed": false, "evidence": []},
+    "lcd_corner_pins_and_adapter_component_clearance": {"passed": false, "evidence": []},
+    "keypad_16_key_continuity_map_and_header_dry_fit": {"passed": false, "evidence": []},
+    "numbered_lcd_cable_continuity_and_case_exit": {"passed": false, "evidence": []},
+    "actual_UPDI_programmer_mating_face": {"passed": false, "evidence": []},
+    "battery_switch_common_terminal_and_polarity": {"passed": false, "evidence": []},
+    "actual_U1_socket_Q1_and_polarized_parts_overlay": {"passed": false, "evidence": []},
+    "capacitor_DC_bias_and_populated_case_clearance": {"passed": false, "evidence": []}
+  },
+  "note": "These checks require actual-part evidence. A zero-error CAD audit cannot set them to passed. No R3 Gerbers/drill/order ZIP may be published while any check is false."
+}

@@ -1,11 +1,15 @@
-Ref,Value,Package/Footprint,Manufacturer part,Status
-U2,LTC3440,MSOP-10 0.5mm pitch,LTC3440EMS#PBF,selected candidate
-L1,10uH,accessible surface pads,SUMIDA CDRH6D38-100,check availability and footprint
-CIN,10uF >=10V,1206 or larger ceramic,TBD,choose guaranteed effective C
-COUT,22uF >=10V,1210 or parallel 1206,TBD,choose guaranteed effective C
-RT,60.4k 1%,0805,TBD,reference value
-RFB_TOP,340k 1%,0805,TBD,reference value
-RFB_BOTTOM,200k 1%,0805,TBD,reference value
-RCOMP,15k,0805,TBD,reference value
-CCOMP,1.5nF,0805,TBD,reference value
-R_MODE,0 ohm link,0805,TBD,review startup choice
+Reference,Value,Footprint,ManufacturerPartNumber,Status
+U2,LTC3440EMS#PBF,MW_footprints:MSOP-10_3x3mm_P0.5mm,LTC3440EMS#PBF,Routed; physical/qualification HOLD
+L1,10uH,MW_footprints:L_CDRH6D38_HandSolder,CDRH6D38NP-100NC,Routed; physical/qualification HOLD
+D1,SS14,MW_footprints:D_SMA,SS14,Routed; physical/qualification HOLD
+C1,10uF 25V X7R,MW_footprints:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,GRM31CR71E106KA12L,Routed; physical/qualification HOLD
+C2,22uF 25V X7R,MW_footprints:C_1210_3225Metric_Pad1.33x2.70mm_HandSolder,GRM32ER71E226KE15L,Routed; physical/qualification HOLD
+R3,60.4k 1%,MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RC0805FR-0760K4L,Routed; physical/qualification HOLD
+R4,340k 1%,MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RC0805FR-07340KL,Routed; physical/qualification HOLD
+R5,200k 1%,MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RC0805FR-07200KL,Routed; physical/qualification HOLD
+R6,15k 1%,MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RC0805FR-0715KL,Routed; physical/qualification HOLD
+C6,1.5nF C0G 50V,MW_footprints:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,GRM2165C1H152JA01D,Routed; physical/qualification HOLD
+R8,0R,MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RC0805JR-070RL,Routed; physical/qualification HOLD
+D2,PMEG2010ER,MW_footprints:Nexperia_CFP3_SOD-123W,"PMEG2010ER,115",Routed; physical/qualification HOLD
+R7,2R 1%,MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RC0805FR-072RL,Routed; physical/qualification HOLD
+C7,1nF C0G 50V,MW_footprints:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,GRM2165C1H102JA01D,Routed; physical/qualification HOLD

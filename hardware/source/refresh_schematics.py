@@ -18,10 +18,10 @@ PLUGIN = k.PCB_IO_KICAD_SEXPR()
 KEEP_ALIVE = []
 
 
-def refresh(adapter=False):
-    folder = ROOT / 'pcb' / 'display_adapter' if adapter else ROOT / 'pcb'
+def refresh(adapter=False, r3=False):
+    folder = ROOT / 'pcb' / 'r3' if r3 else ROOT / 'pcb' / 'display_adapter' if adapter else ROOT / 'pcb'
     stem = 'display_adapter' if adapter else 'material_weight_calculator'
-    datafile = ROOT / 'source' / ('adapter_electrical_design.json' if adapter else 'electrical_design.json')
+    datafile = ROOT / 'source' / ('r3_electrical_design.json' if r3 else 'adapter_electrical_design.json' if adapter else 'electrical_design.json')
     data = json.loads(datafile.read_text())
     board = k.LoadBoard(str(folder / (stem + '.kicad_pcb')))
     def uid(key): return str(uuid.uuid5(NS, stem + '/' + key))
@@ -38,7 +38,7 @@ def refresh(adapter=False):
         if not adapter and entry['ref'] == 'J2':
             entry['value'] = 'SWITCHED_3AAA_IN'
             entry['pin_names'] = {'1': 'SW1_OUT_PLUS', '2': 'BAT_MINUS'}
-        if entry['ref'] in (('C1', 'C2') if adapter else ('C1', 'C2', 'C5')):
+        if not r3 and entry['ref'] in (('C1', 'C2') if adapter else ('C1', 'C2', 'C5')):
             fp = 'C_Radial_L4.5mm_W3.0mm_P2.50mm'
             entry['footprint'] = 'MW_footprints:' + fp
             entry['value'] = '2.2uF 50V X7R'
@@ -68,6 +68,12 @@ def refresh(adapter=False):
                   'J4': (270, 100), 'R1': (325, 80), 'R2': (375, 80),
                   'C3': (270, 135), 'C4': (325, 135), 'C5': (375, 135),
                   'H1': (40, 155), 'H2': (90, 155), 'H3': (140, 155), 'H4': (190, 155)})
+    if r3:
+        positions.update({'L1': (245, 175), 'R3': (40, 175), 'R4': (90, 175),
+                          'R5': (140, 175), 'R6': (190, 175), 'C6': (300, 175),
+                          'R7': (355, 175), 'C7': (40, 220), 'D2': (90, 220),
+                          'R8': (140, 220), 'TP1': (190, 220),
+                          'TP2': (245, 220), 'TP3': (300, 220)})
     symbols, instances, wires = [], [], []
     power_flags = []
     def pin_type(ref, pin, connected):
@@ -83,7 +89,12 @@ def refresh(adapter=False):
                 if pin in ('14', '15', '20', '21'): return 'power_in'
                 if pin == '18': return 'input'
                 return 'bidirectional'
-            if ref == 'U2': return 'power_out' if pin == '3' else 'power_in'
+            if ref == 'U2':
+                if r3:
+                    return {'1':'output', '2':'input', '3':'bidirectional',
+                            '4':'bidirectional', '5':'power_in', '6':'power_out',
+                            '7':'power_in', '8':'input', '9':'input', '10':'output'}[pin]
+                return 'power_out' if pin == '3' else 'power_in'
             if ref == 'Q1': return {'1': 'power_in', '2': 'input', '3': 'power_out'}[pin]
             if ref == 'J2': return 'power_out'
         return 'passive'
@@ -126,7 +137,7 @@ def refresh(adapter=False):
                  f'(property "Value" {q(c["value"])} (at {x:.4f} {y-halfh-1.5:.4f} 0) (effects (font (size 1 1)))) '
                  f'(property "Footprint" {q(c["footprint"])} (at {x:.4f} {y:.4f} 0) (effects (font (size 1 1)) hide))')
         instpins = ' '.join(f'(pin {q(n)} (uuid {uid(ref+n+"pin")}))' for n in pins)
-        instances.append(f'(symbol (lib_id "MW:{symname}") (at {x:.4f} {y:.4f} 0) (unit 1) (in_bom {"no" if ref.startswith("H") else "yes"}) (on_board yes) (uuid {uid(ref)}) {props} {instpins})')
+        instances.append(f'(symbol (lib_id "MW:{symname}") (at {x:.4f} {y:.4f} 0) (unit 1) (in_bom {"no" if ref.startswith(("H", "TP")) else "yes"}) (on_board yes) (uuid {uid(ref)}) {props} {instpins})')
         c['schematic_uuid'] = uid(ref)
 
     # VIN is supplied through passive diode D1. The explicit flag documents this
@@ -149,13 +160,21 @@ def refresh(adapter=False):
               'J4: 1=3V3, 2=GND, 3=UPDI. Remove batteries for programmer-supplied power.',
               'Q1: PD7 low = LCD on. Keep LCD signal pins low while LCD power is off.',
               'C2 must retain at least 1 uF effective capacitance over voltage/temperature/tolerance.'])
+    if r3:
+        notes = ['R3 LTC3440EMS MSOP-10 only. VC -> R6 -> C6 -> FB (NOT ground).',
+                 'D2: K=VIN A=SW1; R7/C7: SW1-to-ground snubber for VIN above 4.5V.',
+                 'J2 switched battery positive; JP1 service shunt; SS14 D1 cathode to VIN.',
+                 'MODE via R8 to VIN; SHDN tied to VIN. No RC soft start fitted.',
+                 'FABRICATION HOLD: physical LCD/keypad/programmer/switch mating remains unverified.',
+                 'J4: remove batteries before programmer power. Never connect two power sources.',
+                 'All components on F.Cu; underside drawing is mirrored; U1 notch at pins 1/28.']
     notes += ['Prototype: firmware and physical assembly tests pending. See PCB_REVIEW.md.',
               'Power pins on source connectors describe external supplies; Q1 collector is switched power output.']
     for i, note in enumerate(notes):
-        wires.append(f'(text {q(note)} (at 20 {190+i*6} 0) (effects (font (size 1.2 1.2)) (justify left)) (uuid {uid("note"+str(i))}))')
+        wires.append(f'(text {q(note)} (at 20 {(235+i*5 if r3 else 190+i*6)} 0) (effects (font (size 1.2 1.2)) (justify left)) (uuid {uid("note"+str(i))}))')
     title = 'UC1701 Display Adapter' if adapter else 'Material Weight Calculator'
     schematic = (f'(kicad_sch (version 20230121) (generator eeschema) (uuid {uid("root")}) (paper "A3") '
-                 f'(title_block (title {q(title)}) (date "2026-11-02") (rev "{REV}") (comment 1 "Prototype - see PCB_REVIEW.md")) '
+                 f'(title_block (title {q(title)}) (date "2026-11-12") (rev "{("R3" if r3 else REV)}") (comment 1 "Prototype - FABRICATION HOLD")) '
                  f'(lib_symbols {embedded}) {" ".join(wires)} {" ".join(instances)} '
                  f'(sheet_instances (path "/" (page "1"))) (symbol_instances {paths}))')
     (folder / (stem + '.kicad_sch')).write_text(schematic)
@@ -189,7 +208,7 @@ def refresh(adapter=False):
     k.SaveBoard(str(folder / (stem + '.kicad_pcb')), board)
     datafile.write_text(json.dumps(data, indent=2) + '\n')
     with (folder / 'bom.csv').open('w', newline='') as out:
-        writer = csv.writer(out); writer.writerow(['Reference', 'Value', 'Footprint', 'ManufacturerPartNumber'])
+        writer = csv.writer(out,lineterminator="\n"); writer.writerow(['Reference', 'Value', 'Footprint', 'ManufacturerPartNumber'])
         writer.writerows((c['ref'], c['value'], c['footprint'], c.get('manufacturer_part_number', '')) for c in data['components'])
     print('Refreshed', stem)
 

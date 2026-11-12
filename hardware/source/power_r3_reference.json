@@ -1,6 +1,6 @@
 {
-  "revision": "R3-power-provisional",
-  "status": "NOT_ROUTED_NOT_FABRICATION_READY",
+  "revision": "R3",
+  "status": "ROUTED_CAD_REVIEW_PHYSICAL_HOLD",
   "reference": "https://www.analog.com/media/en/technical-documentation/data-sheets/3440fd.pdf",
   "reference_figure": "page 1 typical application, 3.3V buck-boost, input reference 2.7-4.2V (adapt for 3AAA up to 5.5V)",
   "ic": {
@@ -20,118 +20,154 @@
       "8": "VIN",
       "9": "FB",
       "10": "VC"
-    }
+    },
+    "mode_connection": "R8 0R to VIN, high throughout regulated input range"
   },
   "components": [
     {
       "ref": "L1",
       "value": "10uH",
-      "mpn": "SUMIDA CDRH6D38-100 (datasheet example)",
+      "mpn": "CDRH6D38NP-100NC",
       "pins": {
         "1": "SW1",
         "2": "SW2"
       },
-      "note": "Select exact package and footprint before routing; solder-access check"
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated.",
+      "footprint": "MW_footprints:L_CDRH6D38_HandSolder",
+      "pcb_reference": "L1"
     },
     {
       "ref": "CIN",
       "value": "10uF",
-      "mpn": "TBD 1206 ceramic voltage >=10V X7R/X5R",
+      "mpn": "GRM31CR71E106KA12L",
       "pins": {
         "1": "VIN",
         "2": "GND"
       },
-      "note": "Effective capacitance after DC bias must be checked"
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated.",
+      "footprint": "MW_footprints:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+      "pcb_reference": "C1"
     },
     {
       "ref": "COUT",
       "value": "22uF",
-      "mpn": "TBD hand-solderable ceramic 1206/1210 >=10V",
+      "mpn": "GRM32ER71E226KE15L",
       "pins": {
         "1": "+3V3",
         "2": "GND"
       },
-      "note": "Manufacturer reference output capacitance; account for effective value"
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated.",
+      "footprint": "MW_footprints:C_1210_3225Metric_Pad1.33x2.70mm_HandSolder",
+      "pcb_reference": "C2"
     },
     {
       "ref": "RT",
       "value": "60.4k 1%",
-      "mpn": "TBD 0805",
+      "mpn": "RC0805FR-0760K4L",
       "pins": {
         "1": "RT",
         "2": "GND"
-      }
+      },
+      "footprint": "MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pcb_reference": "R3",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     },
     {
       "ref": "RFB_TOP",
       "value": "340k 1%",
-      "mpn": "TBD 0805",
+      "mpn": "RC0805FR-07340KL",
       "pins": {
         "1": "+3V3",
         "2": "FB"
-      }
+      },
+      "footprint": "MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pcb_reference": "R4",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     },
     {
       "ref": "RFB_BOTTOM",
       "value": "200k 1%",
-      "mpn": "TBD 0805",
+      "mpn": "RC0805FR-07200KL",
       "pins": {
         "1": "FB",
         "2": "GND"
-      }
+      },
+      "footprint": "MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pcb_reference": "R5",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     },
     {
       "ref": "RCOMP",
       "value": "15k",
-      "mpn": "TBD 0805",
+      "mpn": "RC0805FR-0715KL",
       "pins": {
         "1": "VC",
         "2": "COMP_NODE"
-      }
+      },
+      "footprint": "MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pcb_reference": "R6",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     },
     {
       "ref": "CCOMP",
       "value": "1.5nF",
-      "mpn": "TBD 0805",
+      "mpn": "GRM2165C1H152JA01D",
       "pins": {
         "1": "COMP_NODE",
-        "2": "GND"
-      }
+        "2": "FB"
+      },
+      "note": "Corrected from erroneous ground connection; ADI p1 / p14 type III circuit connects series VC compensation to FB.",
+      "footprint": "MW_footprints:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pcb_reference": "C6"
     },
     {
       "ref": "R_MODE",
-      "value": "0R or design-defined pull",
-      "mpn": "TBD 0805",
+      "value": "0R",
+      "mpn": "RC0805JR-070RL",
       "pins": {
         "1": "MODE",
-        "2": "+3V3"
+        "2": "VIN"
       },
-      "note": "Enable Burst Mode as shown in datasheet; check startup behavior when driven from output"
+      "note": "VIN high enables Burst Mode; avoids output-dependent startup.",
+      "footprint": "MW_footprints:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pcb_reference": "R8"
     },
     {
       "ref": "TP_VIN",
       "value": "testpad",
       "pins": {
         "1": "VIN"
-      }
+      },
+      "mpn": "",
+      "footprint": "MW_footprints:TestPoint_Pad_D2.0mm",
+      "pcb_reference": "TP1",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     },
     {
       "ref": "TP_GND",
       "value": "testpad",
       "pins": {
         "1": "GND"
-      }
+      },
+      "mpn": "",
+      "footprint": "MW_footprints:TestPoint_Pad_D2.0mm",
+      "pcb_reference": "TP2",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     },
     {
       "ref": "TP_3V3",
       "value": "testpad",
       "pins": {
         "1": "+3V3"
-      }
+      },
+      "mpn": "",
+      "footprint": "MW_footprints:TestPoint_Pad_D2.0mm",
+      "pcb_reference": "TP3",
+      "note": "Implemented in R3; physical component-fit/effective-capacitance qualification remains gated."
     }
   ],
   "integration": {
-    "existing_D1": "Existing 1N5817 cathode to VIN, anode VBAT_LINK; assess dropout and low-voltage battery benefit",
+    "existing_D1": "R3 uses SMA SS14 in place of 1N5817: cathode VIN, anode VBAT_LINK. VIN minimum 2.5 V is AFTER diode drop.",
     "existing_J2": "Pin 1 switched battery +, pin 2 ground",
     "existing_JP1": "Service jumper between VBAT_SW and VBAT_LINK",
     "keep": [
@@ -155,5 +191,10 @@
     "Run KiCad ERC, DRC and netlist-to-pad parity with new components",
     "Re-run mirrored physical plug assembly and LCD pin1 checks",
     "Bench test VOUT across 3AAA battery range, startup, ripple and light-load current"
-  ]
+  ],
+  "implementation": "hardware/pcb/r3/material_weight_calculator.kicad_pcb",
+  "high_input_protection": {
+    "D2": "PMEG2010ER,115: K=VIN, A=SW1",
+    "R7_C7": "2 ohm + 1nF series SW1 to GND, ADI Input Voltage >4.5 V requirement"
+  }
 }

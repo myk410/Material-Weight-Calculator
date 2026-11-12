@@ -1,4 +1,8 @@
-# Material Weight Calculator — hardware R2.1
+# Material Weight Calculator — current R3 review
+
+**FABRICATION HOLD.** The current LTC3440 MSOP-10 design is in [pcb/r3](pcb/r3/material_weight_calculator.kicad_pro). Read [R3_REVIEW.md](R3_REVIEW.md) for the circuit, actual KiCad results, both-side orientation templates, BOM and required physical evidence. Main/adapter ERC, DRC and schematic parity pass with zero violations. No R3 Gerbers, drills or order ZIP are released. The R2 files and links below are historical MCP1700 designs, not the R3 supply, and must not be used for this redesign.
+
+## Historical R2.1 documentation
 
 PCB review updated November 2, 2026: [review, evidence and assembly gates](PCB_REVIEW.md). Open the reviewed PCB files with **KiCad 9 or newer**. The download filenames retain `r2` for existing links; their fabrication contents identify R2.1. Mechanical files retain their separate revision history.
 
@@ -12,7 +16,7 @@ Download [complete R2 package](downloads/material_weight_calculator_hardware_r2.
 2. Print `docs/keypad_fit_template.pdf` at **100% / Actual Size**. Place the existing DIYmalls pad over the key-center marks. The screenshot identifies the pad type but does not establish its exact pitch. The model currently uses nominal 18 mm key pitch; confirm this fit before printing the full shell. The source has explicit `KEY_X` and `KEY_Y` parameters if the actual pad differs.
 3. Print the two-key connected 55A keypad coupon before the full keypad sheet. Check legend detail, independent motion, return, actuator contact, nut fit, and actuation with the actual DIYmalls membrane. No claim is made that the 55A resin's force, shrinkage, or long-term fatigue has been physically validated yet.
 4. For the Mars 5 Ultra, use the shell sections in `stl/mars5_ultra_oriented/`. They have been rotated to fit the manufacturer's 153.36 × 77.76 × 165 mm build volume; add supports and a raft in the slicer without exceeding that volume. These are unsliced STLs, not exposure profiles.
-5. Use `pcb/gerbers/` for a conventional **two-layer, 1.6 mm copper-clad PCB with plated through holes**. Open the KiCad project to inspect/edit it before ordering.
+5. Historical R2.1 only; **do not order these for R3**. `pcb/gerbers/` describes a conventional **two-layer, 1.6 mm copper-clad PCB with plated through holes**. Open the KiCad project to inspect/edit it before ordering.
 
 ## Files
 

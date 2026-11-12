@@ -2,6 +2,10 @@
 
 **STATUS: FABRICATION HOLD.** The existing KiCad schematic, PCB, and Gerbers are *prototype drafts*. The prior ERC/DRC/netlist audits do not prove that a physically flipped plug or LCD is correctly connected. Do not submit Gerbers until each physical orientation gate below is passed.
 
+## R3 implementation update (2026-11-12)
+
+The LTC3440 supply is now implemented separately in `pcb/r3/`, with native ERC/DRC/parity passing. The regulator, diode and capacitor positions below describe **historical R2.1 only**. Use [R3_REVIEW.md](R3_REVIEW.md), its numbered top/bottom templates and actual-pad audit for current R3 component coordinates. The LCD/keypad/programmer/switch physical gates below remain open; selecting or routing R3 does not clear them.
+
 ## Coordinate/view convention
 
 - **KiCad F.Cu view is the PCB component side, looking down onto the top surface.** Board X increases right and Y increases downward in the saved project.

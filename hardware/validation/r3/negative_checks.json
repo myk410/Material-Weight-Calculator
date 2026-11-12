@@ -1,0 +1,27 @@
+[
+  {
+    "fault": "rotated_regulator",
+    "detected": true
+  },
+  {
+    "fault": "VC_compensation_to_ground",
+    "detected": true
+  },
+  {
+    "fault": "rotated_MCU",
+    "detected": true
+  },
+  {
+    "fault": "reversed_main_LCD_connector",
+    "detected": true
+  },
+  {
+    "fault": "reversed_adapter_LCD_row",
+    "detected": true
+  },
+  {
+    "fault": "unresolved_physical_gate",
+    "detected": true,
+    "manufacturing_files_created": false
+  }
+]

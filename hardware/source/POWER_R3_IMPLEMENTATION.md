@@ -1,41 +1,34 @@
-# R3 buck-boost circuit — draft, not yet a routed PCB
+# R3 LTC3440 circuit — implemented, physical fabrication hold
 
-**STATUS: DO NOT ORDER PCB FROM EXISTING R2.1 GERBERS.** The existing KiCad design still includes MCP1700 LDO. This revision captures the new exact 3.3 V switching supply circuit and pin mapping for implementation in KiCad.
+Updated 2026-11-12. The new design is in [pcb/r3](../pcb/r3/). Read [R3_REVIEW.md](../R3_REVIEW.md) for full circuit decisions, exact component orientations, native KiCad reports, unresolved real-part checks and reproduction instructions.
 
-## Verified manufacturer reference
-[Analog Devices LTC3440 PDF](https://www.analog.com/media/en/technical-documentation/data-sheets/3440fd.pdf), **PDF page 1** shows the 3.3 V 600 mA buck-boost application; **page 2** shows the MSOP-10 top-view pinout. The application is originally drawn for 2.7–4.2 V lithium-ion input; our 3-AAA 2.5–5.5 V range must be separately validated.
+The preserved main board one directory above `/r3/` still uses the MCP1700. No old R2 Gerber represents R3. **No R3 Gerbers or drill files have been released.**
 
-[Machine-readable reference netlist](power_r3_reference.json) | [preliminary parts BOM](power_r3_bom.csv) | [orientation/pin test](check_power_r3.py).
+## Manufacturer cross-check
 
-## LTC3440 MSOP-10 pin map (IC **TOP** view, with pin 1 marker at upper left)
-| Pin | Pin name | Proposed PCB net |
-|---:|---|---|
-| 1 | RT | RT to 60.4 kΩ resistor to GND |
-| 2 | MODE/SYNC | MODE, linked to regulated 3.3 V for Burst Mode |
-| 3 | SW1 | One end of 10 µH inductor |
-| 4 | SW2 | Other end of 10 µH inductor |
-| 5 | GND | Ground plane |
-| 6 | VOUT | Regulated 3.3 V |
-| 7 | VIN | Protected switched battery input |
-| 8 | SHDN/SS | Protected switched battery input, enabled when physical switch on |
-| 9 | FB | 340 kΩ to 3.3 V and 200 kΩ to ground |
-| 10 | VC | Series 15 kΩ + 1.5 nF compensation branch to GND |
+Authority: [ADI LTC3440 3440fd](https://www.analog.com/media/en/technical-documentation/data-sheets/3440fd.pdf), bundled in [reference](../reference/LTC3440_3440fd.pdf). Page 1 typical application, page 2 MS package top view, page 12 layout, page 13 high-input protection, page 14 compensation, page 20 MSOP mechanical drawing.
 
-Feedback nominal target using datasheet reference: 1.22 V × (1 + 340/200) = 3.294 V. Manufacturer gives 3.3 V nominal.
+**Correction to the prior draft:** the series 15 kΩ + 1.5 nF network connects **VC to FB**, not to GND. Both the machine-readable reference and actual saved KiCad pads now enforce this. A fault-injection test rejects the old incorrect endpoint.
 
-**The original manufacturer's illustration must remain the authority** for analog compensation placement; a CAD schematic is not complete until all nets are visually compared against the PDF.
+| MSOP-10 pin | Name | Implemented net / connection |
+| ---: | --- | --- |
+| 1 | RT | RT → R3 60.4 kΩ → GND |
+| 2 | MODE/SYNC | MODE → R8 0 Ω → VIN; Burst Mode |
+| 3 | SW1 | L1 terminal 1, D2 anode, R7 snubber input |
+| 4 | SW2 | L1 terminal 2 |
+| 5 | GND | Ground with bottom plane |
+| 6 | VOUT | +3V3, C2 22 µF, R4 340 kΩ upper divider |
+| 7 | VIN | Protected switched battery, C1 10 µF, D2 cathode |
+| 8 | SHDN/SS | VIN; enabled directly, no RC soft-start fitted |
+| 9 | FB | Divider tap, R5 200 kΩ to GND, C6 compensation endpoint |
+| 10 | VC | R6 15 kΩ → COMP_NODE → C6 1.5 nF → FB |
 
-## Assembly
+D2 PMEG2010ER plus the 2 Ω/1 nF SW1-to-GND series snubber implement the ADI requirement for possible VIN above 4.5 V. D1 SS14 remains series polarity protection; minimum 2.5 V applies **after its voltage drop**, not at the raw pack.
 
-- Only **LTC3440EMS#PBF**, MSOP-10 with visible gull-wing legs. **Do not substitute LTC3440EDD** (DFN with hidden underside pad).
-- Pin pitch 0.5 mm; use flux, fine solder, wick, magnification, and enlarged solder-mask openings/accessible toe fillets. Verify footprint pad center positions against package drawing; no assumed mirroring.
-- Prefer 0805 resistors and 1206/1210 ceramics; verify actual physical footprints, component values and effective capacitance at bias.
-- Inductor must be chosen with 10 µH, adequate saturation/current rating and iron-accessible solder joints.
-- Keep high-frequency loop SW1/inductor/SW2 very short; place CIN close to VIN/GND and COUT close to VOUT/GND; keep FB node and VC away from switch copper. Follow datasheet layout recommendations.
-- Existing 1N5817 protection diode is retained provisionally. Its voltage drop will affect when the unit stops working on discharged batteries; check whether reverse-polarity MOSFET protection is preferable before release.
+The [actual R3 BOM](../pcb/r3/bom.csv) supersedes the earlier candidate list. New regulator passives use 0805/1206/1210 accessible pads. The MCU socket and existing through-hole non-supply components remain unchanged. No DFN, WSON or hidden thermal-pad regulator is used.
 
-## Not completed
+## Verified versus still open
 
-The old routing and Gerbers are untouched. No new KiCad schematic has been created in this commit. **KiCad isn't installed in the active execution environment**, so native ERC/DRC or finished copper cannot honestly be claimed. Before fabrication, all old U2 footprints and circuit nets must be replaced with this new topology, a new footprint and mechanical review must pass, then first-article power tests must be conducted.
+Both main and adapter pass native KiCad 9.0.2 ERC/DRC/schematic parity, with zero violations and zero unconnected pads. Every connected schematic XML pin matches actual saved PCB pad nets. Numbered top and mirrored-underside review templates are included. These results are CAD evidence, not a physical mating approval.
 
-The existing [PCB orientation gate](../PCB_ORIENTATION_GATE.md) remains mandatory for LCD, keypad, programmer and all polarized parts.
+LCD soldering-side overlay, keypad contact mapping/dry fit, actual programmer/cable/switch/part identification, populated clearance and capacitance DC-bias checks remain open in [release_gate.json](../pcb/r3/release_gate.json). `export_r3.py --manufacturing` refuses to create files while that evidence is missing. Prototype operation and battery life are unmeasured.
