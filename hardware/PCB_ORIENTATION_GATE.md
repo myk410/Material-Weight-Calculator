@@ -31,7 +31,7 @@ EastRising ERC12864-655 series manufacturer Rev 1.0 datasheet, **page 7 outline 
 | Part | Top-view PCB pad numbering / electrical contract | Physical orientation task |
 |---|---|---|
 | Main U1 (socket) | notch at pin 1/28 end; pad 1 x35,y20 | Socket on F.Cu, chip notch aligned; continuity confirm real pins 14,15,19,20,21 to pads |
-| Main J1 membrane keypad | 1..8 at x12; y22.54 to 40.32 at 2.54 pitch | **Do not assume** membrane ribbon traces 1..8 follow F.Cu view; measure ribbon with meter and record row/column electrical order. Ribbon may need a separate 2.54 mm breakout; never push flat flex directly into pin-header holes |
+| Main J1 membrane keypad | 1..8 at x12; y22.54 to 40.32 at 2.54 pitch | Earlier user photo shows a black **female 1x8 termination** on the membrane ribbon, so PCB J1 must be populated with an actual **male 1x8 2.54 mm header** (footprint alone is not a connector). Verify its actual pitch and that the header pins enter all female contacts without bending. Measure ribbon row/column contact order with a meter, and check that the keypad can plug in from the PCB F.Cu side with enough height and correct ribbon exit. The photo alone does NOT prove that connector position 1 is ROW0 |
 | Main J2 battery | 1 +switched battery x10,y9; 2 GND x10,y11.54 | Check actual red/black polarity at assembled wire connector, looking into mating plug vs PCB header |
 | Main JP1 | 1 switched battery to 2 battery link | Service shunt; not the case slide switch |
 | Main J3 LCD cable | 1 VCC, 2 GND, 3 SCK, 4 SDA, 5 CS, 6 CD, 7 RST, 8 NC; y16..33.78 | Cable must be continuity-mapped **by number**, not same-color/left-to-right appearance |
