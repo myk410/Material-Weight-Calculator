@@ -1,0 +1,159 @@
+{
+  "revision": "R3-power-provisional",
+  "status": "NOT_ROUTED_NOT_FABRICATION_READY",
+  "reference": "https://www.analog.com/media/en/technical-documentation/data-sheets/3440fd.pdf",
+  "reference_figure": "page 1 typical application, 3.3V buck-boost, input reference 2.7-4.2V (adapt for 3AAA up to 5.5V)",
+  "ic": {
+    "ref": "U2",
+    "mpn": "LTC3440EMS#PBF",
+    "package": "MSOP-10 (MS, no center pad)",
+    "mounting_side": "F.Cu only",
+    "package_view": "TOP VIEW with pin1 upper-left",
+    "pins": {
+      "1": "RT",
+      "2": "MODE",
+      "3": "SW1",
+      "4": "SW2",
+      "5": "GND",
+      "6": "+3V3",
+      "7": "VIN",
+      "8": "VIN",
+      "9": "FB",
+      "10": "VC"
+    }
+  },
+  "components": [
+    {
+      "ref": "L1",
+      "value": "10uH",
+      "mpn": "SUMIDA CDRH6D38-100 (datasheet example)",
+      "pins": {
+        "1": "SW1",
+        "2": "SW2"
+      },
+      "note": "Select exact package and footprint before routing; solder-access check"
+    },
+    {
+      "ref": "CIN",
+      "value": "10uF",
+      "mpn": "TBD 1206 ceramic voltage >=10V X7R/X5R",
+      "pins": {
+        "1": "VIN",
+        "2": "GND"
+      },
+      "note": "Effective capacitance after DC bias must be checked"
+    },
+    {
+      "ref": "COUT",
+      "value": "22uF",
+      "mpn": "TBD hand-solderable ceramic 1206/1210 >=10V",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "note": "Manufacturer reference output capacitance; account for effective value"
+    },
+    {
+      "ref": "RT",
+      "value": "60.4k 1%",
+      "mpn": "TBD 0805",
+      "pins": {
+        "1": "RT",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "RFB_TOP",
+      "value": "340k 1%",
+      "mpn": "TBD 0805",
+      "pins": {
+        "1": "+3V3",
+        "2": "FB"
+      }
+    },
+    {
+      "ref": "RFB_BOTTOM",
+      "value": "200k 1%",
+      "mpn": "TBD 0805",
+      "pins": {
+        "1": "FB",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "RCOMP",
+      "value": "15k",
+      "mpn": "TBD 0805",
+      "pins": {
+        "1": "VC",
+        "2": "COMP_NODE"
+      }
+    },
+    {
+      "ref": "CCOMP",
+      "value": "1.5nF",
+      "mpn": "TBD 0805",
+      "pins": {
+        "1": "COMP_NODE",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R_MODE",
+      "value": "0R or design-defined pull",
+      "mpn": "TBD 0805",
+      "pins": {
+        "1": "MODE",
+        "2": "+3V3"
+      },
+      "note": "Enable Burst Mode as shown in datasheet; check startup behavior when driven from output"
+    },
+    {
+      "ref": "TP_VIN",
+      "value": "testpad",
+      "pins": {
+        "1": "VIN"
+      }
+    },
+    {
+      "ref": "TP_GND",
+      "value": "testpad",
+      "pins": {
+        "1": "GND"
+      }
+    },
+    {
+      "ref": "TP_3V3",
+      "value": "testpad",
+      "pins": {
+        "1": "+3V3"
+      }
+    }
+  ],
+  "integration": {
+    "existing_D1": "Existing 1N5817 cathode to VIN, anode VBAT_LINK; assess dropout and low-voltage battery benefit",
+    "existing_J2": "Pin 1 switched battery +, pin 2 ground",
+    "existing_JP1": "Service jumper between VBAT_SW and VBAT_LINK",
+    "keep": [
+      "U1 AVR128DA28 socket",
+      "J1 keypad",
+      "J3 LCD cable",
+      "J4 UPDI",
+      "Q1 LCD power gating",
+      "3AAA physical switch"
+    ],
+    "remove": [
+      "MCP1700-3302E/TO LDO",
+      "LDO 2.2uF capacitor configuration as default regulator circuit"
+    ],
+    "firmware_note": "MCU 3.3V rail kept active while power switch on; soft sleep should turn off LCD through Q1."
+  },
+  "release_gates": [
+    "Select verified leaded MSOP-10 footprint with pad1 top-view check",
+    "Select physical inductor and 10uF/22uF capacitor MPNs and measure fitted height",
+    "Regenerate KiCad schematic, footprint copper and nets; preserve remaining pads",
+    "Run KiCad ERC, DRC and netlist-to-pad parity with new components",
+    "Re-run mirrored physical plug assembly and LCD pin1 checks",
+    "Bench test VOUT across 3AAA battery range, startup, ripple and light-load current"
+  ]
+}
