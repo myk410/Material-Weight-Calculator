@@ -1,5 +1,9 @@
 # Keypad J1 connector — physical mating contract (R2.1)
 
+## Confirmed purchase listing (2026-11-12)
+
+User supplied Amazon order screenshots for **DIYmalls 4x4 Keypad 16 Key Matrix Array Membrane Switch 8pin Keyboard**, **5-pack**, ASIN **B086Z1ZXNJ**, UPC **747356634328**, purchased January 10, 2021. Seller's description explicitly says to prepare a **2.54 mm pin header and jumper wire**; this supports choosing a 2.54 mm male 1x8 header to mate with the user-photographed black female 8-contact termination. The text does *not* give a keyed connector, exact solder-tail height, cavity clearance, or verified row/column conductor assignment. Do not infer that contact 1 corresponds to row 1 from product images.
+
 ## Hardware on hand
 
 The user's photographed 4×4 membrane keypad has an eight-conductor ribbon ending in a black **female eight-position connector** (holes visible). Typical 4×4 membrane keypads use a Dupont-style 1×8 **2.54 mm (0.1 inch) pitch** female termination, but the exact owned unit has **not yet been measured**.
