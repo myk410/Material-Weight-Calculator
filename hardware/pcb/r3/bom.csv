@@ -32,3 +32,4 @@ C5,2.2uF 25V X5R,MW_footprints:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,GRM18
 R1,10k 1%,MW_footprints:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,RC0603FR-0710KL
 R2,100k 1%,MW_footprints:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,RC0603FR-07100KL
 Q1,MMBT3906LT1G,MW_footprints:SOT-23_Handsoldering,MMBT3906LT1G
+J5,UPDI_JST_PH_2MM,MW_footprints:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,B3B-PH-K-S(LF)(SN)

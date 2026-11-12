@@ -35,3 +35,7 @@ Manufacturer [onsemi MMBT3906 datasheet](https://www.onsemi.com/pdf/datasheet/mm
 The new footprint is installed from **F.Cu**, center (58,15) mm. Top-view pads: 1 B at (56.5,14.05), 2 E at (56.5,15.95), 3 C at (59.5,15). Looking from the physical underside mirrors X: base/emitter appear on the right and collector on the left. This projected underside image is not the installation side. The independent audit and a deliberate B/E-swap negative test enforce the new mapping.
 
 Gerbers remain withheld while the existing physical mating, kit/component qualification and populated-fit checks are unresolved. See [R3_REVIEW.md](R3_REVIEW.md).
+
+## Added PH programming socket
+
+J5 uses a 3-pin 2.0 mm PH header matching the type shown in the user’s crimp kit. Keep the existing cable plugged into the UPDI Friend, and crimp PH contacts onto its loose wire ends for the calculator’s J5 socket. No programmer soldering is needed. No separate adapter board or purchased adapter cable is required. Original J4 remains available. See [wiring guide](UPDI_JST_PH.md). The generic kit header/housing still requires an actual dry fit against the selected JST reference dimensions.

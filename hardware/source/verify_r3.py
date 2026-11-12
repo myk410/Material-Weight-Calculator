@@ -42,6 +42,7 @@ def contracts(main,adapter):
     for i,n in enumerate(['ROW0','ROW1','ROW2','ROW3','COL0','COL1','COL2','COL3'],1):check(main,'J1',i,n,12,22.54+(i-1)*2.54)
     for ref,pins,x,y in [('J2',['VBAT_SW','GND'],10,9),('JP1',['VBAT_SW','VBAT_LINK'],19,9),('J4',['+3V3','GND','UPDI'],55,46)]:
         for i,n in enumerate(pins,1):check(main,ref,i,n,x,y+(i-1)*2.54)
+    for i,n in enumerate(['GND','+3V3','UPDI'],1):check(main,'J5',i,n,63+(i-1)*2,46)
     cable=['LCD_VCC','GND','LCD_CLK','LCD_DATA','LCD_CS','LCD_CD','LCD_RST','']
     for i,n in enumerate(cable,1):
         check(main,'J3',i,n,70,16+(i-1)*2.54);check(adapter,'J1',i,n,9+(i-1)*2.54,13)
@@ -70,6 +71,10 @@ def run():
         for part in b.GetFootprints():
             if part.GetReference().startswith(('C','R','D','Q','L')) or part.GetReference()=='U2':
                 assert all(p.GetAttribute()==k.PAD_ATTRIB_SMD for p in part.Pads()),part.GetReference()
+    assert f['J5'].GetFPIDAsString().endswith('JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical')
+    assert abs(maps['main']['J5','1'].GetDrillSize().x/1e6-.75)<1e-6
+    assert maps['main']['J5','1'].GetShape()==k.PAD_SHAPE_ROUNDRECT
+    assert abs(f['J5'].GetOrientationDegrees())<.001
     # All connector pad 1s are square, as are U1 socket pad1. U2 is leaded MSOP.
     for ref in ['U1','J1','J2','JP1','J3','J4']:
         assert maps['main'][ref,'1'].GetShape()==k.PAD_SHAPE_RECT
@@ -93,7 +98,7 @@ def run():
                 x,y=p.GetPosition().x/1e6-50,p.GetPosition().y/1e6-50
                 w.writerow([name,ref,num,net(p),'F.Cu',round(x,4),round(y,4),round(width-x,4),round(y,4)])
     report={'revision':'R3','cad_pin_contract':'PASS','all_schematic_pins_match_pcb':'PASS',
-            'mounting_holes_preserved':'PASS','MSOP_pitch_and_no_hidden_pad':'PASS','all_discrete_parts_SMD_both_boards':'PASS','owned_DIP_and_connector_contracts_preserved':'PASS',
+            'mounting_holes_preserved':'PASS','MSOP_pitch_and_no_hidden_pad':'PASS','all_discrete_parts_SMD_both_boards':'PASS','owned_DIP_and_connector_contracts_preserved':'PASS','JST_PH_programming_pin_order_and_pitch':'PASS',
             'top_and_mirrored_bottom_coordinates':'PASS','physical_mating':'UNVERIFIED',
             'release':'HOLD','files_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in [FOLDER/(STEM+'.kicad_pcb'),FOLDER/(STEM+'.kicad_sch'),ROOT/'pcb'/'r3'/'display_adapter'/'display_adapter.kicad_pcb']}}

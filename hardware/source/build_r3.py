@@ -92,6 +92,7 @@ if not ADAPTER:
     add('R1','10k 1%','Resistor_SMD',RSMALL,50,22,{'1':'LCD_PWR_CTRL','2':'LCD_BASE'},'RC0603FR-0710KL')
     add('R2','100k 1%','Resistor_SMD',RSMALL,56,7,{'1':'+3V3','2':'LCD_BASE'},'RC0603FR-07100KL')
     add('Q1','MMBT3906LT1G','Package_TO_SOT_SMD','SOT-23_Handsoldering',58,15,{'1':'LCD_BASE','2':'+3V3','3':'LCD_VCC'},'MMBT3906LT1G',names={'1':'B','2':'E','3':'C'})
+    add('J5','UPDI_JST_PH_2MM','Connector_JST','JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical',63,46,{'1':'GND','2':'+3V3','3':'UPDI'},'B3B-PH-K-S(LF)(SN)',names={'1':'GND','2':'PWR_3V3','3':'UPDI'})
 else:
     CFP='C_0603_1608Metric_Pad1.08x0.95mm_HandSolder'
     for ref,x,na,nb in [('C1',41,'VB0_PLUS','VB0_MINUS'),('C2',48,'VB1_PLUS','VB1_MINUS')]:
@@ -112,7 +113,7 @@ if not ADAPTER:
     text('MATERIAL WEIGHT R3 - HOLD',52,3,1)
     text('3xAAA / 3V3 - SEE R3_REVIEW',42,65,.9)
     for layer in [k.F_SilkS,k.B_SilkS]:
-        for t,x,y in [('J1-1',8,22.5),('J1-8',8,40.3),('J3-1',74,16),('J3-8 NC',75,34.5),('J2 +',7,8),('J4-1 3V3',55,43),('U1 NOTCH',39,16.5)]:text(t,x,y,.8,layer)
+        for t,x,y in [('J1-1',8,22.5),('J1-8',8,40.3),('J3-1',74,16),('J3-8 NC',75,34.5),('J2 +',7,8),('J4-1 3V3',55,43),('U1 NOTCH',39,16.5),('J5: G P U',65,51)]:text(t,x,y,.8,layer)
     for f in b.GetFootprints():
         refpos={'C1':(34,15),'C2':(31,23),'TP1':(5.5,17),'TP2':(5.5,20),'R7':(17,26.5),'J2':(10,14.5),'J4':(52,48.5)}
         if f.GetReference() in refpos:f.Reference().SetPosition(V(*refpos[f.GetReference()]))

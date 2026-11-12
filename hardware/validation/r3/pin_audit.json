@@ -6,12 +6,13 @@
   "MSOP_pitch_and_no_hidden_pad": "PASS",
   "all_discrete_parts_SMD_both_boards": "PASS",
   "owned_DIP_and_connector_contracts_preserved": "PASS",
+  "JST_PH_programming_pin_order_and_pitch": "PASS",
   "top_and_mirrored_bottom_coordinates": "PASS",
   "physical_mating": "UNVERIFIED",
   "release": "HOLD",
   "files_sha256": {
-    "pcb/r3/material_weight_calculator.kicad_pcb": "6e6ec2c1ef031bf161d36d0ed502232793e2dd9e9fbfaa8c11646973f63f013e",
-    "pcb/r3/material_weight_calculator.kicad_sch": "1b872e04abc84b577abb6c28344866a8a02e35e84a04935a5b026562fa9235d2",
+    "pcb/r3/material_weight_calculator.kicad_pcb": "0e5365f8fdf34ec4b082984b4f03deb01f165d5c5524dde1ca5c4dd2d7a0f5e5",
+    "pcb/r3/material_weight_calculator.kicad_sch": "74c9060ff73c77c43eb7f3a48f2a3ee9a2a7bc115c08326598d6aa475338748f",
     "pcb/r3/display_adapter/display_adapter.kicad_pcb": "92cbb0d9b2dbad07196aa5d4962f3f92aac7ccf63a0813a2c01143c46557acd9"
   }
 }

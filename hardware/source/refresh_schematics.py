@@ -73,7 +73,7 @@ def refresh(adapter=False, r3=False):
                           'R5': (140, 175), 'R6': (190, 175), 'C6': (300, 175),
                           'R7': (355, 175), 'C7': (40, 220), 'D2': (90, 220),
                           'R8': (140, 220), 'TP1': (190, 220),
-                          'TP2': (245, 220), 'TP3': (300, 220)})
+                          'TP2': (245, 220), 'TP3': (300, 220), 'J5': (355, 220)})
     symbols, instances, wires = [], [], []
     power_flags = []
     def pin_type(ref, pin, connected):
@@ -166,7 +166,8 @@ def refresh(adapter=False, r3=False):
                  'J2 switched battery positive; JP1 service shunt; SS14 D1 cathode to VIN.',
                  'MODE via R8 to VIN; SHDN tied to VIN. No RC soft start fitted.',
                  'FABRICATION HOLD: physical LCD/keypad/programmer/switch mating remains unverified.',
-                 'J4: remove batteries before programmer power. Never connect two power sources.',
+                 'J4: 1=PWR 2=GND 3=UPDI; J5 PH: 1=GND 2=PWR 3=UPDI (different pin order).',
+                 'Crimp PH contacts on existing UPDI Friend cable loose ends for J5. Use 3V; remove batteries.',
                  'All components on F.Cu; underside drawing is mirrored; U1 notch at pins 1/28.']
     if r3 and adapter:
         notes += ['R3: all passive parts are SMD. C5 is ceramic/nonpolar, not an electrolytic.',

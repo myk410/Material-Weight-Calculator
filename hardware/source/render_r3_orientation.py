@@ -25,6 +25,9 @@ def render(name,path,width,height):
                     tx,ry=positions[ref]
                     if flip:tx=width-tx
             out.append(f'<text class="ref" x="{ox+tx}" y="{oy+ry}">{escape(ref)}</text>')
+            if ref=='J5':
+                left=width-68.95 if flip else 61.05
+                out.append(f'<rect x="{ox+left}" y="{oy+44.3}" width="7.9" height="4.5" fill="none" stroke="#697d90" stroke-width=".15" stroke-dasharray=".4 .3"/>')
             if ref=='U1':
                 # Socket body projection and notch: visible from top; dashed from below.
                 left=width-43.76 if flip else 33.86
@@ -39,7 +42,7 @@ def render(name,path,width,height):
                 if p.GetAttribute()==k.PAD_ATTRIB_SMD:
                     out.append(f'<rect x="{ox+px-sx/2}" y="{oy+py-sy/2}" width="{sx}" height="{sy}" fill="{color}" stroke="#53697f" stroke-width=".06"/>')
                 else:
-                    if p.GetShape()==k.PAD_SHAPE_RECT:out.append(f'<rect x="{ox+px-sx/2}" y="{oy+py-sy/2}" width="{sx}" height="{sy}" fill="{color}" stroke="#53697f" stroke-width=".07"/>')
+                    if p.GetShape() in (k.PAD_SHAPE_RECT,k.PAD_SHAPE_ROUNDRECT):out.append(f'<rect x="{ox+px-sx/2}" y="{oy+py-sy/2}" width="{sx}" height="{sy}" fill="{color}" stroke="#53697f" stroke-width=".07"/>')
                     else:out.append(f'<ellipse cx="{ox+px}" cy="{oy+py}" rx="{sx/2}" ry="{sy/2}" fill="{color}" stroke="#53697f" stroke-width=".07"/>')
                     d=p.GetDrillSize().x/1e6
                     if not num:out.append(f'<circle cx="{ox+px}" cy="{oy+py}" r="{d/2}" fill="white" stroke="#53697f" stroke-width=".07"/>')

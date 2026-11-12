@@ -24,6 +24,14 @@
     "detected": true
   },
   {
+    "fault": "reversed_PH_programming_header",
+    "detected": true
+  },
+  {
+    "fault": "PH_power_ground_swap",
+    "detected": true
+  },
+  {
     "fault": "unresolved_physical_gate",
     "detected": true,
     "manufacturing_files_created": false

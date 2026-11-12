@@ -1,6 +1,6 @@
 # R3 LTC3440 implementation and fabrication hold
 
-Updated 2026-11-12. **R3 is routed and CAD-validated. Physical mating is NOT approved. No R3 Gerbers, drills or PCB-order ZIP have been released.**
+Updated 2026-11-12. J5 now adds a 3-pin 2.0 mm JST-PH programming connection for the existing UPDI Friend cable with PH contacts crimped onto its loose ends; [wiring and orientation](UPDI_JST_PH.md). **R3 is routed and CAD-validated. Physical mating is NOT approved. No R3 Gerbers, drills or PCB-order ZIP have been released.**
 
 Open [the R3 KiCad project](pcb/r3/material_weight_calculator.kicad_pro). The main PCB under `pcb/` without `/r3/` is the preserved MCP1700 R2.1 design. The SMD [R3 display adapter](pcb/r3/display_adapter/display_adapter.kicad_pro) is included alongside the main board. The older adapter outside `/r3/` is preserved R2.1. Old R2 fabrication archives are historical and must not be used for this redesign.
 
@@ -59,6 +59,7 @@ The underside templates mirror **X about board width**, retaining the same top e
 | JP1 | Service shunt VBAT_SW → VBAT_LINK, normally fitted; not the case power switch | A shunt has no electrical polarity; verify its body clears L1 and access remains possible. |
 | Main J3 / adapter J1 | Numbered 1→1 … 7→7 wires; pad 8 NC on each. Main row vertical, adapter row horizontal. | Map by contact number and continuity, not colors or apparent left-to-right order. Adapter wire landing is not a tall header stack. |
 | Adapter J2 LCD | Direct 22-hole solder interface, 1.27 mm pitch; pin 1 at (21.665,3), pin 22 at (48.335,3), adapter F.Cu plan | Actual LCD viewing side, pin-end face and soldering face must be overlaid. Corner NC pins are not electrical pins. No extra male header/socket here. |
+| J5 JST-PH programming | PH 2 mm top-entry header, pins 1 GND at (63,46), 2 PWR/+3V3 at (65,46), 3 UPDI at (67,46). Installed from F.Cu. | Underside X positions 19,17,15 mm respectively. Crimp PH contacts onto the existing UPDI Friend cable loose ends, matching GND/PWR/UPDI signals. J4 is retained and has a different power/ground order. |
 | J4 UPDI | 1 +3V3/VTREF, 2 GND, 3 UPDI, all from F.Cu | Actual UPDI Friend pin label order must be checked from mating face. Use 3.3 V, never 5 V. Remove batteries before externally powering this header. |
 | Case slide switch | External CYT1107 SPDT: battery + to measured common, one selected outer to main J2.1; unused outer insulated | No PCB footprint implies no CAD terminal guarantee. Measure actual common and both slider positions. |
 
