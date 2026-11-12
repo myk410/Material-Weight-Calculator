@@ -1,33 +1,46 @@
-# R3 power revision — soldering-iron assembly only
+# R3 power redesign — hand-solderable SMD preference
 
-**Design constraint confirmed November 12, 2026:** User has a conventional soldering iron, **no hot air, no reflow oven**. Do NOT select WSON/QFN/BGA/underbody-pad regulators for user assembly. Prior TPS63900 proposal is rejected for this build; the TPS63900 has an exposed thermal pad requiring a different assembly process.
+**Updated 2026-11-12. Status: design candidate only, NOT schematic/PCB release.**
 
-## Proposed implementation
+## Assembly requirements
+User **prefers SMD/SMT** components soldered directly onto the main PCB, using a **regular soldering iron only**, no hot air or oven. Prefer externally accessible gull-wing leads, generously extended pads, flux and drag soldering. Reject QFN/WSON/DFN parts with hidden pads. The previously explored factory-assembled Pololu S7V8F3 module is now a fallback, **not** the preferred solution.
 
-Use a **factory-populated 3.3 V buck-boost regulator daughterboard** installed onto a custom through-hole footprint on the main PCB, with ordinary 2.54 mm headers. This retains one unified board assembly in the enclosure, but the switching IC, inductor and tiny SMD parts are already factory soldered to the module. The user only solders accessible through-hole pins.
+## Preferred IC candidate: Analog Devices LTC3440EMS#PBF (MSOP-10)
 
-**Candidate: Pololu S7V8F3, product #2122**:
-- [Manufacturer and assembly information](https://www.pololu.com/product/2122)
-- [Specifications](https://www.pololu.com/product/2122/specs)
-- [Official dimensions, drill guide and schematic](https://www.pololu.com/product/2122/resources)
-- VIN 2.7–11.8 V, fixed VOUT 3.3 V.
-- Manufacturer lists <0.1 mA enabled, no-load quiescent current. That is **not** the complete calculator sleep current. The preassembled module is less ultra-low-power than the previously considered TPS63900, so measure resulting battery life.
-- Four module connections: VIN, GND, VOUT and SHDN. Physical positions must be taken from **Pololu's actual board drawing and hole map**; DO NOT infer order from this prose or from a generic 1×4 header footprint.
-- **No integrated reverse-polarity protection.** Design battery protection ahead of VIN and confirm voltage drop / cutoff at three-cell depletion.
-- Module dimensions approximately 11 × 17 × 3 mm excluding optional header projections. Final height depends on chosen mounting and solder tail positions.
-- It can be mounted with soldered male headers or suitable female sockets depending on clearance; select the exact option before footprint and enclosure checks.
-- SHDN may be left open to enable the regulator; for controlled power and reliable bring-up, determine a documented pull configuration and whether a test pad should expose SHDN. User's separate physical battery switch remains upstream.
+- [Official product page](https://www.analog.com/en/products/ltc3440.html)
+- [Manufacturer full datasheet PDF](https://www.analog.com/media/en/technical-documentation/data-sheets/3440fd.pdf)
+- [MSOP-10 manufacturer package drawing](https://www.analog.com/en/products/ltc3440.html) (choose the **MS** package, not **DD/DFN**).
+- Input range 2.5–5.5 V; output adjusted to 3.3 V by feedback divider. Appropriate for 3 alkaline AAA cells over 2.5–5.5 V, subject to battery sag.
+- 25 µA typical quiescent current in Burst Mode; under 1 µA specified shutdown current. Complete assembled system consumption remains unmeasured.
+- Manufacturer claims up to 96% efficiency and up to 600 mA output under specified conditions; do not assume either at very light actual loads.
+- MSOP-10 has **visible side leads at 0.5 mm pitch** and manufacturer's top-view pin diagram without a mandatory exposed underside pad. The **DFN** variant has an exposed pad that must be soldered and is NOT acceptable.
+- 0.5 mm lead pitch is challenging but hand-solderable with a suitable tip, plenty of flux, solder wick, magnification and practice. Confirm the user's comfort before ordering.
 
-## Current state
+### Independent TOP-view orientation (MSOP-10, looking at lettering from ABOVE, with pin-1 marker at upper-left)
 
-Existing R2.1 design uses MCP1700 LDO and 1N5817 diode, with KiCad routing and Gerbers. **R2.1 is not a buck-boost design. Existing Gerbers remain under fabrication hold.** The R3 redesign must remove the LDO circuit and replace it with the Pololu-module footprint, route power and selected protection, update BOM, 3D mechanical support, netlists, PCB/schematic and Gerbers, followed by independent front/back/mating checks and native ERC/DRC.
+```
+          LTC3440EMS#PBF
+     RT  1 |             | 10 VC
+   MODE  2 |             |  9 FB
+    SW1  3 |             |  8 SHDN/SS
+    SW2  4 |             |  7 VIN
+    GND  5 |_____________|  6 VOUT
+```
 
-### Orientation and assembly requirements
+This is an **IC package top view**, NOT a PCB underside view. The PCB F.Cu pads must mirror neither column. Place pin-1 dot and visual flat-edge marker on silkscreen. The footprint must be checked against Analog Devices MSOP drawing, and Gerber F.Cu/B.Cu rendered separately for orientation review.
 
-1. Use manufacturer's **actual drill guide** to plot all four module pad coordinates and signal identities. Confirm whether board is oriented components-up or components-down when mounted.
-2. Ensure the module does not rotate 180° or get inserted into the wrong face; use an asymmetric mounting scheme, silkscreen VIN/GND/VOUT/SHDN, and a top-and-bottom view.
-3. Select header gender and installed height before PCB fabrication. Never mirror a bottom-mounted module as if the mating side were identical to top.
-4. Bench-test voltage on VOUT without MCU/display fitted.
-5. Re-run all saved KiCad tests and physical 1:1 fit overlays after designing the new board.
+### Circuit tasks (not yet implemented)
 
-**No purchase is needed until the final mating orientation and footprint have been checked.** No statement that the buck-boost copper has been routed or signed off is made here.
+1. Copy the manufacturer's **3.3V typical application** as the starting point; select and verify the 10 µH inductor, input/output ceramic capacitors, RT resistor, FB upper/lower divider, VC compensation and shutdown soft-start circuitry from datasheet. Prefer 0805/1206 passives or leaded alternatives where electrically valid; ensure the required capacitance under DC bias.
+2. Set MODE/SYNC high for low-Iq Burst Mode when suitable; verify behavior/noise at expected LCD current.
+3. Retain the 3-AAA battery holder and physical switch. Determine polarity protection approach with low enough voltage drop to retain useful battery capacity; assess any leakage.
+4. Verify power-up with batteries fresh (including open-circuit voltage), battery depletion, current transients during LCD startup and high-frequency ripple, using the actual LCD adapter and MCU.
+5. Regenerate main PCB KiCad schematic/layout/netlist/BOM/Gerbers to replace MCP1700 power supply only after full circuit selection, then run independent pin-map, physical top/bottom, DRC/ERC, and prototype bring-up checks.
+6. The power redesign must preserve the LCD 22-pin orientation gate, AVR socket notch, keypad J1 contact ordering and programmer J4 mating checks.
+
+**Warning:** Existing KiCad R2.1 files and all previously generated Gerbers **still use the MCP1700 LDO**. Merely selecting this IC does not update copper. They remain on FABRICATION HOLD.
+
+## Previous candidates
+
+- TPS63900: electrically attractive but WSON with hidden pad; reject for user's soldering setup.
+- Pololu S7V8F3: manufacturer-assembled buck-boost module with through-hole leads; retain only as fallback if MSOP-10 soldering is too fine.
