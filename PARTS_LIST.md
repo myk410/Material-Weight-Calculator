@@ -37,7 +37,7 @@ The exact reference-designator BOM and 16-nut M2.5 fastener list are in [hardwar
 | 2 | 100 nF ceramic capacitors, at least 10 V, 2.5 mm lead pitch | Check stock. |
 | 1 | Three-AAA holder, nominal 52 × 37 × 13 mm (Pololu 1144 envelope) | Not confirmed owned. |
 | 3 | AAA alkaline cells | Check stock. |
-| 1 set | 2.54 mm headers: two 1×8, one 1×3, two 1×2; one shunt | Check stock; keypad, display, programmer, battery, master link. |
+| 1 set | 2.54 mm headers: two 1×8, one 1×3, two 1×2; one shunt | **Keypad J1 requires an actual 1×8 male header**: the photographed keypad ribbon ends in a female 8-way housing. Verify 2.54 mm pitch and insertion direction before selecting straight vs right-angle; existing footprint is straight. Other headers: display cable, programmer, battery, master link. See [hardware/KEYPAD_CONNECTOR.md](hardware/KEYPAD_CONNECTOR.md). |
 | 1 set | Existing jumper/hookup wire | Reuse where connectors fit. |
 | 1 | Custom two-layer R2 PCB | Fabricate from included Gerbers/drills; PCB source and 1:1 copper artwork supplied. |
 | 1 shared tool | 3 V SerialUPDI programmer | Adafruit UPDI Friend 5879 is a verified example. User also showed a generic switchable 3V/5V USB Serial UPDI board; correct type, specific seller's implementation unverified. CANADUINO's ATmega328P bootloader-only tool is incompatible. |
